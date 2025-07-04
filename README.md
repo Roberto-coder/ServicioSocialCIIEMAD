@@ -19,7 +19,7 @@ Este es un sitio web estático desarrollado con [Astro](https://astro.build/) y 
 1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/usuario/paga-web-astro.git
+git clone https://github.com/Roberto-coder/ServicioSocialCIIEMAD.git
 cd paga-web-astro
 ```
 2. Instalar las dependencias:
@@ -31,7 +31,7 @@ npm install
 3. Ejecutar el servidor de desarrollo:
 
 ```bash
-npm install
+npm run dev
 ```
 
 4. Abrir en navegador:
