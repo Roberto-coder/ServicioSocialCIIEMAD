@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import { IconBookOpen, IconUsers } from 'lucide-astro'; // si usas íconos tipo lucide
+const publicaciones = [
+  {
+    titulo: "Indicadores de resiliencia urbana",
+    autores: "Dra. Gómez, Mtro. Hernández",
+    enlace: "#"
+  },
+  {
+    titulo: "Análisis de política energética en México",
+    autores: "Dr. Ruiz, Dra. Martínez",
+    enlace: "#"
+  },
+  {
+    titulo: "Diseño participativo en espacios públicos",
+    autores: "Dra. López, Ing. Jiménez",
+    enlace: "#"
+  }
+];
+---
+
+<Layout>
+  <section class="max-w-5xl mx-auto my-20">
+    <h1 class="text-5xl font-serif text-guinda mb-4 text-center">Nuestro Trabajo</h1>
+    <p class="text-lg text-gray-600 mb-12 text-center">
+      Publicaciones y proyectos que reflejan nuestro compromiso con el desarrollo sostenible y la toma de decisiones basadas en evidencia.
+    </p>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {publicaciones.map((pub) => (
+        <article class="border p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h2 class="text-2xl font-serif text-verde mb-1">{pub.titulo}</h2>
+          <p class="text-sm text-gray-600 mb-3">{pub.autores}</p>
+          <a href={pub.enlace} class="text-guinda underline hover:text-verde transition">Ver publicación</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-gray-100 py-16 mt-20">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-serif text-guinda mb-4">Líneas de investigación</h2>
+      <p class="text-gray-600 mb-10">Estas son las áreas clave en las que hemos concentrado nuestras investigaciones recientes:</p>
+      <ul class="grid md:grid-cols-3 gap-6 text-left text-gray-700">
+        <li>🌱 Sustentabilidad urbana</li>
+        <li>⚡ Política energética</li>
+        <li>🏛️ Gobernanza y políticas públicas</li>
+        <li>👥 Participación ciudadana</li>
+        <li>📊 Indicadores territoriales</li>
+        <li>🌐 Transformación digital</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
