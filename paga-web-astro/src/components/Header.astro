@@ -1,5 +1,6 @@
 ---
 // src/components/Header.astro
+import MenuDropdown from './MenuDropdown.astro'
 ---
 
 <header class="bg-white shadow-md sticky top-0 z-50">
@@ -12,6 +13,7 @@
     </a>
 
     <ul class="flex gap-6 text-sm font-medium text-gray-700">
+      <MenuDropdown />
       <li><a href="/nuestro-trabajo" class="hover:text-guinda">Nuestro trabajo</a></li>
       <li><a href="/publicaciones" class="hover:text-guinda">Publicaciones</a></li>
       <li><a href="/cobertura" class="hover:text-guinda">Cobertura</a></li>

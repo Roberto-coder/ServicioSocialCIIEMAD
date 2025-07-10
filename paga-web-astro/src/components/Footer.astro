@@ -2,9 +2,67 @@
 // src/components/Footer.astro
 ---
 
-<footer class="bg-green-800 text-white py-8 mt-20">
-  <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
-    <p class="text-sm">&copy; {new Date().getFullYear()} CIIEMAD - Instituto Politécnico Nacional</p>
-    <p class="text-sm">Hecho con Astro + Tailwind CSS</p>
+<footer class="bg-verde text-white py-12 mt-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Contenedor principal con logos y texto -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+      
+      <!-- Logo Izquierdo -->
+      <div class="flex-shrink-0">
+        <img 
+          src="/logo_ipn.png" 
+          alt="Logo CIIEMAD" 
+          class="h-16 w-auto md:h-20"
+        />
+      </div>
+
+      <!-- Texto Central -->
+      <div class="flex-1 text-center px-4">
+        <h3 class="text-2xl font-bold mb-2">
+          <span class="text-white">SUSTENTA-</span><span class="text-gray-200">LAPP</span>
+        </h3>
+        <p class="text-gray-200 mb-4 max-w-md mx-auto">
+          Centro Interdisciplinario de Investigaciones y Estudios sobre Medio Ambiente y Desarrollo
+        </p>
+        <div class="space-y-1 text-sm text-gray-300">
+          <p>Instituto Politécnico Nacional</p>
+          <p>30 de Junio de 1520 s/n, La Laguna Ticoman, Gustavo A. Madero, 07340 Ciudad de México, CDMX</p>
+        </div>
+      </div>
+
+      <!-- Logo Derecho -->
+      <div class="flex-shrink-0">
+        <img 
+          src="/logo_ciiemad.png" 
+          alt="Logo IPN" 
+          class="h-16 w-auto md:h-20"
+        />
+      </div>
+
+    </div>
+
+    <!-- Línea divisoria -->
+    <div class="border-t border-green-600 pt-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        
+        <!-- Copyright -->
+        <div class="text-sm text-gray-300 text-center md:text-left">
+          <p>&copy; {new Date().getFullYear()} CIIEMAD - Todos los derechos reservados</p>
+        </div>
+
+        <!-- Enlaces adicionales (opcional) -->
+        <div class="flex gap-6 text-sm text-gray-300">
+          <a href="/sobre-nosotros" class="hover:text-white transition-colors">Sobre nosotros</a>
+          <a href="/publicaciones" class="hover:text-white transition-colors">Publicaciones</a>
+          <a href="/contacto" class="hover:text-white transition-colors">Contacto</a>
+        </div>
+
+        <!-- Tecnologías -->
+        <div class="text-sm text-gray-300 text-center md:text-right">
+          <p>Desarrollado con Astro + Tailwind CSS</p>
+        </div>
+
+      </div>
+    </div>
   </div>
 </footer>
