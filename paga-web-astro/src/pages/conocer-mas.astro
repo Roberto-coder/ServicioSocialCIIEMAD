@@ -3,30 +3,32 @@ import Layout from '../layouts/BaseLayout.astro';
 ---
 
 <Layout>
-  <section class="text-center max-w-2xl mx-auto my-24 px-6">
-    <h1 class="text-4xl font-serif text-guinda mb-6">¿Quieres conocer más sobre nuestra investigación?</h1>
-    <p class="text-gray-700 mb-8">Estamos constantemente trabajando en nuevas investigaciones y proyectos. Aquí te mostramos algunos de nuestros trabajos recientes. Escríbenos para colaborar o visitar otras secciones de nuestra web.</p>
+  <section class="relative min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-white via-green-50 to-green-100 py-24 px-2">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h1 class="text-5xl font-serif text-guinda mb-6 drop-shadow-sm">¿Quieres conocer más sobre nuestra investigación?</h1>
+      <p class="text-gray-700 mb-8 text-lg">Estamos constantemente trabajando en nuevas investigaciones y proyectos. Aquí te mostramos algunos de nuestros trabajos recientes. Escríbenos para colaborar o visitar otras secciones de nuestra web.</p>
+    </div>
 
-    <div class="space-y-6">
+    <div class="space-y-10 w-full max-w-2xl">
       <!-- Proyecto 1 -->
-      <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-xl font-semibold text-verde mb-2">Análisis de cambio climático en América Latina</h2>
-        <p class="text-sm text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet augue a lacus ultrices feugiat. Curabitur ac bibendum dui. Vivamus sed mi neque.</p>
-        <a href="#" class="text-guinda underline hover:text-verde">Leer más</a>
+      <div class="bg-white p-8 rounded-xl shadow-xl border-l-8 border-verde transition-transform hover:scale-105 hover:shadow-2xl group">
+        <h2 class="text-2xl font-bold text-verde mb-3 group-hover:text-guinda transition-colors">Análisis de cambio climático en América Latina</h2>
+        <p class="text-base text-gray-600 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet augue a lacus ultrices feugiat. Curabitur ac bibendum dui. Vivamus sed mi neque.</p>
+        <a href="https://ejemplo.com/proyecto1" class="text-guinda underline hover:text-verde font-semibold transition-colors" target="_blank" rel="noopener noreferrer">Leer más</a>
       </div>
 
       <!-- Proyecto 2 -->
-      <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-xl font-semibold text-verde mb-2">Estudio sobre energías renovables en zonas rurales</h2>
-        <p class="text-sm text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada nunc sit amet vehicula dignissim. Integer nec lectus auctor, tempus nisi a, scelerisque ligula.</p>
-        <a href="#" class="text-guinda underline hover:text-verde">Leer más</a>
+      <div class="bg-white p-8 rounded-xl shadow-xl border-l-8 border-verde transition-transform hover:scale-105 hover:shadow-2xl group">
+        <h2 class="text-2xl font-bold text-verde mb-3 group-hover:text-guinda transition-colors">Estudio sobre energías renovables en zonas rurales</h2>
+        <p class="text-base text-gray-600 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada nunc sit amet vehicula dignissim. Integer nec lectus auctor, tempus nisi a, scelerisque ligula.</p>
+        <a href="https://ejemplo.com/proyecto2" class="text-guinda underline hover:text-verde font-semibold transition-colors" target="_blank" rel="noopener noreferrer">Leer más</a>
       </div>
 
       <!-- Proyecto 3 -->
-      <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-xl font-semibold text-verde mb-2">Investigación sobre sostenibilidad en la agricultura</h2>
-        <p class="text-sm text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor velit sit amet purus volutpat, nec ullamcorper lorem faucibus. Aenean id felis vitae odio mattis vehicula.</p>
-        <a href="#" class="text-guinda underline hover:text-verde">Leer más</a>
+      <div class="bg-white p-8 rounded-xl shadow-xl border-l-8 border-verde transition-transform hover:scale-105 hover:shadow-2xl group">
+        <h2 class="text-2xl font-bold text-verde mb-3 group-hover:text-guinda transition-colors">Investigación sobre sostenibilidad en la agricultura</h2>
+        <p class="text-base text-gray-600 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor velit sit amet purus volutpat, nec ullamcorper lorem faucibus. Aenean id felis vitae odio mattis vehicula.</p>
+        <a href="https://ejemplo.com/proyecto3" class="text-guinda underline hover:text-verde font-semibold transition-colors" target="_blank" rel="noopener noreferrer">Leer más</a>
       </div>
     </div>
 
