@@ -1,0 +1,25 @@
+---
+// MenuDropdown.astro - Version sin React
+---
+
+<li class="relative group">
+  <button class="hover:text-guinda dropdown-toggle">
+    Sobre nosotros
+  </button>
+  <ul class="absolute left-0 mt-2 w-40 bg-white border rounded-md shadow-md z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+    <li>
+      <a href="/sobre-nosotros" class="block px-4 py-2 hover:bg-gray-100 text-sm text-gray-700">Nuestra visión</a>
+    </li>
+    <li>
+      <a href="/sobre-nosotros" class="block px-4 py-2 hover:bg-gray-100 text-sm text-gray-700">Nuestro equipo</a>
+    </li>
+  </ul>
+</li>
+
+<style>
+  .dropdown-toggle:focus + ul,
+  .dropdown-toggle:focus-within + ul {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
