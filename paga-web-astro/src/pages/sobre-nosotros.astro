@@ -1,23 +1,182 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
+import { Users, Eye, Target, User } from 'lucide-astro';
+
+const equipo = [
+  {
+    id: 'dra-concepcion',
+    nombre: 'Dra. María Concepción Martínez Rodríguez',
+    titulo: 'Profesora investigadora',
+    foto: '/equipo/mcmr.jpg',
+    semblanza: 'Doctora en Políticas Públicas, maestría en Administración Pública y Políticas Públicas y un título de Ingeniero Químico Industrial. Su experiencia profesional la ha desarrollado en el CIIEMAD, trabajó en la SEMARNAT como Subdirectora de Movimientos Transfronterizos y Asuntos Internacionales.',
+    email: 'mcmartinezr@ipn.mx',
+    especialidades: ['Desarrollo Sustentable', 'Políticas Ambientales', 'Gestión Ambiental y Economía Circular']
+  },
+  {
+    id: 'hector-ramirez',
+    nombre: 'Héctor Ramírez',
+    titulo: 'Maestro en Ciencias en Estudios Ambientales y de la Sustentabilidad',
+    foto: '/equipo/hector-ramirez.jpeg',
+    semblanza: 'Especialista en gestión de residuos y economía circular. Participa en investigaciones sobre sustentabilidad e inclusión social. Ha sido ponente en congresos internacionales sobre gobernanza ambiental, políticas públicas y manejo responsable de residuos.',
+    email: 'hector.ramirez@ciiemad.ipn.mx',
+    especialidades: ['Gestión de Residuos', 'Economía Circular', 'Gobernanza Ambiental']
+  },
+  {
+    id: 'ana-laura',
+    nombre: 'Ana Laura',
+    titulo: 'Maestra en Ciencias en Estudios Ambientales y de la Sustentabilidad',
+    foto: '/equipo/ALCN.jpg',
+    semblanza: 'Especialista en el estudio de la adaptación de las ciudades al cambio climático, en específico con soluciones basadas en la naturaleza y techos verdes como una forma de mejorar los espacios urbanos por el aumento de áreas verdes.',
+    email: 'luis.hernandez@ciiemad.ipn.mx',
+    especialidades: ['Cambio Climático', 'Sistemas Ambientales', 'Gestión de Calidad']
+  },
+  {
+    id: 'dra-martinez',
+    nombre: 'Dra. Ana Martínez',
+    titulo: 'Investigadora Senior',
+    foto: '/equipo/dra-martinez.jpg',
+    semblanza: 'Doctora en Políticas Públicas especializada en gobernanza territorial. Consultora internacional en temas de participación ciudadana y desarrollo local. Su trabajo se enfoca en la implementación de políticas públicas inclusivas y participativas.',
+    email: 'ana.martinez@ciiemad.ipn.mx',
+    especialidades: ['Gobernanza Territorial', 'Participación Ciudadana', 'Políticas Públicas']
+  },
+  {
+    id: 'dra-lopez',
+    nombre: 'Dra. Patricia López',
+    titulo: 'Especialista en Tecnología',
+    foto: '/equipo/dra-lopez.jpg',
+    semblanza: 'Doctora en Sistemas de Información con especialización en transformación digital para el desarrollo sostenible. Lidera proyectos de innovación tecnológica aplicada a soluciones ambientales. Experta en análisis de datos y modelado predictivo para sostenibilidad.',
+    email: 'patricia.lopez@ciiemad.ipn.mx',
+    especialidades: ['Transformación Digital', 'Análisis de Datos', 'Innovación Tecnológica']
+  },
+  {
+    id: 'ing-jimenez',
+    nombre: 'Ing. Roberto Jiménez',
+    titulo: 'Investigador Junior',
+    foto: '/equipo/ing-jimenez.jpg',
+    semblanza: 'Ingeniero en Desarrollo Sustentable especializado en diseño participativo y espacios públicos. Su trabajo se centra en la creación de metodologías innovadoras para la participación ciudadana en proyectos urbanos y el diseño de espacios inclusivos.',
+    email: 'roberto.jimenez@ciiemad.ipn.mx',
+    especialidades: ['Diseño Participativo', 'Espacios Públicos', 'Metodologías Participativas']
+  }
+];
 ---
 
 <Layout>
-  <section class="text-center max-w-3xl mx-auto my-16">
-    <h1 class="text-4xl font-serif text-guinda mb-4">Sobre Nosotros</h1>
-    <p class="text-lg text-gray-700">
-      Somos una organización del IPN enfocada en investigación aplicada en sustentabilidad y políticas públicas.
+  <!-- Sección Introductoria -->
+  <section class="text-center max-w-4xl mx-auto my-20 px-4">
+    <div class="flex justify-center mb-6">
+      <div class="bg-guinda/10 p-4 rounded-full">
+        <Users class="w-12 h-12 text-guinda" />
+      </div>
+    </div>
+    <h1 class="text-5xl font-serif text-guinda mb-6">Sobre Nosotros</h1>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      <span class="font-bold text-verde">SUSTENTA-LAPP</span> está conformado por un <span class="font-bold">equipo interdisciplinario</span> de profesionales provenientes de áreas como políticas públicas, ciencias ambientales, economía, derecho, urbanismo, innovación tecnológica y comunicación. Esta diversidad nos permite abordar los desafíos de la sustentabilidad con una visión integral y colaborativa.
     </p>
   </section>
 
-  <section class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto my-12">
-    <div>
-      <h2 class="text-2xl font-serif text-verde mb-2">Nuestro equipo</h2>
-      <p class="text-gray-700">Profesionales y académicos interdisciplinarios comprometidos con el desarrollo sostenible.</p>
+  <!-- Misión y Visión -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="text-center">
+          <div class="flex justify-center mb-4">
+            <div class="bg-verde/10 p-3 rounded-full">
+              <Target class="w-8 h-8 text-verde" />
+            </div>
+          </div>
+          <h2 class="text-3xl font-serif text-verde mb-4">Nuestra Misión</h2>
+          <p class="text-gray-700 text-lg leading-relaxed">
+            Promover la sustentabilidad a través de la investigación, la educación y la colaboración interdisciplinaria, generando conocimiento científico que contribuya al desarrollo de políticas públicas efectivas.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="flex justify-center mb-4">
+            <div class="bg-guinda/10 p-3 rounded-full">
+              <Eye class="w-8 h-8 text-guinda" />
+            </div>
+          </div>
+          <h2 class="text-3xl font-serif text-guinda mb-4">Nuestra Visión</h2>
+          <p class="text-gray-700 text-lg leading-relaxed">
+            Contribuir con conocimiento y acción a las decisiones públicas para un México más justo y sostenible, siendo referente nacional en investigación aplicada al desarrollo sustentable.
+          </p>
+        </div>
+      </div>
     </div>
-    <div>
-      <h2 class="text-2xl font-serif text-verde mb-2">Nuestra visión</h2>
-      <p class="text-gray-700">Contribuir con conocimiento y acción a las decisiones públicas para un México más justo y sostenible.</p>
+  </section>
+
+  <!-- Sección del Equipo -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <div class="flex justify-center mb-6">
+          <div class="bg-verde/10 p-4 rounded-full">
+            <User class="w-12 h-12 text-verde" />
+          </div>
+        </div>
+        <h2 class="text-4xl font-serif text-guinda mb-4">Nuestro Equipo</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Conoce a los profesionales que conforman SUSTENTA-LAPP, un grupo interdisciplinario 
+          comprometido con la investigación y el desarrollo sostenible.
+        </p>
+      </div>
+
+      <!-- Grid del Equipo -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {equipo.map((miembro) => (
+          <article class="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
+            <div class="aspect-square overflow-hidden">
+              <img 
+                src={miembro.foto} 
+                alt={miembro.nombre}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-guinda mb-1">{miembro.nombre}</h3>
+              <p class="text-verde font-medium mb-4">{miembro.titulo}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {miembro.especialidades.slice(0, 2).map((especialidad) => (
+                  <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+                    {especialidad}
+                  </span>
+                ))}
+              </div>
+              <a 
+                href={`/equipo/${miembro.id}`}
+                class="inline-flex items-center justify-center w-full bg-verde text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+              >
+                <User class="w-4 h-4 mr-2" />
+                Ver perfil completo
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Valores -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-serif text-guinda mb-8">Nuestros Valores</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="space-y-2">
+          <div class="text-4xl">🌱</div>
+          <h3 class="text-xl font-semibold text-verde">Sostenibilidad</h3>
+          <p class="text-gray-600">Compromiso con el futuro del planeta</p>
+        </div>
+        <div class="space-y-2">
+          <div class="text-4xl">🤝</div>
+          <h3 class="text-xl font-semibold text-verde">Colaboración</h3>
+          <p class="text-gray-600">Trabajo interdisciplinario y participativo</p>
+        </div>
+        <div class="space-y-2">
+          <div class="text-4xl">🔬</div>
+          <h3 class="text-xl font-semibold text-verde">Rigor Científico</h3>
+          <p class="text-gray-600">Investigación basada en evidencia</p>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>
