@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import { 
+  BookOpen, 
+  Users, 
+  FileText, 
+  ExternalLink,
+  Leaf,
+  Zap,
+  Building,
+  UserCheck,
+  BarChart3,
+  Globe,
+  Search,
+  Target,
+  Award,
+  Clock
+} from 'lucide-astro';
+
+const publicaciones = [
+  {
+    titulo: "Indicadores de resiliencia urbana",
+    autores: "Dra. Gómez, Mtro. Hernández",
+    enlace: "#",
+    tipo: "articulo"
+  },
+  {
+    titulo: "Análisis de política energética en México",
+    autores: "Dr. Ruiz, Dra. Martínez",
+    enlace: "#",
+    tipo: "investigacion"
+  },
+  {
+    titulo: "Diseño participativo en espacios públicos",
+    autores: "Dra. López, Ing. Jiménez",
+    enlace: "#",
+    tipo: "proyecto"
+  }
+];
+
+const lineasInvestigacion = [
+  {
+    titulo: "Sustentabilidad urbana",
+    icono: Leaf,
+    descripcion: "Desarrollo de ciudades resilientes y sostenibles"
+  },
+  {
+    titulo: "Política energética",
+    icono: Zap,
+    descripcion: "Análisis de políticas energéticas renovables"
+  },
+  {
+    titulo: "Gobernanza y políticas públicas",
+    icono: Building,
+    descripcion: "Mejora de la gestión pública territorial"
+  },
+  {
+    titulo: "Participación ciudadana",
+    icono: Users,
+    descripcion: "Fortalecimiento de la democracia participativa"
+  },
+  {
+    titulo: "Indicadores territoriales",
+    icono: BarChart3,
+    descripcion: "Medición del desarrollo territorial"
+  },
+  {
+    titulo: "Transformación digital",
+    icono: Globe,
+    descripción: "Innovación tecnológica para el desarrollo"
+  }
+];
+---
+
+<Layout>
+  <!-- Header Section -->
+  <section class="max-w-5xl mx-auto my-20 px-4">
+    <div class="text-center mb-16">
+      <div class="flex justify-center mb-6">
+        <div class="bg-verde/10 p-4 rounded-full">
+          <Target class="w-12 h-12 text-verde" />
+        </div>
+      </div>
+      <h1 class="text-5xl font-serif text-guinda mb-4">Nuestro Trabajo</h1>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Publicaciones y proyectos que reflejan nuestro compromiso con el desarrollo sostenible 
+        y la toma de decisiones basadas en evidencia científica.
+      </p>
+    </div>
+
+    <!-- Publicaciones Grid -->
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {publicaciones.map((pub) => (
+        <article class="bg-white border border-gray-200 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group">
+          <div class="flex items-center mb-4">
+            <div class="bg-verde/10 p-2 rounded-lg mr-3">
+              {pub.tipo === 'articulo' && <FileText class="w-6 h-6 text-verde" />}
+              {pub.tipo === 'investigacion' && <Search class="w-6 h-6 text-verde" />}
+              {pub.tipo === 'proyecto' && <Award class="w-6 h-6 text-verde" />}
+            </div>
+            <div class="flex-1">
+              <span class="text-xs uppercase tracking-wide text-gray-500 font-medium">
+                {pub.tipo === 'articulo' ? 'Artículo' : pub.tipo === 'investigacion' ? 'Investigación' : 'Proyecto'}
+              </span>
+            </div>
+          </div>
+          
+          <h2 class="text-xl font-serif text-guinda mb-2 group-hover:text-verde transition-colors">
+            {pub.titulo}
+          </h2>
+          <p class="text-sm text-gray-600 mb-4 flex items-center">
+            <Users class="w-4 h-4 mr-1" />
+            {pub.autores}
+          </p>
+          
+          <a href={pub.enlace} class="inline-flex items-center text-verde hover:text-guinda transition-colors font-medium">
+            <BookOpen class="w-4 h-4 mr-2" />
+            Ver publicación
+            <ExternalLink class="w-4 h-4 ml-1" />
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Líneas de Investigación -->
+  <section class="bg-gray-50 py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <div class="flex justify-center mb-6">
+          <div class="bg-guinda/10 p-4 rounded-full">
+            <BarChart3 class="w-12 h-12 text-guinda" />
+          </div>
+        </div>
+        <h2 class="text-4xl font-serif text-guinda mb-4">Líneas de Investigación</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Estas son las áreas clave en las que concentramos nuestras investigaciones 
+          para generar impacto en el desarrollo sostenible.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {lineasInvestigacion.map((linea) => (
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
+            <div class="flex items-center mb-4">
+              <div class="bg-verde/10 p-3 rounded-lg mr-4">
+                <linea.icono class="w-8 h-8 text-verde" />
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold text-guinda mb-2">{linea.titulo}</h3>
+            <p class="text-gray-600 text-sm">{linea.descripcion}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 bg-verde text-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8 text-center">
+        <div class="space-y-2">
+          <div class="flex justify-center">
+            <Award class="w-8 h-8" />
+          </div>
+          <div class="text-3xl font-bold">25+</div>
+          <div class="text-green-100">Publicaciones</div>
+        </div>
+        <div class="space-y-2">
+          <div class="flex justify-center">
+            <Users class="w-8 h-8" />
+          </div>
+          <div class="text-3xl font-bold">15</div>
+          <div class="text-green-100">Investigadores</div>
+        </div>
+        <div class="space-y-2">
+          <div class="flex justify-center">
+            <Target class="w-8 h-8" />
+          </div>
+          <div class="text-3xl font-bold">8</div>
+          <div class="text-green-100">Proyectos Activos</div>
+        </div>
+        <div class="space-y-2">
+          <div class="flex justify-center">
+            <Clock class="w-8 h-8" />
+          </div>
+          <div class="text-3xl font-bold">5+</div>
+          <div class="text-green-100">Años de Experiencia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

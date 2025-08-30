@@ -1,15 +1,39 @@
 ---
 // src/components/Header.astro
+import MenuDropdown from './MenuDropdown.astro'
 ---
 
 <header class="bg-white shadow-md sticky top-0 z-50">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-    <a href="/" class="text-2xl font-serif text-guinda font-bold">CIIEMAD IPN</a>
+    <a href="/" class="flex items-center gap-3">
+        <img src="/logo.png" alt="Logo CIIEMAD IPN" class="h-16 w-auto" />
+        <h1 class="text-4xl font-extrabold">
+        <span class="text-verde">SUSTENTA-</span><span class="text-gray-700">LAPP</span>
+        </h1>
+    </a>
+
     <ul class="flex gap-6 text-sm font-medium text-gray-700">
-      <li><a href="/nuestro-trabajo" class="hover:text-guinda">Nuestro trabajo</a></li>
-      <li><a href="/publicaciones" class="hover:text-guinda">Publicaciones</a></li>
-      <li><a href="/cobertura" class="hover:text-guinda">Cobertura</a></li>
-      <li><a href="/conocer-mas" class="hover:text-guinda">Conocer más</a></li>
+      <MenuDropdown />
+      <li>
+        <a href="/nuestro-trabajo" class="relative font-bold transition-colors duration-300 hover:text-yellow-600 after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-yellow-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">
+          Nuestro trabajo
+        </a>
+      </li>
+      <li>
+        <a href="/publicaciones" class="relative font-bold transition-colors duration-300 hover:text-blue-500 after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-blue-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">
+          Publicaciones
+        </a>
+      </li>
+      <li>
+        <a href="/cobertura" class="relative font-bold transition-colors duration-300 hover:text-green-700 after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-green-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">
+          Cobertura
+        </a>
+      </li>
+      <li>
+        <a href="/conocer-mas" class="relative font-bold transition-colors duration-300 hover:text-gray-600 after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-gray-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">
+          Podcast
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
