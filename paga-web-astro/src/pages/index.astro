@@ -1,39 +1,72 @@
 ---
-import Layout from '../layouts/BaseLayout.astro'
+import Layout from "../layouts/BaseLayout.astro";
 ---
 
 <Layout>
   <!-- Estilos de Swiper desde CDN -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+
   <!-- Slider Section -->
   <section class="w-full relative">
     <div class="swiper mySwiper h-[500px]">
       <div class="swiper-wrapper">
         <div class="swiper-slide relative">
-          <img src="/slider/image1.jpg" class="w-full h-full object-cover" alt="Investigación Sostenible" />
-          <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-end pr-16">
+          <img
+            src="/slider/image1.jpg"
+            class="w-full h-full object-cover"
+            alt="Investigación Sostenible"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-end pr-16"
+          >
             <div class="text-right text-white max-w-lg">
-              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">Investigación Sostenible</h3>
-              <p class="text-xl drop-shadow-md">Desarrollamos soluciones innovadoras para un futuro sustentable</p>
+              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">
+                Investigación Sostenible
+              </h3>
+              <p class="text-xl drop-shadow-md">
+                Desarrollamos soluciones innovadoras para un futuro sustentable
+              </p>
             </div>
           </div>
         </div>
         <div class="swiper-slide relative">
-          <img src="/slider/image2.jpg" class="w-full h-full object-cover" alt="Tecnología Verde" />
-          <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-end pr-16">
+          <img
+            src="/slider/image2.jpg"
+            class="w-full h-full object-cover"
+            alt="Tecnología Verde"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-end pr-16"
+          >
             <div class="text-right text-white max-w-lg">
-              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">Tecnología Verde</h3>
-              <p class="text-xl drop-shadow-md">Innovación tecnológica al servicio del medio ambiente</p>
+              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">
+                Tecnología Verde
+              </h3>
+              <p class="text-xl drop-shadow-md">
+                Innovación tecnológica al servicio del medio ambiente
+              </p>
             </div>
           </div>
         </div>
         <div class="swiper-slide relative">
-          <img src="/slider/image3.jpg" class="w-full h-full object-cover" alt="Impacto Social" />
-          <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-end pr-16">
+          <img
+            src="/slider/image3.jpg"
+            class="w-full h-full object-cover"
+            alt="Impacto Social"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-end pr-16"
+          >
             <div class="text-right text-white max-w-lg">
-              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">Impacto Social</h3>
-              <p class="text-xl drop-shadow-md">Generando cambios positivos en la sociedad</p>
+              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">
+                Impacto Social
+              </h3>
+              <p class="text-xl drop-shadow-md">
+                Generando cambios positivos en la sociedad
+              </p>
             </div>
           </div>
         </div>
@@ -43,14 +76,17 @@ import Layout from '../layouts/BaseLayout.astro'
   </section>
 
   <!-- Texto de Muestra -->
-  <section class="py-16 px-4 bg-gray-50">
+  <section class="py-16 px-4 bg-gray-50 font-sans">
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl font-bold text-gray-800 mb-6">
-        Bienvenidos a <span class="text-verde">SUSTENTA-</span><span class="text-guinda">LAPP</span>
+      <h2 class="text-4xl font-bold text-guinda mb-6 font-serif">
+        Bienvenidos a <span class="text-verde">SUSTENTA-</span><span
+          class="text-guinda">LAPP</span
+        >
       </h2>
-      <p class="text-lg text-gray-600 leading-relaxed">
-        Somos un centro de investigación comprometido con el desarrollo sostenible y la innovación tecnológica. 
-        Trabajamos en proyectos que impactan positivamente en el medio ambiente y la sociedad, promoviendo 
+      <p class="text-lg text-gray-600 leading-relaxed font-sans">
+        Somos un centro de investigación comprometido con el desarrollo
+        sostenible y la innovación tecnológica. Trabajamos en proyectos que
+        impactan positivamente en el medio ambiente y la sociedad, promoviendo
         soluciones sustentables para un futuro mejor.
       </p>
     </div>
@@ -60,73 +96,91 @@ import Layout from '../layouts/BaseLayout.astro'
   <section class="py-16 px-4 bg-white">
     <div class="max-w-6xl mx-auto">
       <div class="grid md:grid-cols-3 gap-8">
-        
         <!-- Card 1: Nuestro Trabajo -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+        >
           <div class="p-6">
             <h3 class="text-2xl font-bold text-verde mb-4">Nuestro Trabajo</h3>
             <p class="text-gray-600 mb-6 leading-relaxed">
-              Desarrollamos proyectos de investigación enfocados en sostenibilidad, innovación tecnológica 
-              y soluciones ambientales que generen un impacto positivo en la sociedad.
+              Desarrollamos proyectos de investigación enfocados en
+              sostenibilidad, innovación tecnológica y soluciones ambientales
+              que generen un impacto positivo en la sociedad.
             </p>
-            <a href="/nuestro-trabajo" class="inline-block bg-verde text-white px-6 py-3 rounded-md hover:bg-green-700 transition-colors duration-200 font-medium">
+            <a
+              href="/nuestro-trabajo"
+              class="inline-block bg-verde text-white px-6 py-3 rounded-md hover:bg-green-700 transition-colors duration-200 font-medium"
+            >
               Conocer más
             </a>
           </div>
         </div>
 
         <!-- Card 2: ¿Quiénes Somos? -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+        >
           <div class="p-6">
             <h3 class="text-2xl font-bold text-guinda mb-4">¿Quiénes Somos?</h3>
             <p class="text-gray-600 mb-6 leading-relaxed">
-              Somos un equipo multidisciplinario de investigadores y profesionales comprometidos con 
-              la generación de conocimiento y el desarrollo de tecnologías sustentables.
+              Somos un equipo multidisciplinario de investigadores y
+              profesionales comprometidos con la generación de conocimiento y el
+              desarrollo de tecnologías sustentables.
             </p>
-            <a href="/sobre-nosotros" class="inline-block bg-guinda text-white px-6 py-3 rounded-md hover:bg-red-800 transition-colors duration-200 font-medium">
+            <a
+              href="/sobre-nosotros"
+              class="inline-block bg-guinda text-white px-6 py-3 rounded-md hover:bg-red-800 transition-colors duration-200 font-medium"
+            >
               Conocer más
             </a>
           </div>
         </div>
 
         <!-- Card 3: Publicaciones -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+        >
           <div class="p-6">
             <h3 class="text-2xl font-bold text-gray-700 mb-4">Publicaciones</h3>
             <p class="text-gray-600 mb-6 leading-relaxed">
-              Explora nuestras investigaciones, artículos científicos y publicaciones que contribuyen 
-              al avance del conocimiento en el área de desarrollo sustentable.
+              Explora nuestras investigaciones, artículos científicos y
+              publicaciones que contribuyen al avance del conocimiento en el
+              área de desarrollo sustentable.
             </p>
-            <a href="/publicaciones" class="inline-block bg-gray-700 text-white px-6 py-3 rounded-md hover:bg-gray-800 transition-colors duration-200 font-medium">
+            <a
+              href="/publicaciones"
+              class="inline-block bg-gray-700 text-white px-6 py-3 rounded-md hover:bg-gray-800 transition-colors duration-200 font-medium"
+            >
               Ver publicaciones
             </a>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
   <!-- Script de Swiper -->
   <script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
-      import('https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs').then((module) => {
+    document.addEventListener("DOMContentLoaded", function () {
+      import(
+        "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs"
+      ).then((module) => {
         const Swiper = module.default;
-        
-        new Swiper('.mySwiper', {
+
+        new Swiper(".mySwiper", {
           loop: true,
           autoplay: {
             delay: 4000,
             disableOnInteraction: false,
-            pauseOnMouseEnter: true
+            pauseOnMouseEnter: true,
           },
           pagination: {
-            el: '.swiper-pagination',
+            el: ".swiper-pagination",
             clickable: true,
           },
-          effect: 'slide',
+          effect: "slide",
           speed: 1000,
-          grabCursor: true
+          grabCursor: true,
         });
       });
     });
