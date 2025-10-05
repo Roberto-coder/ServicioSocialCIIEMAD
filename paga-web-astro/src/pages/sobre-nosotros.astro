@@ -1,102 +1,7 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
 import { Users, Eye, Target, User } from "lucide-astro";
-
-const equipo = [
-  {
-    id: "dra-concepcion",
-    nombre: "Dra. María Concepción Martínez Rodríguez",
-    titulo: "Profesora investigadora",
-    foto: "/equipo/mcmr.jpg",
-    semblanza:
-      "Doctora en Políticas Públicas, maestría en Administración Pública y Políticas Públicas y un título de Ingeniero Químico Industrial. Su experiencia profesional la ha desarrollado en el CIIEMAD, trabajó en la SEMARNAT como Subdirectora de Movimientos Transfronterizos y Asuntos Internacionales.",
-    email: "mcmartinezr@ipn.mx",
-    especialidades: [
-      "Desarrollo Sustentable",
-      "Políticas Ambientales",
-      "Gestión Ambiental y Economía Circular",
-    ],
-  },
-  {
-    id: "hector-ramirez",
-    nombre: "Héctor Ramírez",
-    titulo:
-      "Maestro en Ciencias en Estudios Ambientales y de la Sustentabilidad",
-    foto: "/equipo/hector-ramirez.jpeg",
-    semblanza:
-      "Especialista en gestión de residuos y economía circular. Participa en investigaciones sobre sustentabilidad e inclusión social. Ha sido ponente en congresos internacionales sobre gobernanza ambiental, políticas públicas y manejo responsable de residuos.",
-    email: "hector.ramirez@ciiemad.ipn.mx",
-    especialidades: [
-      "Gestión de Residuos",
-      "Economía Circular",
-      "Gobernanza Ambiental",
-    ],
-  },
-  {
-    id: "ana-laura",
-    nombre: "Ana Laura",
-    titulo:
-      "Maestra en Ciencias en Estudios Ambientales y de la Sustentabilidad",
-    foto: "/equipo/ALCN.jpg",
-    semblanza:
-      "Especialista en el estudio de la adaptación de las ciudades al cambio climático, en específico con soluciones basadas en la naturaleza y techos verdes como una forma de mejorar los espacios urbanos por el aumento de áreas verdes.",
-    email: "luis.hernandez@ciiemad.ipn.mx",
-    especialidades: [
-      "Cambio Climático",
-      "Sistemas Ambientales",
-      "Gestión de Calidad",
-    ],
-  },
-  {
-    id: "diego-dominguez",
-    nombre: "Diego Domínguez Solís",
-    titulo:
-      "Ingeniero Ambiental y Maestro en Ciencias en Estudios Ambientales y de la Sustentabilidad",
-    foto: "/equipo/diego_dominguez.png",
-    semblanza:
-      "Soy Ingeniero Ambiental y Maestro en Ciencias en Estudios Ambientales y de la Sustentabilidad por el Instituto" +
-      "proyectos de soluciones basadas en la naturaleza (SbN), como humedales artificiales y techos verdes. He" +
-      "contribuido en la elaboración de informes técnicos, publicaciones científicas y presentaciones en foros nacionales" +
-      "e internacionales. Mi formación incluye conocimientos en normatividad ambiental nacional e internacional," +
-      "gestión de la calidad del agua, manejo de residuos y evaluación de impacto ambiental, además del uso de" +
-      "herramientas digitales (Excel, R, QGIS) para el análisis ambiental." +
-      "Politécnico Nacional (IPN), con experiencia en investigación aplicada, redacción académica y monitoreo de",
-    email: "diegossolis32@gmail.com",
-    especialidades: [
-      "Soluciones Ambientales",
-      "Redacción Científica",
-      "Normatividad Ambiental",
-    ],
-  },
-  {
-    id: "dra-lopez",
-    nombre: "Dra. Patricia López",
-    titulo: "Especialista en Tecnología",
-    foto: "/equipo/dra-lopez.jpg",
-    semblanza:
-      "Doctora en Sistemas de Información con especialización en transformación digital para el desarrollo sostenible. Lidera proyectos de innovación tecnológica aplicada a soluciones ambientales. Experta en análisis de datos y modelado predictivo para sostenibilidad.",
-    email: "patricia.lopez@ciiemad.ipn.mx",
-    especialidades: [
-      "Transformación Digital",
-      "Análisis de Datos",
-      "Innovación Tecnológica",
-    ],
-  },
-  {
-    id: "ing-jimenez",
-    nombre: "Ing. Roberto Jiménez",
-    titulo: "Investigador Junior",
-    foto: "/equipo/ing-jimenez.jpg",
-    semblanza:
-      "Ingeniero en Desarrollo Sustentable especializado en diseño participativo y espacios públicos. Su trabajo se centra en la creación de metodologías innovadoras para la participación ciudadana en proyectos urbanos y el diseño de espacios inclusivos.",
-    email: "roberto.jimenez@ciiemad.ipn.mx",
-    especialidades: [
-      "Diseño Participativo",
-      "Espacios Públicos",
-      "Metodologías Participativas",
-    ],
-  },
-];
+import { personas } from "../content/personas.js";
 ---
 
 <Layout>
@@ -173,7 +78,7 @@ const equipo = [
       <!-- Grid del Equipo -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
-          equipo.map((miembro) => (
+          personas.map((miembro) => (
             <article class="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
               <div class="aspect-square overflow-hidden">
                 <img
