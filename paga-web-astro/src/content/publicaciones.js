@@ -1,4 +1,5 @@
 export const publicaciones = [
+  //tipo: ARTÍCULO, PAPER, TESIS, CAPITULO DE LIBRO, REVISTA
   //ana laura
   {
     tipo: "ARTÍCULO",
@@ -92,7 +93,7 @@ export const publicaciones = [
     enlace: "enlace proximamente",
   },
   {
-    tipo: "CAPITULO 4 DEL LIBRO",
+    tipo: "CAPITULO DE LIBRO",
     anio: "2024",
     titulo:
       "Las Barreras De La Industria Textil Para Implementar La Economía Circular En México",
@@ -101,7 +102,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.52501/cc.170",
   },
   {
-    tipo: "CAPITULO 2 DEL LIBRO",
+    tipo: "CAPITULO DE LIBRO",
     anio: "2024",
     titulo:
       "El Papel De Las Escuelas Verdes En La Concientización Y Acción Contra El Cambio Climático En México",
@@ -110,7 +111,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.52501/cc.187",
   },
   {
-    tipo: "CAPITULO 9 DEL LIBRO",
+    tipo: "CAPITULO DE LIBRO",
     anio: "2024",
     titulo:
       "Economía Circular y Su Importancia En La Creación De Nuevos Empleos: Caso De Estudio México",
@@ -138,7 +139,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.56712/latam.v4i2.710",
   },
   {
-    tipo: "Paper",
+    tipo: "PAPER",
     anio: "2024",
     titulo: "La gobernanza para la solución de problemas ambientales. ",
     autores:
@@ -146,7 +147,7 @@ export const publicaciones = [
     enlace: "",
   },
   {
-    tipo: "Capítulo de libro",
+    tipo: "CAPITULO DEL LIBRO",
     anio: "2024",
     titulo:
       "Aprovechamiento de residuos de la industria alimentaria para la producción de biocombustibles",
@@ -154,7 +155,7 @@ export const publicaciones = [
     enlace: "Sostenibilidad Multisectorial.",
   },
   {
-    tipo: "Capítulo de libro",
+    tipo: "CAPITULO DE LIBRO",
     anio: "2024",
     titulo:
       "El uso de tecnologías de información y comunicación en los ecosistemas de innovación en México",
@@ -163,7 +164,7 @@ export const publicaciones = [
       "https://www.researchgate.net/publication/385311545_El_uso_de_tecnologias_de_informacion_y_comunicacion_en_los_ecosistemas_de_innovacion_en_Mexico",
   },
   {
-    tipo: "Paper",
+    tipo: "PAPER",
     anio: "2024",
     titulo:
       "Traducción de datos duros científicos a incidencia socioambiental en México. Comunicación Científica.",
@@ -172,7 +173,7 @@ export const publicaciones = [
     enlace: "",
   },
   {
-    tipo: "Paper",
+    tipo: "PAPER",
     anio: "2024",
     titulo:
       "El papel de las escuelas verdes en la concientización y acción contra el cambio climático en México.",
@@ -181,7 +182,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.52501/cc.187.02",
   },
   {
-    tipo: "Paper",
+    tipo: "PAPER",
     anio: "2024",
     titulo:
       "Advancing toward sustainability: A systematic review of circular economy strategies in the textile industry. Recycling, 9(5), 95",
@@ -190,7 +191,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.3390/recycling9050095",
   },
   {
-    tipo: "Revista",
+    tipo: "REVISTA",
     anio: "2024",
     titulo:
       "Análisis de un cuerpo de agua localizado en la comunidad de San Jerónimo Amanalco, Estado de México, México. Revista Chapingo Serie Agricultura Tropical, l, 4(2), 1-15.",
@@ -199,7 +200,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.5154/r.rchsat.2024.04.06",
   },
   {
-    tipo: "Paper",
+    tipo: "PAPER",
     anio: "2024",
     titulo:
       "Ecological flow as a water stress control strategy: San Rodrigo River, Coahuila, Mexico. Limnological Review, 24(4), 543-556",
@@ -208,7 +209,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.3390/limnolrev24040031",
   },
   {
-    tipo: "Paper",
+    tipo: "PAPER",
     anio: "2025",
     titulo:
       "Constructed wetlands as a decentralized treatment option for domestic wastewater: A systematic review (2015–2024). Water, 17(10), 1451.",

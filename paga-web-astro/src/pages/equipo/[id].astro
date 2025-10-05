@@ -84,47 +84,76 @@ const publicacionesPersona = persona && persona.publicaciones
     </div>
 <br>
     <div class="bg-white border border-gray-200 rounded-xl p-8">
-        <h3 class="text-2xl font-serif text-guinda mb-6 flex items-center">
-            <Target class="w-6 h-6 mr-3" />
-            Proyectos Destacados
-        </h3>
-        <div class="grid md:grid-cols-2 gap-6">
-            {persona.proyectos?.map((proy) => (
-            <div class={`border-l-4 border-${proy.color} pl-4`}>
-                <h4 class="font-semibold text-gray-800 mb-2">{proy.titulo}</h4>
-                <p class="text-gray-600 text-sm">{proy.descripcion}</p>
-            </div>
-            ))}
-        </div>
-    </div>   
+            <h3 class="text-2xl font-serif text-guinda mb-6 flex items-center">
+                <Target class="w-6 h-6 mr-3" />
+                Proyectos Destacados
+            </h3>
 
-      <!-- Mis publicaciones -->
-      <div class="bg-white rounded-xl shadow-md p-6 mt-10 mb-10 max-w-3xl mx-auto w-full">
-        <h3 class="text-2xl font-serif text-guinda mb-6 text-center">Mis publicaciones</h3>
-        <ul class="space-y-6">
-          {publicacionesPersona.length > 0 ? (
-            publicacionesPersona.map((pub) => (
-              <li class="border-l-4 border-verde pl-4 py-4 flex flex-col sm:flex-row sm:items-center gap-2 bg-gray-50 rounded-lg shadow hover:shadow-lg transition-all duration-300">
-                <div class="flex-1">
-                  <div class="flex gap-2 mb-1 flex-wrap">
-                    <span class="bg-verde/90 text-white text-xs font-bold px-3 py-1 rounded-full shadow">{pub.tipo}</span>
-                    <span class="bg-guinda/90 text-white text-xs font-bold px-2 py-0.5 rounded shadow">{pub.anio}</span>
-                  </div>
-                  <h4 class="text-lg font-bold text-gray-900 mb-1 leading-snug">{pub.titulo}</h4>
-                  <p class="text-sm text-gray-700 mb-2">{pub.autores}</p>
+            <!-- Tabs -->
+            <div class="mb-4">
+              <div id="project-tabs" class="flex flex-wrap gap-2">
+                <button data-tipo="" class="px-3 py-1 rounded-md bg-guinda/10 text-guinda font-semibold">Todos</button>
+                <button data-tipo="ARTÍCULO" class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200">ARTÍCULO</button>
+                <button data-tipo="PAPER" class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200">PAPER</button>
+                <button data-tipo="TESIS" class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200">TESIS</button>
+                <button data-tipo="CAPITULO DE LIBRO" class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200">CAPÍTULO DE LIBRO</button>
+                <button data-tipo="REVISTA" class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200">REVISTA</button>
+              </div>
+            </div>
+
+            <!-- Grid de proyectos (usamos publicaciones como 'proyectos' filtrables) -->
+            <div id="proyectos-grid" class="grid md:grid-cols-2 gap-6">
+              {publicacionesPersona.map((pub) => (
+                <div class="border-l-4 border-verde pl-4 proyecto-item" data-tipo={pub.tipo}>
+                  <h4 class="font-semibold text-gray-800 mb-2">{pub.titulo}</h4>
+                  <p class="text-gray-600 text-sm mb-2">{pub.autores}</p>
+                  <span class="inline-block text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{pub.tipo} • {pub.anio}</span>
                 </div>
-                {pub.enlace && pub.enlace !== "enlace proximamente" ? (
-                  <a href={pub.enlace} class="ml-4 mt-2 bg-verde/90 text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-guinda transition-colors duration-200 self-center" target="_blank" rel="noopener noreferrer">Ver</a>
-                ) : (
-                  <span class="ml-4 mt-2 text-gray-400 italic self-center">Próximamente</span>
-                )}
-              </li>
-            ))
-          ) : (
-            <li class="text-center text-gray-500 italic">No hay publicaciones registradas.</li>
-          )}
-        </ul>
-      </div>
+              ))}
+            </div>
+          </div>
+
+          <script>
+        // Comportamiento seguro de pestañas (se ejecuta en el navegador)
+        (function () {
+          try {
+            /** @type {HTMLElement | null} */
+            const tabsContainer = document.getElementById('project-tabs');
+            const rawItems = Array.from(document.querySelectorAll('.proyecto-item'));
+            /** @type {HTMLElement[]} */
+            const items = rawItems.map((el) => /** @type {HTMLElement} */ (el)).filter(Boolean);
+            if (!(tabsContainer instanceof HTMLElement)) return;
+            const container = tabsContainer;
+
+            /**
+             * @param {HTMLElement} button
+             */
+            tabsContainer.addEventListener('click', /** @param {Event} e */ (e) => {
+              const target = /** @type {HTMLElement | null} */ (e.target);
+              if (!(target instanceof HTMLElement)) return;
+              const tipo = target.getAttribute('data-tipo');
+              if (tipo == null) return;
+
+              // Activar el botón clickeado
+              const btns = /** @type {NodeListOf<HTMLButtonElement>} */ (container.querySelectorAll('button'));
+              btns.forEach((b) => b.classList.remove('bg-guinda/10', 'text-guinda'));
+              target.classList.add('bg-guinda/10', 'text-guinda');
+
+              items.forEach((el) => {
+                const elHtml = /** @type {HTMLElement | null} */ (el instanceof HTMLElement ? el : null);
+                if (!(elHtml instanceof HTMLElement)) return;
+                const itemTipo = elHtml.getAttribute('data-tipo') || '';
+                elHtml.style.display = tipo === '' || itemTipo === tipo ? '' : 'none';
+              });
+            });
+          } catch (err) {
+            // no bloquear la página si hay un error
+            console.error(err);
+          }
+        })();
+      </script>
+
+      
     </section>
   ) : (
     <div class="max-w-2xl mx-auto py-20 text-center">
