@@ -57,7 +57,7 @@ import Layout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- Segunda sección de podcast Spotify -->
-  <section class="bg-[rgb(240,233,224)] pt-2 pb-16 w-full">
+  <section class="bg-[rgb(240,233,224)] pt-2 pb-8 w-full"> <!-- Changed from pb-16 to pb-8 -->
     <div class="max-w-4xl mx-auto px-4">
       <div class="aspect-w-16 aspect-h-9 hover:scale-105 hover:shadow-xl transition-all duration-300">
         <iframe 
@@ -75,10 +75,36 @@ import Layout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Tercera sección de podcast Spotify -->
+  <section class="bg-[rgb(240,233,224)] pt-2 pb-8 w-full"> <!-- Changed from pb-16 to pb-8 -->
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="aspect-w-16 aspect-h-9 hover:scale-105 hover:shadow-xl transition-all duration-300">
+        <iframe 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/episode/3Oo9loB0DlRMHTmDYVYyLR?utm_source=generator"
+          width="100%" 
+          height="352" 
+          class="rounded-xl shadow-lg"
+          frameborder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- Redes sociales abajo -->
   <section class="bg-[rgb(240,240,245)] py-10 w-full">
     <div class="max-w-3xl mx-auto flex flex-col items-center text-center">
-      <h2 class="text-3xl font-bold font-playfair text-[rgba(0, 0, 0, 1)] mb-6 font-bold">Síguenos en nuestras redes sociales</h2>
+      <h2 class="text-3xl font-playfair text-[rgba(0, 0, 0, 1)] mb-4 font-bold">
+        ¡No te pierdas ningún episodio!
+      </h2>
+      <p class="text-xl text-[rgb(0,0,0)] mb-6 font-sans">
+        Descubre más contenido fascinante sobre sustentabilidad y medio ambiente. 
+        Síguenos en nuestras redes sociales para estar al día con nuestros próximos episodios y novedades. 
+        ¡Tu planeta te lo agradecerá! 🌍✨
+      </p>
       <div class="flex flex-wrap justify-center gap-6">
         <a href="https://www.facebook.com/profile.php?id=100080595766135" target="_blank" rel="noopener" title="Facebook">
           <img src="/redes/logo2/facebook.png" alt="Facebook" class="w-12 h-12 hover:scale-110 transition-transform" />
