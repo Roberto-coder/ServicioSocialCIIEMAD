@@ -4,9 +4,9 @@ import Layout from '../layouts/BaseLayout.astro';
 
 <Layout>
   <!-- Podcast logo y nombre arriba -->
-  <section class="bg-[rgb(240,233,224)] py-10 w-full"> <!-- Azul cielo pastel -->
+  <section class="bg-[rgb(240,233,224)] py-6 w-full"> <!-- Reduced from py-10 -->
     <div class="max-w-3xl mx-auto flex flex-col items-center text-center">
-      <div class="bg-white p-1 rounded-full shadow-sm border border-white/20"> <!-- Cambios aquí -->
+      <div class="bg-white p-1 rounded-full shadow-sm border border-white/20">
         <img 
           src="/podcast/logoST_PODCAST.png" 
           alt="Logo Sustentaterra" 
@@ -14,10 +14,26 @@ import Layout from '../layouts/BaseLayout.astro';
           loading="lazy"
         />
       </div>
-      <h1 class="text-5xl font-playfair text-[rgb(35,66,36)] mb-2 font-bold tracking-tight">Podcast: Sustentaterra</h1>
-      <p class="text-xl font-playfair text-[rgb(213,166,59)] mb-4 font-semibold italic">
+      <h1 class="text-5xl font-playfair text-[rgb(35,66,36)] mb-1 font-bold tracking-tight">Podcast: Sustentaterra</h1>
+      <p class="text-xl font-playfair text-[rgb(213,166,59)] mb-2 font-semibold italic"> <!-- Reduced from mb-4 -->
         "La unión entre la sustentabilidad y la Tierra que habitamos."
       </p>
+    </div>
+  </section>
+
+  <!-- Nueva sección de video -->
+  <section class="bg-[rgb(240,233,224)] pt-2 pb-16 w-full"> <!-- Changed py-16 to pt-2 pb-16 -->
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe 
+          class="w-full h-[500px] rounded-xl shadow-lg"
+          src="https://www.youtube.com/embed/m0CmxvPuN0I"
+          title="Video Sustentaterra"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
   </section>
 
