@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
+import Map from '../components/Map.astro';
 import { 
   Mail, 
   Phone, 
@@ -74,12 +75,10 @@ const equipoContactos = [
             <div>
               <h3 class="text-xl font-semibold text-guinda mb-2">Ubicación</h3>
               <p class="text-gray-700">
-                Centro de Investigación e Innovación en Energías Renovables y Micro Redes, 
-                Agua y Desarrollo Sustentable (CIIEMAD)
+                Centro Interdisciplinario de Investigaciones y Estudios sobre Medio Ambiente y Desarrollo (CIIEMAD)
               </p>
               <p class="text-gray-600 mt-2">
                 Instituto Politécnico Nacional<br>
-                Unidad Profesional Interdisciplinaria de Ingeniería Campus Zacatecas
               </p>
             </div>
           </div>
@@ -91,8 +90,9 @@ const equipoContactos = [
             <div>
               <h3 class="text-xl font-semibold text-guinda mb-2">Dirección</h3>
               <p class="text-gray-700">
-                Blvd. del Bote 6, Col. Lomas de la Soledad Norte<br>
-                98160 Zacatecas, Zac., México
+                
+                30 de Junio de 1520 s/n, La Laguna Ticoman, Gustavo A. Madero, <br>
+                07340 Ciudad de México, CDMX
               </p>
             </div>
           </div>
@@ -103,7 +103,7 @@ const equipoContactos = [
             </div>
             <div>
               <h3 class="text-xl font-semibold text-guinda mb-2">Teléfono</h3>
-              <p class="text-gray-700">+52 (492) 123-4567</p>
+              <p class="text-gray-700">+52 (55) 7296000</p>
             </div>
           </div>
 
@@ -114,7 +114,7 @@ const equipoContactos = [
             <div>
               <h3 class="text-xl font-semibold text-guinda mb-2">Horarios de Atención</h3>
               <p class="text-gray-700">
-                Lunes a Viernes: 9:00 - 17:00<br>
+                Lunes a Viernes: 7:00 - 21:00<br>
                 Sábados: 9:00 - 13:00
               </p>
             </div>
@@ -124,7 +124,7 @@ const equipoContactos = [
         <!-- Formulario de Contacto -->
         <div class="bg-gray-50 p-8 rounded-xl">
           <h3 class="text-2xl font-serif text-guinda mb-6">Envíanos un mensaje</h3>
-          <form class="space-y-6">
+          <form class="space-y-6" action="https://formsubmit.co/tu-correo@gmail.com" method="POST">
             <div>
               <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">
                 Nombre completo
@@ -275,12 +275,8 @@ const equipoContactos = [
   <section class="py-16 bg-white">
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-3xl font-serif text-guinda mb-8 text-center">Nuestra Ubicación</h2>
-      <div class="bg-gray-200 rounded-xl h-96 flex items-center justify-center">
-        <div class="text-center text-gray-600">
-          <MapPin class="w-12 h-12 mx-auto mb-4" />
-          <p class="text-lg font-medium">Mapa Interactivo</p>
-          <p class="text-sm">UPIIZ - Instituto Politécnico Nacional</p>
-        </div>
+      <div>
+        <Map client:load lat={19.514689097540565} lng={-99.12876907529137} zoom={14} markerText="CIIEMAD - UPIIZ" />
       </div>
     </div>
   </section>
