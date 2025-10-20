@@ -4,42 +4,72 @@ import Layout from "../layouts/BaseLayout.astro";
 // Datos de ejemplo para la galería. Puedes agregar más aquí.
 const galeriaItems = [
   {
-    src: "/canalonce.png",
+    src: "/galeria/VISITA CECYT7 TAMBS.jpg",
     alt: "Cobertura Canal Once",
     title: "Entrevista en Canal Once",
     description: "Participación en el programa de Canal Once para discutir el impacto de las políticas ambientales en el desarrollo urbano sostenible.",
+    fecha: "2024-05-20",
   },
   {
-    src: "/mundo.jpg",
-    alt: "Columna El Universal",
-    title: "Columna en El Universal",
-    description: "Análisis sobre la economía circular y su aplicación en la industria textil mexicana, publicado en la sección de opinión de El Universal.",
+    src: "/galeria/40ANIV CIIEMAD DIRECTOR.jpg",
+    alt: "40ANIV CIIEMAD DIRECTOR IPN",
+    title: "40ANIV CIIEMAD DIRECTOR IPN",
+    description: "Integrantes del equipo Sustentaterra en el día del 40 aniversario del CIIEMAD-IPN, en compañía del Director del IPN Dr. Arturo Reyes Sandoval.",
+    fecha: "2024-04-15",
   },
   {
-    src: "/A87.png",
-    alt: "Foro Sustentabilidad 2024",
-    title: "Participación en foro de sustentabilidad 2024",
-    description: "Presentación de los avances de nuestra investigación sobre techos verdes en el Foro Internacional de Sustentabilidad 2024.",
+    src: "/galeria/COLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN.jpeg",
+    alt: "OLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN",
+    title: "COLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN",
+    description: "Participación de Ana Laura Cervantes y Dra María Concepción como coordinadora y profesora acompañante en la inauguración del 12° Coloquio de Estudiantes del CIIEMAD.",
+    fecha: "2024-06-01",
   },
   {
-    src: "/sus.webp",
-    alt: "Artículo sobre sustentabilidad",
-    title: "Publicación en Revista Sustentabilidad Hoy",
-    description: "Artículo que explora nuevas metodologías para la gestión de residuos sólidos urbanos en grandes metrópolis.",
+    src: "/galeria/COORDINADORA CEIMAS2024.jpeg",
+    alt: "COORDINADORA CEIMAS2024",
+    title: "COORDINADORA CEIMAS2024",
+    description: "Participación de Xochitl Bello, Karla Ginez y Esperanza Hernández en el equipo de coordinación del 1er Congreso Estudiantil Interdisciplinario sobre Medio Ambiente y Sustentabilidad (CEIMAS 2024).",
+    fecha: "2023-11-10",
   },
   {
-    src: "/ambien.jfif",
-    alt: "Conferencia de medio ambiente",
-    title: "Conferencia sobre Impacto Ambiental",
-    description: "Ponencia sobre la evaluación del impacto ambiental de proyectos de infraestructura en zonas protegidas.",
+    src: "/galeria/ALCN PONENCIA CONGRESO INT EN ADMON DE EMPRESAS PARA LA SOSTENIBILIDAD ESCA.jpg",
+    alt: "ALCN PONENCIA CONGRESO INT EN ADMON DE EMPRESAS PARA LA SOSTENIBILIDAD ESCA",
+    title: "ALCN PONENCIA CONGRESO INT EN ADMON DE EMPRESAS PARA LA SOSTENIBILIDAD ESCA",
+    description: "Ponencia presentada por Ana Laura Cervantes en el Congreso Internacional en Administración de Empresas para la Sostenibilidad organizado por la ESCA-IPN 2024.",
+    fecha: "2023-09-05",
   },
   {
-    src: "/cie.jfif",
-    alt: "Seminario de ciencia",
-    title: "Seminario de Ciencias Ambientales",
-    description: "Participación en el seminario anual del CIIEMAD, presentando un estudio de caso sobre humedales artificiales.",
+    src: "/galeria/CARTEL CATEDRA MAYAGOITA 2023.jpg",
+    alt: "CARTEL CATEDRA MAYAGOITA 2023",
+    title: "CARTEL CATEDRA MAYAGOITA 2023",
+    description: "Participación de Ana Laura Cervantes presentando cartel en la Cátedra Mayagoitia 2023.",
+    fecha: "2024-02-28",
+  },
+  {
+    src: "/galeria/equipo cartel catedra.jpg",
+    alt: "Equipo cartel catedra.jpg",
+    title: "EQUIPO CARTEL CATEDRA",
+    description: "Fotografía de integrantes del equipo de Sustentaterra en la Cátedra Mayagoitia 2023.",
+    fecha: "2024-02-28",
+  },
+  {
+    src: "/galeria/team tnt SIEA 2023.jpg",
+    alt: "team tnt SIEA 2023",
+    title: "Team SIEA 2023",
+    description: "Foto del equipo del Sustentaterra en el SIEA 2023.",
+    fecha: "2024-02-28",
+  },
+  {
+    src: "/galeria/SIEA 2023.jpg",
+    alt: "SIEA 2023",
+    title: "SIEA 2023",
+    description: "Participación de Ana Laura Cervantes en el Simposio y Seminario Internacional de Educación Ambiental y Desarrollo Sustentable (SIEA 2023).",
+    fecha: "2024-02-28",
   },
 ];
+
+// Ordenar los elementos de la galería por fecha, de más reciente a más antiguo
+galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
 ---
 
 <Layout>
@@ -80,6 +110,7 @@ const galeriaItems = [
         class="w-full h-auto max-h-[70vh] object-contain rounded-t-lg"
       />
       <div class="p-6">
+        <p id="lightbox-date" class="text-sm text-gray-500 mb-1"></p>
         <h3 id="lightbox-title" class="text-xl font-bold text-guinda mb-2"></h3>
         <p id="lightbox-desc" class="text-gray-700"></p>
       </div>
@@ -95,6 +126,7 @@ const galeriaItems = [
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     const lightboxTitle = document.getElementById("lightbox-title");
+    const lightboxDate = document.getElementById("lightbox-date");
     const lightboxDesc = document.getElementById("lightbox-desc");
     const lightboxClose = document.getElementById("lightbox-close");
     const galleryImages = document.querySelectorAll("[data-index]");
@@ -106,6 +138,12 @@ const galeriaItems = [
       lightboxImg.src = item.src;
       lightboxImg.alt = item.alt;
       lightboxTitle.textContent = item.title;
+      
+      // Formatear y mostrar la fecha
+      const date = new Date(item.fecha);
+      const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
+      lightboxDate.textContent = date.toLocaleDateString('es-ES', options);
+
       lightboxDesc.textContent = item.description;
 
       lightbox.classList.remove("hidden");
@@ -128,4 +166,3 @@ const galeriaItems = [
     });
   </script>
 </Layout>
-
