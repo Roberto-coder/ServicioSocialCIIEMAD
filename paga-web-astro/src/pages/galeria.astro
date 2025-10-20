@@ -1,7 +1,131 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
+
+// Datos de ejemplo para la galería. Puedes agregar más aquí.
+const galeriaItems = [
+  {
+    src: "/canalonce.png",
+    alt: "Cobertura Canal Once",
+    title: "Entrevista en Canal Once",
+    description: "Participación en el programa de Canal Once para discutir el impacto de las políticas ambientales en el desarrollo urbano sostenible.",
+  },
+  {
+    src: "/mundo.jpg",
+    alt: "Columna El Universal",
+    title: "Columna en El Universal",
+    description: "Análisis sobre la economía circular y su aplicación en la industria textil mexicana, publicado en la sección de opinión de El Universal.",
+  },
+  {
+    src: "/A87.png",
+    alt: "Foro Sustentabilidad 2024",
+    title: "Participación en foro de sustentabilidad 2024",
+    description: "Presentación de los avances de nuestra investigación sobre techos verdes en el Foro Internacional de Sustentabilidad 2024.",
+  },
+  {
+    src: "/sus.webp",
+    alt: "Artículo sobre sustentabilidad",
+    title: "Publicación en Revista Sustentabilidad Hoy",
+    description: "Artículo que explora nuevas metodologías para la gestión de residuos sólidos urbanos en grandes metrópolis.",
+  },
+  {
+    src: "/ambien.jfif",
+    alt: "Conferencia de medio ambiente",
+    title: "Conferencia sobre Impacto Ambiental",
+    description: "Ponencia sobre la evaluación del impacto ambiental de proyectos de infraestructura en zonas protegidas.",
+  },
+  {
+    src: "/cie.jfif",
+    alt: "Seminario de ciencia",
+    title: "Seminario de Ciencias Ambientales",
+    description: "Participación en el seminario anual del CIIEMAD, presentando un estudio de caso sobre humedales artificiales.",
+  },
+];
 ---
 
 <Layout>
+  <!-- Sección de la Galería -->
+  <section class="max-w-7xl mx-auto my-12 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold text-center text-guinda mb-12">Galería</h1>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {
+        galeriaItems.map((item, index) => (
+          <div
+            class="group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+            data-index={index}
+          >
+            <img
+              src={item.src}
+              alt={item.alt}
+              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </section>
 
+  <!-- Modal (Lightbox) -->
+  <div
+    id="lightbox"
+    class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 hidden"
+  >
+    <div
+      id="lightbox-content"
+      class="bg-white rounded-lg shadow-2xl max-w-2xl w-full"
+    >
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="w-full h-auto max-h-[70vh] object-contain rounded-t-lg"
+      />
+      <div class="p-6">
+        <h3 id="lightbox-title" class="text-xl font-bold text-guinda mb-2"></h3>
+        <p id="lightbox-desc" class="text-gray-700"></p>
+      </div>
+    </div>
+    <button
+      id="lightbox-close"
+      class="absolute top-4 right-4 text-white text-4xl font-bold hover:text-gray-300"
+      >&times;</button
+    >
+  </div>
+
+  <script define:vars={{ galeriaItems }}>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxTitle = document.getElementById("lightbox-title");
+    const lightboxDesc = document.getElementById("lightbox-desc");
+    const lightboxClose = document.getElementById("lightbox-close");
+    const galleryImages = document.querySelectorAll("[data-index]");
+
+    function openLightbox(index) {
+      const item = galeriaItems[index];
+      if (!item || !lightbox) return;
+
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.alt;
+      lightboxTitle.textContent = item.title;
+      lightboxDesc.textContent = item.description;
+
+      lightbox.classList.remove("hidden");
+    }
+
+    function closeLightbox() {
+      if (lightbox) lightbox.classList.add("hidden");
+    }
+
+    galleryImages.forEach((img) => {
+      img.addEventListener("click", () => {
+        const index = parseInt(img.dataset.index, 10);
+        openLightbox(index);
+      });
+    });
+
+    lightboxClose?.addEventListener("click", closeLightbox);
+    lightbox?.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  </script>
 </Layout>
+
