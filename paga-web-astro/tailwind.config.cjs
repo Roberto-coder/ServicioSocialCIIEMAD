@@ -11,7 +11,7 @@ module.exports = {
         mostaza: "#D5A63B",
 
         // Laboratorio
-        guinda: "#C72C2F",
+        guinda: "#6E1942",
         naranja: "#EF9C1A",
         turquesa: "#02A2D0",
         verde: "#60A917",
