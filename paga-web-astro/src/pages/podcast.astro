@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout>
+  <!-- Podcast logo y nombre arriba -->
+  <section class="bg-[rgb(240,233,224)] py-6 w-full"> <!-- Reduced from py-10 -->
+    <div class="max-w-3xl mx-auto flex flex-col items-center text-center">
+      <div class="bg-white p-1 rounded-full shadow-sm border border-white/20">
+        <img 
+          src="/podcast/logoST_PODCAST.png" 
+          alt="Logo Sustentaterra" 
+          class="w-50 h-48 rounded-full"
+          loading="lazy"
+        />
+      </div>
+      <h1 class="text-5xl font-playfair text-[rgb(35,66,36)] mb-1 font-bold tracking-tight">Podcast: Sustentaterra</h1>
+      <p class="text-xl font-playfair text-[rgb(213,166,59)] mb-2 font-semibold italic"> <!-- Reduced from mb-4 -->
+        "La unión entre la sustentabilidad y la Tierra que habitamos."
+      </p>
+    </div>
+  </section>
+
+  <!-- Nueva sección de video -->
+  <section class="bg-[rgb(240,233,224)] pt-2 pb-8 w-full"> <!-- Reduced bottom padding -->
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="aspect-w-16 aspect-h-9 hover:scale-105 hover:shadow-xl transition-all duration-300">
+        <iframe 
+          class="w-full h-[500px] rounded-xl shadow-lg"
+          src="https://www.youtube.com/embed/m0CmxvPuN0I"
+          title="Video Sustentaterra"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nueva sección de podcast Spotify -->
+  <section class="bg-[rgb(240,233,224)] pt-2 pb-8 w-full">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="aspect-w-16 aspect-h-9 hover:scale-105 hover:shadow-xl transition-all duration-300">
+        <iframe 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/episode/5Ia9rAk3Tc4Z40Aj7QjEVL?utm_source=generator"
+          width="100%" 
+          height="352" 
+          class="rounded-xl shadow-lg"
+          frameborder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Segunda sección de podcast Spotify -->
+  <section class="bg-[rgb(240,233,224)] pt-2 pb-8 w-full"> <!-- Changed from pb-16 to pb-8 -->
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="aspect-w-16 aspect-h-9 hover:scale-105 hover:shadow-xl transition-all duration-300">
+        <iframe 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/episode/2o0nHV44cSMncZZ6YpWFFF?utm_source=generator"
+          width="100%" 
+          height="352" 
+          class="rounded-xl shadow-lg"
+          frameborder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tercera sección de podcast Spotify -->
+  <section class="bg-[rgb(240,233,224)] pt-2 pb-8 w-full"> <!-- Changed from pb-16 to pb-8 -->
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="aspect-w-16 aspect-h-9 hover:scale-105 hover:shadow-xl transition-all duration-300">
+        <iframe 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/episode/3Oo9loB0DlRMHTmDYVYyLR?utm_source=generator"
+          width="100%" 
+          height="352" 
+          class="rounded-xl shadow-lg"
+          frameborder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Redes sociales abajo -->
+  <section class="bg-[rgb(240,240,245)] py-10 w-full">
+    <div class="max-w-3xl mx-auto flex flex-col items-center text-center">
+      <h2 class="text-3xl font-playfair text-[rgba(0, 0, 0, 1)] mb-4 font-bold">
+        ¡No te pierdas ningún episodio!
+      </h2>
+      <p class="text-xl text-[rgb(0,0,0)] mb-6 font-sans">
+        Descubre más contenido fascinante sobre sustentabilidad y medio ambiente. 
+        Síguenos en nuestras redes sociales para estar al día con nuestros próximos episodios y novedades. 
+        ¡Tu planeta te lo agradecerá! 🌍✨
+      </p>
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="https://www.facebook.com/profile.php?id=100080595766135" target="_blank" rel="noopener" title="Facebook">
+          <img src="/redes/logo2/facebook.png" alt="Facebook" class="w-12 h-12 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://www.instagram.com/sustentaterra_/" target="_blank" rel="noopener" title="Instagram">
+          <img src="/redes/logo2/instagram.png" alt="Instagram" class="w-12 h-12 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://twitter.com/NantliTour?t=1zLFzq-5T_GOpGImZQghhA&s=09" target="_blank" rel="noopener" title="Twitter">
+          <img src="/redes/logo2/x.png" alt="Twitter" class="w-12 h-12 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://open.spotify.com/show/2pBHIW8rejA3zaEPL9xm23" target="_blank" rel="noopener" title="Spotify">
+          <img src="/redes/logo2/spotify.png" alt="Spotify" class="w-12 h-12 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://www.YouTube.com/@CIIEMADIPNoficial" target="_blank" rel="noopener" title="YouTube">
+          <img src="/redes/logo2/youtube.png" alt="YouTube" class="w-12 h-12 hover:scale-110 transition-transform" />
+        </a>
+        <a href="https://music.amazon.com.mx/podcasts/88f7d75a-5394-4f26-b036-2b8421e70074/tlali-nantli-tour" target="_blank" rel="noopener" title="Amazon Music">
+          <img src="/redes/amazonmusic.png" alt="Amazon Music" class="w-12 h-12 hover:scale-110 transition-transform" />
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
