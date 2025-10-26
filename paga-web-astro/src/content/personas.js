@@ -206,4 +206,96 @@ export const personas = [
     ],
     publicaciones: ["Cervantes-Nájera"],
   },
+  {
+    id: "jose-angel-cortes-fuentes",
+    nombre: "José Ángel Cortés Fuentes",
+    titulo:
+      "Ingeniero Biotecnólogo con Maestría en Ciencias en Estudios Ambientales y de la Sustentabilidad",
+    foto: "/equipo/Jose_Angel_Cortes_Fuentes.png",
+    email: "jose.angel@ciiemad.ipn.mx",
+    especialidades: [
+      "Plantas acuáticas para consumo humano",
+      "Alimentación sustentable",
+      "Soberanía alimentaria",
+    ],
+    semblanza:
+      "José Ángel Cortés Fuentes es Ingeniero Biotecnólogo - Unidad Profesional Interdisciplinaria de Biotecnología (UPIBI) del Instituto Politécnico Nacional (IPN)., Estudiante de la Maestría en Ciencias en Estudios Ambientales y de la Sustentabilidad – Centro Interdisciplinario de Investigaciones y Estudios sobre Medio Ambiente y Desarrollo (CIIEMAD) del IPN. Su formación y trabajo académico se centran en el análisis interdisciplinario de los problemas ambientales, así como en la búsqueda de estrategias orientadas a la sustentabilidad y al desarrollo sostenible. Actualmente, se encuentra cursando la Maestría en Ciencias en Estudios Ambientales y de la Sustentabilidad en el mismo centro, donde participa en proyectos de investigación enfocados en la gestión ambiental, el cambio climático y la integración de políticas sustentables en distintos contextos sociales y territoriales.",
+    enlaces: [
+      {
+        tipo: "LinkedIn",
+        url: "",
+        color: "blue-600",
+      },
+      {
+        tipo: "ResearchGate",
+        url: "",
+        color: "green-600",
+      },
+      {
+        tipo: "Google Scholar",
+        url: "",
+        color: "red-600",
+      },
+      {
+        tipo: "ORCID",
+        url: "",
+        color: "purple-600",
+      },
+    ],
+    proyectos: [
+      // {
+      //   titulo: "Soluciones Basadas en la Naturaleza",
+      //   descripcion:
+      //     "Investigación sobre implementación de techos verdes y espacios naturales en entornos urbanos.",
+      //   color: "verde",
+      // },
+    ],
+    publicaciones: ["Cortés Fuentes, J. Á."],
+  },
+  {
+    id: "edgar-brian-martinez-merino",
+    nombre: "Edgar Brian Martinez Merino.",
+    titulo:
+      "Ingeniero Mecánico con Maestría en Ciencias en Estudios Ambientales y de la Sustentabilidad",
+    foto: "/equipo/Edgar_Brian_Martinez_Merino.png",
+    email: "edgar.brian@ciiemad.ipn.mx",
+    especialidades: [
+      "Movilidad Eléctrica",
+      "Análisis de Ciclo de Vida",
+      "Economía Circular",
+    ],
+    semblanza:
+      "Edgar Brian Martinez Merino es Ingeniero Mecánico egresado de la Escuela Superior de Ingeniería Mecánica y Eléctrica, Unidad Culhuacán (ESIME) del Instituto Politécnico Nacional (IPN). Actualmente cursa la Maestría en Ciencias en Estudios Ambientales y de la Sustentabilidad en el Centro Interdisciplinario de Investigaciones y Estudios sobre Medio Ambiente y Desarrollo (CIIEMAD) del IPN. Su interés académico se orienta hacia la relación entre la ingeniería y la sustentabilidad, con énfasis en el desarrollo de tecnologías limpias, la eficiencia energética y la gestión ambiental como herramientas para mitigar los impactos del cambio climático y promover un desarrollo sostenible.",
+    enlaces: [
+      {
+        tipo: "LinkedIn",
+        url: "",
+        color: "blue-600",
+      },
+      {
+        tipo: "ResearchGate",
+        url: "",
+        color: "green-600",
+      },
+      {
+        tipo: "Google Scholar",
+        url: "",
+        color: "red-600",
+      },
+      {
+        tipo: "ORCID",
+        url: "",
+        color: "purple-600",
+      },
+    ],
+    proyectos: [
+      // {
+      //   titulo: "Soluciones Basadas en la Naturaleza",
+      //   descripcion:
+      //     "Investigación sobre implementación de techos verdes y espacios naturales en entornos urbanos.",
+      //   color: "verde",
+      // },
+    ],
+    publicaciones: ["Martínez-Merino, E. B."],
+  },
 ];
