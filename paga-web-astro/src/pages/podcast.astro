@@ -1,5 +1,12 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
+
+const temporadas = [
+  { id: 1, nombre: "Temporada 1", videoId: "g7UXSm4CaSk" },
+  { id: 2, nombre: "Temporada 2", videoId: "zAC50S1AIG4" },
+  { id: 3, nombre: "Temporada 3", videoId: "H-DxaiIEjzI" }, // Placeholder
+  { id: 4, nombre: "Temporada 4", videoId: "bEhVzRyd-JA" }, // Placeholder
+];
 ---
 
 <Layout>
@@ -29,6 +36,52 @@ import Layout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
+  <!-- Sección de Temporadas -->
+  <section id="temporadas" class="bg-[rgb(240,233,224)] py-8 w-full">
+    <div class="max-w-4xl mx-auto px-4">
+      <!-- Menú de temporadas -->
+      <div class="flex justify-center mb-6 border-b-2 border-gray-300">
+        {
+          temporadas.map((temporada, index) => (
+            <button
+              class={`temporada-tab px-4 py-2 text-lg font-semibold transition-colors duration-300 ${
+                index === 0
+                  ? "text-guinda border-b-2 border-guinda"
+                  : "text-gray-600 hover:text-guinda"
+              }`}
+              data-temporada={temporada.id}
+            >
+              {temporada.nombre}
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Contenedor de videos -->
+      <div class="video-container">
+        {
+          temporadas.map((temporada, index) => (
+            <div
+              id={`video-temporada-${temporada.id}`}
+              class={`temporada-video ${index !== 0 ? "hidden" : ""}`}
+            >
+              <div class="relative overflow-hidden rounded-lg shadow-lg" style="padding-top: 56.25%;">
+                <iframe
+                  class="absolute top-0 left-0 w-full h-full"
+                  src={`https://www.youtube.com/embed/${temporada.videoId}`}
+                  title={`YouTube video player - ${temporada.nombre}`}
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
   <!-- Sección: Noticias más recientes -->
   <section class="bg-[rgb(240,233,224)] py-8 w-full">
     <div class="max-w-4xl mx-auto px-4">
@@ -224,73 +277,7 @@ import Layout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- Nueva sección de podcast Spotify -->
-  <section class="bg-[rgb(240,233,224)] pt-2 pb-8 w-full">
-    <div class="max-w-4xl mx-auto px-4">
-      <div
-        class="aspect-w-16 aspect-h-9 hover:scale-105 hover:shadow-xl transition-all duration-300"
-      >
-        <iframe
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/episode/5Ia9rAk3Tc4Z40Aj7QjEVL?utm_source=generator"
-          width="100%"
-          height="352"
-          class="rounded-xl shadow-lg"
-          frameborder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        >
-        </iframe>
-      </div>
-    </div>
-  </section>
 
-  <!-- Segunda sección de podcast Spotify -->
-  <section class="bg-[rgb(240,233,224)] pt-2 pb-8 w-full">
-    <!-- Changed from pb-16 to pb-8 -->
-    <div class="max-w-4xl mx-auto px-4">
-      <div
-        class="aspect-w-16 aspect-h-9 hover:scale-105 hover:shadow-xl transition-all duration-300"
-      >
-        <iframe
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/episode/2o0nHV44cSMncZZ6YpWFFF?utm_source=generator"
-          width="100%"
-          height="352"
-          class="rounded-xl shadow-lg"
-          frameborder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        >
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tercera sección de podcast Spotify -->
-  <section class="bg-[rgb(240,233,224)] pt-2 pb-8 w-full">
-    <!-- Changed from pb-16 to pb-8 -->
-    <div class="max-w-4xl mx-auto px-4">
-      <div
-        class="aspect-w-16 aspect-h-9 hover:scale-105 hover:shadow-xl transition-all duration-300"
-      >
-        <iframe
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/episode/3Oo9loB0DlRMHTmDYVYyLR?utm_source=generator"
-          width="100%"
-          height="352"
-          class="rounded-xl shadow-lg"
-          frameborder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        >
-        </iframe>
-      </div>
-    </div>
-  </section>
 
   <!-- Redes sociales abajo -->
   <section class="bg-[rgb(240,240,245)] py-10 w-full">
@@ -381,3 +368,33 @@ import Layout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 </Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".temporada-tab");
+    const videos = document.querySelectorAll(".temporada-video");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const temporadaId = tab.getAttribute("data-temporada");
+
+        // Actualizar estilo de los tabs
+        tabs.forEach((t) => {
+          t.classList.remove("text-guinda", "border-guinda");
+          t.classList.add("text-gray-600", "hover:text-guinda");
+        });
+        tab.classList.add("text-guinda", "border-guinda");
+        tab.classList.remove("text-gray-600", "hover:text-guinda");
+
+        // Mostrar el video correspondiente
+        videos.forEach((video) => {
+          if (video.id === `video-temporada-${temporadaId}`) {
+            video.classList.remove("hidden");
+          } else {
+            video.classList.add("hidden");
+          }
+        });
+      });
+    });
+  });
+</script>
