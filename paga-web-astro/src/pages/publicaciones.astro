@@ -46,6 +46,7 @@ const publicacionesOrdenadas = [...publicaciones].sort((a, b) =>
             class="flex items-start bg-white border-l-8 rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 border-verde relative outline-none focus:ring-4 focus:ring-verde/30 focus:border-verde focus:shadow-2xl active:bg-blue-50"
             data-anio={pub.anio}
             data-tipo={pub.tipo}
+            data-idx={idx}
           >
             <span class="mr-4 mt-1 text-verde">
               <svg
@@ -86,6 +87,17 @@ const publicacionesOrdenadas = [...publicaciones].sort((a, b) =>
         ))
       }
     </ul>
+    <!-- Contenedor para mostrar/ocultar el resto de publicaciones si hay muchas -->
+    <div class="mt-6 text-center">
+      <button
+        id="pub-toggle"
+        type="button"
+        class="hidden px-4 py-2 bg-guinda text-white rounded shadow hover:brightness-95 focus:outline-none"
+        aria-expanded="false"
+      >
+        Mostrar más
+      </button>
+    </div>
   </section>
 </Layout>
 
@@ -100,19 +112,78 @@ const publicacionesOrdenadas = [...publicaciones].sort((a, b) =>
     const lista = document.getElementById(
       "lista-publicaciones"
     ) as HTMLUListElement | null;
-    if (!filtroAnio || !filtroTipo || !lista) return;
-    const items = Array.from(lista.children) as HTMLLIElement[];
+    const toggleBtn = document.getElementById(
+      "pub-toggle"
+    ) as HTMLButtonElement | null;
+    if (!filtroAnio || !filtroTipo || !lista || !toggleBtn) return;
 
-    function filtrar() {
-      const anio = filtroAnio ? filtroAnio.value : "";
-      const tipo = filtroTipo ? filtroTipo.value : "";
+    // Narrow types after the null-check so the TS checker knows they're available.
+    const filtroAnioEl = filtroAnio as HTMLSelectElement;
+    const filtroTipoEl = filtroTipo as HTMLSelectElement;
+    const listaEl = lista as HTMLUListElement;
+    const toggleBtnEl = toggleBtn as HTMLButtonElement;
+
+    const items = Array.from(listaEl.querySelectorAll("li")) as HTMLLIElement[];
+    const COLLAPSE_LIMIT = 10;
+    let expanded = false;
+
+    function applyFiltersAndCollapse() {
+      const anio = filtroAnioEl.value || "";
+      const tipo = filtroTipoEl.value || "";
+      let matchCount = 0;
+
       items.forEach((item) => {
-        const coincideAnio = !anio || item.getAttribute("data-anio") === anio;
-        const coincideTipo = !tipo || item.getAttribute("data-tipo") === tipo;
-        item.style.display = coincideAnio && coincideTipo ? "" : "none";
+        const itemAnio = item.getAttribute("data-anio") || "";
+        const itemTipo = item.getAttribute("data-tipo") || "";
+        const matches =
+          (!anio || itemAnio === anio) && (!tipo || itemTipo === tipo);
+        if (!matches) {
+          item.style.display = "none";
+          return;
+        }
+        matchCount += 1;
+        // If not expanded, only show the first COLLAPSE_LIMIT matches
+        if (!expanded && matchCount > COLLAPSE_LIMIT) {
+          item.style.display = "none";
+        } else {
+          item.style.display = "";
+        }
       });
+
+      // Update toggle button visibility and label
+      if (matchCount > COLLAPSE_LIMIT) {
+        toggleBtnEl.classList.remove("hidden");
+        toggleBtnEl.textContent = expanded
+          ? "Mostrar menos"
+          : `Mostrar más (${matchCount - COLLAPSE_LIMIT})`;
+        toggleBtnEl.setAttribute("aria-expanded", String(expanded));
+      } else {
+        toggleBtnEl.classList.add("hidden");
+        toggleBtnEl.setAttribute("aria-expanded", "false");
+      }
     }
-    filtroAnio.addEventListener("change", filtrar);
-    filtroTipo.addEventListener("change", filtrar);
+
+    // Attach listeners
+    filtroAnioEl.addEventListener("change", () => {
+      expanded = false;
+      applyFiltersAndCollapse();
+    });
+    filtroTipoEl.addEventListener("change", () => {
+      expanded = false;
+      applyFiltersAndCollapse();
+    });
+
+    toggleBtnEl.addEventListener("click", function () {
+      expanded = !expanded;
+      applyFiltersAndCollapse();
+      // When collapsing, scroll to the top of the list to keep context
+      if (!expanded) {
+        const top = listaEl.getBoundingClientRect().top + window.scrollY - 16;
+        window.scrollTo({ top: top, behavior: "smooth" });
+      }
+    });
+
+    // Initial apply
+    applyFiltersAndCollapse();
   });
 </script>
