@@ -1,11 +1,55 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
 
+// He añadido una lista de episodios para cada temporada.
+// Puedes actualizar los títulos y los 'videoId' con los de tus capítulos.
 const temporadas = [
-  { id: 1, nombre: "Temporada 1", videoId: "g7UXSm4CaSk" },
-  { id: 2, nombre: "Temporada 2", videoId: "zAC50S1AIG4" },
-  { id: 3, nombre: "Temporada 3", videoId: "H-DxaiIEjzI" }, // Placeholder
-  { id: 4, nombre: "Temporada 4", videoId: "bEhVzRyd-JA" }, // Placeholder
+  {
+    id: 1,
+    nombre: "Temporada 1",
+    episodios: [
+      { titulo: "T1-Capítulo 1: Introducción a la Teledetección", videoId: "g7UXSm4CaSk" },
+      { titulo: "T1-Capítulo 2: Ciudad que respira: ...contaminación del aire en la CDMX", videoId: "AawJWn-D__Q" }, // Reemplazar VIDEO_ID
+      { titulo: "T1-Capítulo 3: El Futuro del Sector Espacial 🚀 Ciencia, Sociedad e Innovación", videoId: "AJjM8nqEUs0" }, // Reemplazar VIDEO_ID
+      { titulo: "T1-Capítulo 4: El futuro de la humanidad y la exploración del espacio 🚀", videoId: "fdr14bw6k50" }
+    ],
+  },
+  {
+    id: 2,
+    nombre: "Temporada 2",
+    episodios: [
+      { titulo: "T2-Capítulo 1: La importancia de la interdisciplina en las ciencias ambientales", videoId: "zAC50S1AIG4" },
+      { titulo: "T2-Capítulo 2: Del plástico al micro plástico. La solución que se convirtió en...", videoId: "w-438N1PAHM" }, // Reemplazar VIDEO_ID
+      { titulo: "T2-Capítulo 3: Uso de índices geo-ambientales para la evaluación de la", videoId: "tuSYecVRRSc" },
+      { titulo: "T2-Capítulo 4: ¿Por qué los países del “primer mundo” no están más avanzados en...", videoId: "As_EURLV0JM" },
+      { titulo: "T2-Capítulo 5 parte 1: La maternidad y los estudios de doctorado", videoId: "Vwfr5LtMr0Q" },
+      { titulo: "T2-Capítulo 5 parte 2: La maternidad y los estudios de doctorado", videoId: "kncYvXkAbzY" },
+      { titulo: "T2-Capítulo 5 parte 3: La maternidad y los estudios de doctorado", videoId: "q67e4emI8Eg" },
+      { titulo: "T2-Capítulo 5 parte 4: La maternidad y los estudios de doctorado", videoId: "tOCXDBup-Hs" },
+      { titulo: "T2-Capítulo 6: ¿Gas o ballenas? El dilema del Golfo de California", videoId: "ifPTzTSyOLE" },
+      { titulo: "T2-Capítulo 7: Reúso y tratamiento de los residuos mineros", videoId: "mvBYm1C7FjU" },
+    ],
+  },
+  {
+    id: 3,
+    nombre: "Temporada 3",
+    episodios: [
+      { titulo: "T3-Capítulo 1: Humedal artificial: una solución natural para tratar aguas residuales", videoId: "H-DxaiIEjzI" },
+      { titulo: "T3-Capítulo 2: Captación de agua de lluvia para recarga del acuífero en CDMX", videoId: "yIMepdNNIvI" }, // Reemplazar VIDEO_ID
+      { titulo: "T3-Capítulo 3: Crisis Hídrica en la Ciudad de México: Agua y futuro", videoId: "QomqNoLel2I" },
+      { titulo: "T3-Capítulo 4: El derecho humano al agua en México: Concesiones, leyes y retos", videoId: "_aVMsQbaXVo" },
+      { titulo: "T3-Capítulo 5: Derecho humano al agua en México: indicadores, saneamiento y Acuerdo de Escazú", videoId: "yPP1282Fph8" },
+    ],
+  },
+  {
+    id: 4,
+    nombre: "Temporada 4",
+    episodios: [
+      { titulo: "T4-Capítulo 1: Infraestructura verde en la Ciudad de México ", videoId: "bEhVzRyd-JA" },
+      { titulo: "T4-Capítulo 2: Hagamos Composta: Ideas que transforman", videoId: "vTPegDzfWr4" }, // Reemplazar VIDEO_ID
+      { titulo: "T4-Capítulo 3: Infraestructura verde en la Ciudad de México", videoId: "70kH4clXKXo" },
+    ],
+  },
 ];
 ---
 
@@ -66,15 +110,31 @@ const temporadas = [
               class={`temporada-video ${index !== 0 ? "hidden" : ""}`}
             >
               <div class="relative overflow-hidden rounded-lg shadow-lg" style="padding-top: 56.25%;">
+                <!-- El videoId inicial es el del primer episodio de la temporada -->
                 <iframe
                   class="absolute top-0 left-0 w-full h-full"
-                  src={`https://www.youtube.com/embed/${temporada.videoId}`}
+                  src={`https://www.youtube.com/embed/${temporada.episodios[0].videoId}`}
                   title={`YouTube video player - ${temporada.nombre}`}
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowfullscreen
                   loading="lazy"
                 ></iframe>
+              </div>
+              <!-- Lista de episodios -->
+              <div class="mt-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Episodios</h3>
+                <ul class="space-y-2">
+                  {temporada.episodios.map((episodio, epIndex) => (
+                    <li
+                      class={`episodio-item cursor-pointer p-3 rounded-lg transition-colors duration-200 flex items-center gap-3 ${epIndex === 0 ? 'bg-guinda/10 text-guinda' : 'hover:bg-gray-200'}`}
+                      data-video-id={episodio.videoId}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      <span>{episodio.titulo}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))
@@ -373,19 +433,19 @@ const temporadas = [
   document.addEventListener("DOMContentLoaded", () => {
     const tabs = document.querySelectorAll(".temporada-tab");
     const videos = document.querySelectorAll(".temporada-video");
-
+  
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         const temporadaId = tab.getAttribute("data-temporada");
-
+  
         // Actualizar estilo de los tabs
         tabs.forEach((t) => {
-          t.classList.remove("text-guinda", "border-guinda");
+          t.classList.remove("text-guinda", "border-b-2", "border-guinda");
           t.classList.add("text-gray-600", "hover:text-guinda");
         });
-        tab.classList.add("text-guinda", "border-guinda");
+        tab.classList.add("text-guinda", "border-b-2", "border-guinda");
         tab.classList.remove("text-gray-600", "hover:text-guinda");
-
+  
         // Mostrar el video correspondiente
         videos.forEach((video) => {
           if (video.id === `video-temporada-${temporadaId}`) {
@@ -393,6 +453,30 @@ const temporadas = [
           } else {
             video.classList.add("hidden");
           }
+        });
+      });
+    });
+  
+    // Lógica para cambiar el video al hacer clic en un episodio
+    document.querySelectorAll(".temporada-video").forEach((temporadaContainer) => {
+      const iframe = temporadaContainer.querySelector("iframe");
+      const episodios = temporadaContainer.querySelectorAll(".episodio-item");
+  
+      episodios.forEach((episodio) => {
+        episodio.addEventListener("click", () => {
+          const videoId = episodio.getAttribute("data-video-id");
+          
+          // Actualizar el src del iframe
+          iframe.src = `https://www.youtube.com/embed/${videoId}`;
+  
+          // Actualizar estilos de la lista de episodios
+          episodios.forEach(ep => {
+            ep.classList.remove('bg-guinda/10', 'text-guinda');
+            ep.classList.add('hover:bg-gray-200');
+          });
+  
+          episodio.classList.add('bg-guinda/10', 'text-guinda');
+          episodio.classList.remove('hover:bg-gray-200');
         });
       });
     });
