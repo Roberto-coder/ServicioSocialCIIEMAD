@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/BaseLayout.astro";
+const meta = {
+  id: "p5",
+  title: "Movilidad sostenible: un enfoque interdisciplinario",
+  date: "2025-07-10",
+  author: "Varios autores",
+  image:
+    "https://www.gob.mx/cms/uploads/article/main_image/64798/movilidad-sustentable.jpg",
+};
+---
+
+<Layout>
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <article class="bg-white rounded-xl shadow-md overflow-hidden">
+      <div class="h-64 bg-gray-100 overflow-hidden">
+        <img
+          src={meta.image}
+          alt={meta.title}
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div class="p-8">
+        <h1 class="text-3xl font-serif text-guinda mb-3">{meta.title}</h1>
+        <div class="text-sm text-gray-500 mb-6">
+          {meta.date} · {meta.author}
+        </div>
+
+        <div class="prose max-w-none text-gray-700">
+          <p>
+            Reflexión interdisciplinaria sobre políticas, diseño urbano y
+            participación social para promover movilidad sostenible.
+          </p>
+
+          <h2>Políticas públicas</h2>
+          <p>
+            Descripción de intervenciones gubernamentales y su impacto en la
+            movilidad.
+          </p>
+
+          <h3>Diseño urbano</h3>
+          <p>
+            Buenas prácticas en infraestructura segura para peatones y
+            ciclistas.
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <a href="/blog" class="text-guinda hover:underline"
+            >← Volver al Blog</a
+          >
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>

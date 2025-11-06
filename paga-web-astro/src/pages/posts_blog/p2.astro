@@ -1,0 +1,54 @@
+---
+import Layout from "../../layouts/BaseLayout.astro";
+const meta = {
+  id: "p2",
+  title: "Monitoreo de calidad del agua: un estudio de caso",
+  date: "2025-09-15",
+  author: "Héctor Ramírez",
+  image:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_DR506AVhsWYnVEG9sTYr6jC2tRw3S5UV-w&s",
+};
+---
+
+<Layout>
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <article class="bg-white rounded-xl shadow-md overflow-hidden">
+      <div class="h-64 bg-gray-100 overflow-hidden">
+        <img
+          src={meta.image}
+          alt={meta.title}
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div class="p-8">
+        <h1 class="text-3xl font-serif text-guinda mb-3">{meta.title}</h1>
+        <div class="text-sm text-gray-500 mb-6">
+          {meta.date} · {meta.author}
+        </div>
+
+        <div class="prose max-w-none text-gray-700">
+          <p>
+            Resumen del estudio de caso: métodos de muestreo, indicadores usados
+            y principales conclusiones.
+          </p>
+
+          <h2>Métodos</h2>
+          <p>
+            Describe el muestreo, el equipo, el calendario y los análisis
+            realizados.
+          </p>
+
+          <h3>Discusión</h3>
+          <p>Interpreta los resultados y compara con literatura previa.</p>
+        </div>
+
+        <div class="mt-8">
+          <a href="/blog" class="text-guinda hover:underline"
+            >← Volver al Blog</a
+          >
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>
