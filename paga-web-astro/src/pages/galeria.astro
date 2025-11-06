@@ -162,13 +162,22 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
         galeriaItems.map((item, index) => (
           <div
             class="group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
-            data-index={index}
           >
-            <img
-              src={item.src}
-              alt={item.alt}
-              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-            />
+            <div class="image-container" data-index={index}>
+              <img
+                src={item.src}
+                alt={item.alt}
+                class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <div class="absolute bottom-2 right-2 flex items-center space-x-1 bg-black bg-opacity-60 rounded-full px-2 py-1 text-white text-sm">
+              <button class="like-button" data-index={index} title="Me gusta">
+                <svg class="w-5 h-5 fill-current text-white transition-colors duration-200" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                </svg>
+              </button>
+              <span class="like-counter" data-index={index}>0</span>
+            </div>
           </div>
         ))
       }
@@ -197,6 +206,14 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
         </div>
         <h3 id="lightbox-title" class="text-xl font-bold text-guinda mb-2"></h3>
         <p id="lightbox-desc" class="text-gray-700"></p>
+        <div class="mt-4 flex items-center space-x-2 text-gray-600">
+            <button id="lightbox-like-button" title="Me gusta">
+                <svg class="w-6 h-6 fill-current transition-colors duration-200" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                </svg>
+            </button>
+            <span id="lightbox-like-counter" class="font-semibold">0</span>
+        </div>
       </div>
     </div>
     <button
@@ -214,8 +231,10 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
     const lightboxCategory = document.getElementById("lightbox-category");
     const lightboxDesc = document.getElementById("lightbox-desc");
     const lightboxClose = document.getElementById("lightbox-close");
-    const galleryImages = document.querySelectorAll("[data-index]");
+    const lightboxLikeButton = document.getElementById("lightbox-like-button");
+    const lightboxLikeCounter = document.getElementById("lightbox-like-counter");
 
+    let currentLightboxIndex = -1;
     function openLightbox(index) {
       const item = galeriaItems[index];
       if (!item || !lightbox) return;
@@ -223,6 +242,7 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
       lightboxImg.src = item.src;
       lightboxImg.alt = item.alt;
       lightboxTitle.textContent = item.title;
+      currentLightboxIndex = index;
       
       // Formatear y mostrar la fecha
       const date = new Date(item.fecha);
@@ -232,23 +252,108 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
 
       lightboxDesc.textContent = item.description;
 
+      updateLikeUIForLightbox(index);
       lightbox.classList.remove("hidden");
     }
 
     function closeLightbox() {
       if (lightbox) lightbox.classList.add("hidden");
+      currentLightboxIndex = -1;
     }
 
-    galleryImages.forEach((img) => {
-      img.addEventListener("click", () => {
-        const index = parseInt(img.dataset.index, 10);
+    // --- Lógica de Likes con Cookies ---
+
+    const LIKES_COOKIE = 'galleryLikes';
+    const USER_LIKED_COOKIE = 'userLikedImages';
+
+    // Funciones para manejar cookies
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    function setCookie(name, value, days = 365) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+    }
+
+    // Cargar estado inicial desde las cookies
+    let likes = JSON.parse(getCookie(LIKES_COOKIE)) || {};
+    let userLiked = JSON.parse(getCookie(USER_LIKED_COOKIE)) || [];
+
+    function handleLike(index) {
+      const imageId = galeriaItems[index].src;
+      const isLiked = userLiked.includes(imageId);
+
+      if (isLiked) {
+        // Quitar like
+        likes[imageId] = (likes[imageId] || 1) - 1;
+        userLiked = userLiked.filter(id => id !== imageId);
+      } else {
+        // Dar like
+        likes[imageId] = (likes[imageId] || 0) + 1;
+        userLiked.push(imageId);
+      }
+
+      // Guardar en cookies
+      setCookie(LIKES_COOKIE, JSON.stringify(likes));
+      setCookie(USER_LIKED_COOKIE, JSON.stringify(userLiked));
+
+      // Actualizar la UI
+      updateLikeUIForImage(index);
+      if (index === currentLightboxIndex) {
+        updateLikeUIForLightbox(index);
+      }
+    }
+
+    function updateLikeUIForImage(index) {
+      const imageId = galeriaItems[index].src;
+      const counter = document.querySelector(`.like-counter[data-index="${index}"]`);
+      const button = document.querySelector(`.like-button[data-index="${index}"] svg`);
+      
+      if (counter) counter.textContent = likes[imageId] || 0;
+      if (button) {
+        button.classList.toggle('text-red-500', userLiked.includes(imageId));
+        button.classList.toggle('text-white', !userLiked.includes(imageId));
+      }
+    }
+
+    function updateLikeUIForLightbox(index) {
+        const imageId = galeriaItems[index].src;
+        const svg = lightboxLikeButton.querySelector('svg');
+        lightboxLikeCounter.textContent = likes[imageId] || 0;
+        svg.classList.toggle('text-red-500', userLiked.includes(imageId));
+        svg.classList.toggle('text-gray-400', !userLiked.includes(imageId));
+    }
+
+    // --- Event Listeners ---
+
+    document.querySelectorAll('.image-container').forEach(container => {
+      container.addEventListener("click", () => {
+        const index = parseInt(container.dataset.index, 10);
         openLightbox(index);
       });
     });
+
+    document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', () => handleLike(parseInt(button.dataset.index, 10)));
+    });
+
+    lightboxLikeButton.addEventListener('click', () => handleLike(currentLightboxIndex));
 
     lightboxClose?.addEventListener("click", closeLightbox);
     lightbox?.addEventListener("click", (e) => {
       if (e.target === lightbox) closeLightbox();
     });
+
+    // Inicializar la UI con los datos de las cookies al cargar la página
+    galeriaItems.forEach((_, index) => updateLikeUIForImage(index));
   </script>
 </Layout>
