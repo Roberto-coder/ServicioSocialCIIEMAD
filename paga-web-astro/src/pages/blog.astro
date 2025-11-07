@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
 import { posts, recientes } from "../content/blog.js";
+// import get from "../api/app.js";
 ---
 
 <Layout>
@@ -12,6 +13,110 @@ import { posts, recientes } from "../content/blog.js";
         investigación.
       </p>
     </header>
+
+    <!-- Sección de datos de sustentabilidad (solo lectura desde API) -->
+    <section class="mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1: Calidad del aire (US AQI) -->
+        <div class="bg-white rounded-xl shadow-md p-6 flex items-start gap-3">
+          <svg
+            class="w-8 h-8 text-guinda flex-shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M12 8V12L15 15"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M8.5 15.5L6 18"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <div class="flex-1">
+            <h4 class="text-lg font-serif text-guinda mb-2">
+              Calidad del aire (US AQI)
+            </h4>
+            <div id="aqi" class="text-3xl font-bold text-gray-900">
+              Cargando...
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <div id="aqi-units" class="text-sm text-gray-500">US AQI</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Monóxido de Carbono -->
+        <div class="bg-white rounded-xl shadow-md p-6 flex items-start gap-3">
+          <svg
+            class="w-8 h-8 text-guinda flex-shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden
+          >
+            <path
+              d="M3 12c0-4.97 4.03-9 9-9s9 4.03 9 9-4.03 9-9 9S3 16.97 3 12z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M9 12h6"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <div class="flex-1">
+            <h4 class="text-lg font-serif text-guinda mb-2">
+              Monóxido de Carbono
+            </h4>
+            <div id="co" class="text-2xl font-semibold text-gray-900">
+              Cargando...
+            </div>
+            <div id="co-units" class="text-sm text-gray-500 mt-1">&nbsp;</div>
+          </div>
+        </div>
+
+        <!-- Card 3: Temperatura -->
+        <div class="bg-white rounded-xl shadow-md p-6 flex items-start gap-3">
+          <svg
+            class="w-8 h-8 text-verde flex-shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden
+          >
+            <path
+              d="M14 14.76V6a2 2 0 10-4 0v8.76A4 4 0 1014 14.76z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <div class="flex-1">
+            <h4 class="text-lg font-serif text-guinda mb-2">Temperatura</h4>
+            <div id="temp" class="text-2xl font-semibold text-gray-900">
+              Cargando...
+            </div>
+            <div id="temp-units" class="text-sm text-gray-500 mt-1">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
       <!-- Column: main content (3/4) -->
@@ -138,5 +243,103 @@ import { posts, recientes } from "../content/blog.js";
         </div>
       </aside>
     </div>
+
+    <script>
+      // @ts-nocheck
+      document.addEventListener("DOMContentLoaded", function () {
+        const aqiEl = document.getElementById("aqi");
+        const aqiExtraEl = document.getElementById("aqi-extra");
+        const aqiUnitsEl = document.getElementById("aqi-units");
+        const coEl = document.getElementById("co");
+        const coUnitsEl = document.getElementById("co-units");
+        const tempEl = document.getElementById("temp");
+        const tempUnitsEl = document.getElementById("temp-units");
+        const refreshBtn = document.getElementById("refresh-aqi");
+
+        if (!aqiEl || !coEl || !tempEl) {
+          console.warn(
+            "Elementos mínimos de la UI de sustentabilidad no encontrados (aqi/co/temp), abortando."
+          );
+          return;
+        }
+
+        async function fetchAqi() {
+          try {
+            // llamamos a nuestro endpoint combinado
+            const res = await fetch("/api/app");
+            if (!res.ok) throw new Error("Error al obtener datos de la API");
+            const data = await res.json();
+
+            // air: data.air.current (us_aqi, carbon_monoxide)
+            // weather: data.weather.current_weather (temperature)
+            const airCurrent = data?.air?.current ?? null;
+            const weatherCurrent = data?.weather?.current_weather ?? null;
+
+            if (airCurrent) {
+              const aqi = airCurrent.us_aqi ?? airCurrent.aqi ?? "N/D";
+              const co = airCurrent.carbon_monoxide ?? "N/D";
+              aqiEl.textContent = String(aqi);
+              if (aqiExtraEl)
+                aqiExtraEl.textContent = airCurrent.description ?? "";
+              // unidades (intentar leer del API combinado, con fallback)
+              const aqiUnit =
+                data?.air?.current_units?.us_aqi ??
+                data?.air?.hourly_units?.us_aqi ??
+                "US AQI";
+              if (aqiUnitsEl) aqiUnitsEl.textContent = aqiUnit;
+              coEl.textContent = String(co);
+              const coUnit =
+                data?.air?.current_units?.carbon_monoxide ??
+                data?.air?.hourly_units?.carbon_monoxide ??
+                "µg/m³";
+              if (coUnitsEl) coUnitsEl.textContent = coUnit;
+            } else {
+              aqiEl.textContent = "N/D";
+              coEl.textContent = "N/D";
+              if (aqiUnitsEl) aqiUnitsEl.textContent = "";
+              if (coUnitsEl) coUnitsEl.textContent = "";
+            }
+
+            if (weatherCurrent) {
+              const temp =
+                typeof weatherCurrent.temperature !== "undefined"
+                  ? weatherCurrent.temperature
+                  : null;
+              if (temp !== null) {
+                tempEl.textContent = String(temp);
+                if (tempUnitsEl) tempUnitsEl.textContent = "°C";
+              } else {
+                tempEl.textContent = "N/D";
+                if (tempUnitsEl) tempUnitsEl.textContent = "";
+              }
+            } else {
+              tempEl.textContent = "N/D";
+              if (tempUnitsEl) tempUnitsEl.textContent = "";
+            }
+          } catch (err) {
+            aqiEl.textContent = "Error";
+            coEl.textContent = "Error";
+            tempEl.textContent = "Error";
+            if (aqiExtraEl) aqiExtraEl.textContent = "";
+            if (coUnitsEl) coUnitsEl.textContent = "";
+            if (tempUnitsEl) tempUnitsEl.textContent = "";
+            console.warn(err);
+          }
+        }
+
+        if (refreshBtn) refreshBtn.addEventListener("click", fetchAqi);
+
+        // Fetch inicial al cargar la página
+        fetchAqi();
+
+        // Intervalo razonable para datos meteorológicos / calidad del aire: 15 minutos
+        const intervalId = setInterval(fetchAqi, 900000); // 900000ms = 15min
+
+        // Limpiar el intervalo cuando el usuario salga de la página
+        window.addEventListener("beforeunload", function () {
+          clearInterval(intervalId);
+        });
+      });
+    </script>
   </main>
 </Layout>

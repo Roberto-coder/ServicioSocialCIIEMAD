@@ -466,8 +466,10 @@ const temporadas = [
         episodio.addEventListener("click", () => {
           const videoId = episodio.getAttribute("data-video-id");
           
-          // Actualizar el src del iframe
-          iframe.src = `https://www.youtube.com/embed/${videoId}`;
+          // Actualizar el src del iframe si existe
+          if (iframe) {
+            iframe.src = `https://www.youtube.com/embed/${videoId}`;
+          }
   
           // Actualizar estilos de la lista de episodios
           episodios.forEach(ep => {
