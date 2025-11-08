@@ -127,11 +127,18 @@ const temporadas = [
                 <ul class="space-y-2">
                   {temporada.episodios.map((episodio, epIndex) => (
                     <li
-                      class={`episodio-item cursor-pointer p-3 rounded-lg transition duration-200 transform ${epIndex === 0 ? 'bg-guinda/10 text-guinda' : 'hover:bg-gray-200 hover:-translate-y-1'}`}
+                      class={`episodio-item flex items-center gap-x-3 cursor-pointer p-3 rounded-lg transition duration-200 transform ${epIndex === 0 ? 'bg-guinda/10 text-guinda' : 'hover:bg-gray-200 hover:-translate-y-1'}`}
                       data-video-id={episodio.videoId}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                      <span>{episodio.titulo}</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 flex-shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg
+                      >
+                      <span class="flex-grow">{episodio.titulo}</span>
                     </li>
                   ))}
                 </ul>
