@@ -34,10 +34,51 @@ export async function GET() {
     const airData = await airRes.json();
     const weatherData = await weatherRes.json();
 
-    // Construimos un objeto combinado para el frontend
+    // Normalizar/extraer un objeto 'current' para la calidad del aire cuando
+    // el API devuelve sólo series horarias (hourly). Esto evita que el
+    // frontend reciba `undefined` y muestre "N/D".
+    let airCurrent = airData?.current ?? null;
+    let airUnits = airData?.current_units ?? airData?.hourly_units ?? null;
+
+    if (!airCurrent && airData?.hourly) {
+      // Si sólo hay datos por hora, tomamos el último valor disponible.
+      const times = airData.hourly.time || [];
+      const lastIdx = Math.max(0, times.length - 1);
+
+      airCurrent = {};
+      // Campos comunes que interesan al frontend
+      if (airData.hourly.us_aqi)
+        airCurrent.us_aqi = airData.hourly.us_aqi[lastIdx];
+      if (airData.hourly.aqi) airCurrent.aqi = airData.hourly.aqi[lastIdx];
+      if (airData.hourly.carbon_monoxide)
+        airCurrent.carbon_monoxide = airData.hourly.carbon_monoxide[lastIdx];
+      // Añadir una marca temporal si existe
+      if (airData.hourly.time) airCurrent.time = airData.hourly.time[lastIdx];
+    }
+
+    // Normalizar current_weather (suele existir) — si no, intentar inferir
+    let weatherCurrent = weatherData?.current_weather ?? null;
+    if (!weatherCurrent && weatherData?.hourly) {
+      const times = weatherData.hourly.time || [];
+      const lastIdx = Math.max(0, times.length - 1);
+      weatherCurrent = {};
+      if (weatherData.hourly.temperature_2m)
+        weatherCurrent.temperature = weatherData.hourly.temperature_2m[lastIdx];
+      if (weatherData.hourly.time)
+        weatherCurrent.time = weatherData.hourly.time[lastIdx];
+    }
+
+    // Construimos un objeto combinado para el frontend con campos normalizados
     const combined = {
-      air: airData,
-      weather: weatherData,
+      air: {
+        ...airData,
+        current: airCurrent,
+        current_units: airUnits,
+      },
+      weather: {
+        ...weatherData,
+        current_weather: weatherCurrent,
+      },
     };
 
     // // Log para debugging en servidor
