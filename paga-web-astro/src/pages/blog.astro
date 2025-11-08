@@ -14,10 +14,8 @@ import { posts, recientes } from "../content/blog.js";
       </p>
     </header>
 
-    <!-- Sección de datos de sustentabilidad (solo lectura desde API) -->
     <section class="mb-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Card 1: Calidad del aire (US AQI) -->
         <div class="bg-white rounded-xl shadow-md p-6 flex items-start gap-3">
           <svg
             class="w-8 h-8 text-guinda flex-shrink-0"
@@ -50,7 +48,6 @@ import { posts, recientes } from "../content/blog.js";
           </div>
         </div>
 
-        <!-- Card 2: Monóxido de Carbono -->
         <div class="bg-white rounded-xl shadow-md p-6 flex items-start gap-3">
           <svg
             class="w-8 h-8 text-guinda flex-shrink-0"
@@ -80,7 +77,6 @@ import { posts, recientes } from "../content/blog.js";
           </div>
         </div>
 
-        <!-- Card 3: Temperatura -->
         <div class="bg-white rounded-xl shadow-md p-6 flex items-start gap-3">
           <svg
             class="w-8 h-8 text-verde flex-shrink-0"
@@ -108,11 +104,8 @@ import { posts, recientes } from "../content/blog.js";
     </section>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-      <!-- Column: main content (3/4) -->
       <section class="lg:col-span-3">
-        <!-- Grid de cards con tamaños variados -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Featured: primer post ocupa 2 columnas en md -->
           {
             posts.length > 0 && (
               <article class="md:col-span-2 row-span-2 bg-white rounded-xl shadow-md overflow-hidden">
@@ -139,7 +132,6 @@ import { posts, recientes } from "../content/blog.js";
             )
           }
 
-          <!-- Resto de cards (variarán en tamaño según su índice) -->
           {
             posts.slice(1).map((post, i) => (
               <article
@@ -173,7 +165,6 @@ import { posts, recientes } from "../content/blog.js";
           }
         </div>
 
-        <!-- Paginación / Mostrar más (placeholder) -->
         <div class="mt-8 text-center">
           <button
             class="px-5 py-2 bg-guinda text-white rounded shadow hover:brightness-95"
@@ -182,7 +173,6 @@ import { posts, recientes } from "../content/blog.js";
         </div>
       </section>
 
-      <!-- Aside: Recientes -->
       <aside class="lg:col-span-1">
         <div class="sticky top-24 space-y-6">
           <div class="bg-white rounded-xl shadow-md p-4">
@@ -214,7 +204,6 @@ import { posts, recientes } from "../content/blog.js";
             </ul>
           </div>
 
-          <!-- Newsletter / CTA -->
           <div class="bg-white rounded-xl shadow-md p-4">
             <h5 class="font-serif text-guinda mb-2">Suscríbete</h5>
             <p class="text-sm text-gray-600 mb-3">
