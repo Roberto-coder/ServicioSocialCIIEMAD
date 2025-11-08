@@ -2,11 +2,9 @@
 import Layout from "../../layouts/BaseLayout.astro";
 import { posts } from "../../content/blog.js";
 
-export async function getStaticPaths() {
-  return posts.map((p) => ({ params: { id: p.id } }));
-}
+const requestedId = Astro.params?.id ?? "p5";
+const post = posts.find((p) => p.id === requestedId) || null;
 
-const post = posts.find((p) => p.id === Astro.params.id) || null;
 ---
 
 <Layout>

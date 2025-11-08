@@ -58,7 +58,7 @@ const temporadas = [
   <section class="bg-[rgb(240,233,224)] py-6 w-full">
     <!-- Reduced from py-10 -->
     <div class="max-w-3xl mx-auto flex flex-col items-center text-center">
-      <div class="bg-white p-1 rounded-full shadow-sm border border-white/20">
+      <div class="bg-white p-1 rounded-full shadow-sm border border-white/20 animate-pulse motion-reduce:animate-none">
         <img
           src="/podcast/logoST_PODCAST.png"
           alt="Logo Sustentaterra"
@@ -84,11 +84,11 @@ const temporadas = [
   <section id="temporadas" class="bg-[rgb(240,233,224)] py-8 w-full">
     <div class="max-w-4xl mx-auto px-4">
       <!-- Menú de temporadas -->
-      <div class="flex justify-center mb-6 border-b-2 border-gray-300">
+          <div class="flex justify-center mb-6 border-b-2 border-gray-300">
         {
           temporadas.map((temporada, index) => (
             <button
-              class={`temporada-tab px-4 py-2 text-lg font-semibold transition-colors duration-300 ${
+              class={`temporada-tab px-4 py-2 text-lg font-semibold transition-colors duration-300 transform hover:scale-105 ${
                 index === 0
                   ? "text-guinda border-b-2 border-guinda"
                   : "text-gray-600 hover:text-guinda"
@@ -127,7 +127,7 @@ const temporadas = [
                 <ul class="space-y-2">
                   {temporada.episodios.map((episodio, epIndex) => (
                     <li
-                      class={`episodio-item cursor-pointer p-3 rounded-lg transition-colors duration-200 flex items-center gap-3 ${epIndex === 0 ? 'bg-guinda/10 text-guinda' : 'hover:bg-gray-200'}`}
+                      class={`episodio-item cursor-pointer p-3 rounded-lg transition duration-200 transform ${epIndex === 0 ? 'bg-guinda/10 text-guinda' : 'hover:bg-gray-200 hover:-translate-y-1'}`}
                       data-video-id={episodio.videoId}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -146,13 +146,13 @@ const temporadas = [
   <section class="bg-[rgb(240,233,224)] py-8 w-full">
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-2xl font-serif text-guinda mb-4 text-center">
-        Noticias más recientes
+        Novedades
       </h2>
 
       <div class="flex flex-col md:flex-row gap-4">
-        <div
-          class="bg-white rounded-xl shadow-md p-4 flex-1 flex justify-center items-start"
-        >
+          <div
+            class="bg-white rounded-xl shadow-md p-4 flex-1 flex justify-center items-start transition-transform duration-200 hover:-translate-y-1"
+          >
           <div
             class="fb-page w-full max-w-[350px]"
             data-href="https://www.facebook.com/profile.php?id=100080595766135"
@@ -351,7 +351,7 @@ const temporadas = [
         nuestros próximos episodios y novedades. ¡Tu planeta te lo agradecerá!
         🌍✨
       </p>
-      <div class="flex flex-wrap justify-center gap-6">
+        <div class="flex flex-wrap justify-center gap-6">
         <a
           href="https://www.facebook.com/profile.php?id=100080595766135"
           target="_blank"
@@ -361,7 +361,7 @@ const temporadas = [
           <img
             src="/redes/logo2/facebook.png"
             alt="Facebook"
-            class="w-12 h-12 hover:scale-110 transition-transform"
+              class="w-12 h-12 hover:scale-110 transition-transform"
           />
         </a>
         <a

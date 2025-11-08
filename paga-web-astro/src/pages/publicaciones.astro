@@ -20,71 +20,90 @@ const publicacionesOrdenadas = [...publicaciones].sort((a, b) =>
     <h1 class="text-4xl font-serif text-guinda mb-10 text-center drop-shadow">
       Publicaciones
     </h1>
-    <div
-      class="flex flex-col sm:flex-row gap-4 mb-8 justify-center items-center"
-    >
-      <label class="font-bold text-sm">
-        Año:
-        <select id="filtro-anio" class="ml-2 border rounded px-2 py-1">
-          <option value="">Todos</option>
+    <div class="flex flex-col md:flex-row gap-4 mb-8 justify-center items-center">
+      <!-- Año (select estilizado) -->
+      <div class="relative">
+        <label for="filtro-anio" class="sr-only">Año</label>
+        <select
+          id="filtro-anio"
+          class="appearance-none bg-white border border-gray-200 rounded-full px-4 py-2 pr-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-verde/30"
+        >
+          <option value="">Todos los años</option>
           {anios.map((anio) => <option value={anio}>{anio}</option>)}
         </select>
-      </label>
-      <label class="font-bold text-sm">
-        Tipo:
-        <select id="filtro-tipo" class="ml-2 border rounded px-2 py-1">
-          <option value="">Todos</option>
-          {tipos.map((tipo) => <option value={tipo}>{tipo}</option>)}
-        </select>
-      </label>
+        <svg class="pointer-events-none w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+
+      <!-- Tipos (chips) -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="tipo-clear" type="button" class="text-sm px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition">Todos</button>
+        {tipos.map((tipo) => (
+          <button
+            type="button"
+            class="tipo-chip text-sm px-3 py-1 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-transform duration-200"
+            data-tipo={tipo}
+          >
+            {tipo}
+          </button>
+        ))}
+      </div>
     </div>
     <ul id="lista-publicaciones" class="space-y-8">
       {
         publicacionesOrdenadas.map((pub, idx) => (
-          <li
-            tabindex="0"
-            class="flex items-start bg-white border-l-8 rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 border-verde relative outline-none focus:ring-4 focus:ring-verde/30 focus:border-verde focus:shadow-2xl active:bg-blue-50"
-            data-anio={pub.anio}
-            data-tipo={pub.tipo}
-            data-idx={idx}
-          >
-            <span class="mr-4 mt-1 text-verde">
-              <svg
-                class="w-7 h-7"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h4l2-2h6a2 2 0 012 2v12a2 2 0 01-2 2z"
-                />
-              </svg>
-            </span>
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-1">
-                <span class="bg-verde/90 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                  {pub.tipo}
-                </span>
-                <span class="bg-guinda/90 text-white text-xs font-bold px-2 py-0.5 rounded shadow">
-                  {pub.anio}
-                </span>
-              </div>
-              <h2 class="text-xl font-bold text-gray-900 mb-1 leading-snug">
-                {pub.titulo}
-              </h2>
-              <p class="text-sm text-gray-700 mb-2">{pub.autores}</p>
-            </div>
-            <a
-              href={pub.enlace}
-              class="ml-4 mt-2 bg-verde/90 text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-guinda transition-colors duration-200 self-center"
+            <li
+              tabindex="0"
+              class="relative list-item-pub bg-transparent"
+              data-anio={pub.anio}
+              data-tipo={pub.tipo}
+              data-idx={idx}
             >
-              Ver
-            </a>
-          </li>
-        ))
+              <!-- Stacked layers to simulate books/folders -->
+              <div aria-hidden="true" class="stack-layers absolute inset-0 pointer-events-none">
+                <div class="layer absolute inset-0 bg-white rounded-xl shadow-sm transform -translate-y-3 -translate-x-1 rotate-[1deg] opacity-70"></div>
+                <div class="layer absolute inset-0 bg-white rounded-xl shadow-sm transform -translate-y-1 -translate-x-0.5 rotate-[-1deg] opacity-85"></div>
+              </div>
+
+              <!-- Main card -->
+              <div class="relative z-10 flex items-start bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-transform duration-300 transform hover:-translate-y-1 border-l-8 border-verde outline-none focus:ring-4 focus:ring-verde/30 focus:border-verde">
+                <span class="mr-4 mt-1 text-verde">
+                  <svg
+                    class="w-7 h-7"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h4l2-2h6a2 2 0 012 2v12a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </span>
+                <div class="flex-1">
+                  <div class="flex items-center gap-3 mb-1">
+                    <span class="bg-verde/90 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                      {pub.tipo}
+                    </span>
+                    <span class="bg-guinda/90 text-white text-xs font-bold px-2 py-0.5 rounded shadow">
+                      {pub.anio}
+                    </span>
+                  </div>
+                  <h2 class="text-xl font-bold text-gray-900 mb-1 leading-snug">
+                    {pub.titulo}
+                  </h2>
+                  <p class="text-sm text-gray-700 mb-2">{pub.autores}</p>
+                </div>
+                <a
+                  href={pub.enlace}
+                  class="ml-4 mt-2 bg-verde/90 text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-guinda transition-colors duration-200 self-center"
+                >
+                  Ver
+                </a>
+              </div>
+            </li>
+          ))
       }
     </ul>
     <!-- Contenedor para mostrar/ocultar el resto de publicaciones si hay muchas -->
@@ -103,87 +122,133 @@ const publicacionesOrdenadas = [...publicaciones].sort((a, b) =>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const filtroAnio = document.getElementById(
-      "filtro-anio"
-    ) as HTMLSelectElement | null;
-    const filtroTipo = document.getElementById(
-      "filtro-tipo"
-    ) as HTMLSelectElement | null;
-    const lista = document.getElementById(
-      "lista-publicaciones"
-    ) as HTMLUListElement | null;
-    const toggleBtn = document.getElementById(
-      "pub-toggle"
-    ) as HTMLButtonElement | null;
-    if (!filtroAnio || !filtroTipo || !lista || !toggleBtn) return;
+    const filtroAnio = document.getElementById("filtro-anio") as HTMLSelectElement | null;
+    const tipoChips = Array.from(document.querySelectorAll('.tipo-chip')) as HTMLButtonElement[];
+    const tipoClear = document.getElementById('tipo-clear') as HTMLButtonElement | null;
+    const lista = document.getElementById("lista-publicaciones") as HTMLUListElement | null;
+    const toggleBtn = document.getElementById("pub-toggle") as HTMLButtonElement | null;
+  if (!filtroAnio || !lista || !toggleBtn || !tipoClear) return;
 
-    // Narrow types after the null-check so the TS checker knows they're available.
-    const filtroAnioEl = filtroAnio as HTMLSelectElement;
-    const filtroTipoEl = filtroTipo as HTMLSelectElement;
-    const listaEl = lista as HTMLUListElement;
-    const toggleBtnEl = toggleBtn as HTMLButtonElement;
-
-    const items = Array.from(listaEl.querySelectorAll("li")) as HTMLLIElement[];
+  const filtroAnioEl = filtroAnio as HTMLSelectElement;
+  const tipoClearEl = tipoClear as HTMLButtonElement;
+  const toggleBtnEl = toggleBtn as HTMLButtonElement;
+  const listaEl = lista as HTMLUListElement;
+    const items = Array.from(listaEl.querySelectorAll('li')) as HTMLLIElement[];
     const COLLAPSE_LIMIT = 10;
     let expanded = false;
+    let selectedTipo = '';
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function hideItem(item: HTMLLIElement) {
+      if (reduceMotion) {
+        item.style.display = 'none';
+        return;
+      }
+      // animate out
+      item.classList.add('opacity-0', 'scale-95');
+      item.classList.add('transition', 'duration-300');
+      setTimeout(() => {
+        item.style.display = 'none';
+        item.classList.remove('transition', 'duration-300', 'opacity-0', 'scale-95');
+      }, 300);
+    }
+
+    function showItem(item: HTMLLIElement) {
+      if (reduceMotion) {
+        item.style.display = '';
+        return;
+      }
+      item.style.display = '';
+      // start hidden
+      item.classList.add('opacity-0', 'scale-95');
+      requestAnimationFrame(() => {
+        item.classList.add('transition', 'duration-300');
+        item.classList.remove('opacity-0', 'scale-95');
+        setTimeout(() => {
+          item.classList.remove('transition', 'duration-300');
+        }, 300);
+      });
+    }
 
     function applyFiltersAndCollapse() {
-      const anio = filtroAnioEl.value || "";
-      const tipo = filtroTipoEl.value || "";
+  const anio = filtroAnioEl.value || '';
       let matchCount = 0;
 
       items.forEach((item) => {
-        const itemAnio = item.getAttribute("data-anio") || "";
-        const itemTipo = item.getAttribute("data-tipo") || "";
-        const matches =
-          (!anio || itemAnio === anio) && (!tipo || itemTipo === tipo);
+        const itemAnio = item.getAttribute('data-anio') || '';
+        const itemTipo = item.getAttribute('data-tipo') || '';
+        const matches = (!anio || itemAnio === anio) && (!selectedTipo || itemTipo === selectedTipo);
+
         if (!matches) {
-          item.style.display = "none";
+          if (item.style.display !== 'none') hideItem(item);
           return;
         }
+
         matchCount += 1;
-        // If not expanded, only show the first COLLAPSE_LIMIT matches
+
         if (!expanded && matchCount > COLLAPSE_LIMIT) {
-          item.style.display = "none";
+          if (item.style.display !== 'none') hideItem(item);
         } else {
-          item.style.display = "";
+          if (item.style.display === 'none') showItem(item);
         }
       });
 
-      // Update toggle button visibility and label
       if (matchCount > COLLAPSE_LIMIT) {
-        toggleBtnEl.classList.remove("hidden");
-        toggleBtnEl.textContent = expanded
-          ? "Mostrar menos"
-          : `Mostrar más (${matchCount - COLLAPSE_LIMIT})`;
-        toggleBtnEl.setAttribute("aria-expanded", String(expanded));
+        toggleBtnEl.classList.remove('hidden');
+        toggleBtnEl.textContent = expanded ? 'Mostrar menos' : `Mostrar más (${matchCount - COLLAPSE_LIMIT})`;
+        toggleBtnEl.setAttribute('aria-expanded', String(expanded));
       } else {
-        toggleBtnEl.classList.add("hidden");
-        toggleBtnEl.setAttribute("aria-expanded", "false");
+        toggleBtnEl.classList.add('hidden');
+        toggleBtnEl.setAttribute('aria-expanded', 'false');
       }
     }
 
-    // Attach listeners
-    filtroAnioEl.addEventListener("change", () => {
-      expanded = false;
-      applyFiltersAndCollapse();
+    // Tipo chips behavior
+    tipoChips.forEach((chip) => {
+      chip.addEventListener('click', function () {
+        const tipo = this.getAttribute('data-tipo') || '';
+        if (selectedTipo === tipo) {
+          // toggle off
+          selectedTipo = '';
+          this.classList.remove('bg-verde/90', 'text-white');
+        } else {
+          // clear previous
+          tipoChips.forEach((c) => c.classList.remove('bg-verde/90', 'text-white'));
+          selectedTipo = tipo;
+          this.classList.add('bg-verde/90', 'text-white');
+        }
+        expanded = false;
+        applyFiltersAndCollapse();
+      });
     });
-    filtroTipoEl.addEventListener("change", () => {
+
+    // Clear button
+    tipoClearEl.addEventListener('click', () => {
+      selectedTipo = '';
+      tipoChips.forEach((c) => c.classList.remove('bg-verde/90', 'text-white'));
       expanded = false;
       applyFiltersAndCollapse();
     });
 
-    toggleBtnEl.addEventListener("click", function () {
+    // Year select
+    filtroAnioEl.addEventListener('change', () => {
+      expanded = false;
+      applyFiltersAndCollapse();
+    });
+
+    toggleBtnEl.addEventListener('click', function () {
       expanded = !expanded;
       applyFiltersAndCollapse();
-      // When collapsing, scroll to the top of the list to keep context
       if (!expanded) {
         const top = listaEl.getBoundingClientRect().top + window.scrollY - 16;
-        window.scrollTo({ top: top, behavior: "smooth" });
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
 
     // Initial apply
+    // ensure items start visible
+    items.forEach((i) => { i.style.display = ''; });
     applyFiltersAndCollapse();
   });
 </script>
