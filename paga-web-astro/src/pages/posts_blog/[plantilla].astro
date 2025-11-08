@@ -1,4 +1,25 @@
 ---
+export function getStaticPaths() {
+  // Intentionally return empty array to prevent Astro attempting to
+  // generate dynamic pages for this route in CI/build environments.
+  return [];
+}
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plantilla (placeholder)</title>
+  </head>
+  <body style="font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto; padding:2rem;">
+    <main>
+      <h1>Plantilla de post (placeholder)</h1>
+      <p>Rutas dinámicas deshabilitadas. Usa las páginas estáticas: <a href="/posts_blog/p1">p1</a> … <a href="/posts_blog/p5">p5</a>.</p>
+    </main>
+  </body>
+</html>
+---
 // Placeholder dynamic route to prevent build/tsserver errors.
 // By returning an empty array from getStaticPaths we tell Astro not to
 // generate any dynamic pages for this route. The site uses static
@@ -23,11 +44,26 @@ export function getStaticPaths() {
       <p>
         Este archivo existe solo para evitar que Astro intente generar rutas
         dinámicas para <code>/posts_blog/[plantilla]</code>.
-      </p>
-      <p>
-        Usa las páginas estáticas en <a href="/posts_blog/p1">/posts_blog/p1</a>
-        … <a href="/posts_blog/p5">/posts_blog/p5</a>.
-      </p>
-    </main>
-  </body>
-</html>
+      ---
+      // Placeholder dynamic route: prevent Astro from attempting to generate dynamic
+      // pages for /posts_blog/[plantilla]. We explicitly return an empty array so
+      // the routing manifest won't try to materialize routes that require the
+      // `plantilla` parameter.
+      export function getStaticPaths() {
+        return [];
+      }
+      ---
+
+      <html lang="es">
+        <head>
+          <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+          <title>Plantilla (placeholder)</title>
+        </head>
+        <body style="font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto; padding:2rem;">
+          <main>
+            <h1>Plantilla de post (placeholder)</h1>
+            <p>Rutas dinámicas deshabilitadas. Usa las páginas estáticas: <a href="/posts_blog/p1">p1</a> … <a href="/posts_blog/p5">p5</a>.</p>
+          </main>
+        </body>
+      </html>

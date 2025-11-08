@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "prebuild": "node ./scripts/ensure-posts-dynamic.js",
-    "build": "astro build",
+    "build": "node ./scripts/ensure-posts-dynamic.js && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
