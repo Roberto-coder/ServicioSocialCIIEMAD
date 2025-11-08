@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CIIEMAD//Concurso Intercolegial//ES
+BEGIN:VEVENT
+UID:concurso-2025-12-05@ciiemad.local
+DTSTAMP:20251107T000000Z
+DTSTART:20251205T090000
+DTEND:20251205T140000
+SUMMARY:Concurso Intercolegial de Proyectos
+LOCATION:CIIEMAD - Auditorio
+DESCRIPTION:Concurso de proyectos estudiantiles. Premiación y exposición pública.
+END:VEVENT
+END:VCALENDAR
