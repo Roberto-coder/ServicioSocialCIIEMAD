@@ -8,14 +8,44 @@ import {
   Target,
   Award,
   Search,
+  Leaf,
+  Zap,
+  Building,
+  BarChart3,
+  Globe,
+  Clock,
 } from "lucide-astro";
 
-const lineasInvestigacion = [
+export const lineasInvestigacion = [
   {
-    titulo: "La Política Energética de México frente al Cambio Climático",
-    autores: "Dr. Ricardo Vega",
-    enlace: "#",
-    tipo: "articulo",
+    titulo: "Sustentabilidad urbana",
+    icono: Leaf,
+    descripcion: "Desarrollo de ciudades resilientes y sostenibles",
+  },
+  {
+    titulo: "Política energética",
+    icono: Zap,
+    descripcion: "Análisis de políticas energéticas renovables",
+  },
+  {
+    titulo: "Gobernanza y políticas públicas",
+    icono: Building,
+    descripcion: "Mejora de la gestión pública territorial",
+  },
+  {
+    titulo: "Participación ciudadana",
+    icono: Users,
+    descripcion: "Fortalecimiento de la democracia participativa",
+  },
+  {
+    titulo: "Indicadores territoriales",
+    icono: BarChart3,
+    descripcion: "Medición del desarrollo territorial",
+  },
+  {
+    titulo: "Transformación digital",
+    icono: Globe,
+    descripción: "Innovación tecnológica para el desarrollo",
   },
 ];
 ---
