@@ -109,134 +109,55 @@ import { posts, recientes } from "../content/blog.js";
           {
             posts.length > 0 && (
               <article class="md:col-span-2 row-span-2 bg-white rounded-xl shadow-md overflow-hidden">
-                <a href={`/posts_blog/${posts[0].id}`} class="block h-full">
-                  <div class="h-56 md:h-64 bg-gray-100 overflow-hidden">
-                    <img
-                      src={posts[0].image}
-                      alt={posts[0].title}
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+                <div class="h-56 md:h-64 bg-gray-100 overflow-hidden">
+                  <img
+                    src={posts[0].image}
+                    alt={posts[0].title}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-6">
+                  <h2 class="text-2xl font-serif text-gray-900 mb-2">
+                    {posts[0].title}
+                  </h2>
+                  <p class="text-sm text-gray-600 mb-4">{posts[0].excerpt}</p>
+                  <div class="text-xs text-gray-500">
+                    {posts[0].date} · {posts[0].author}
                   </div>
-                  <div class="p-6">
-                    <h2 class="text-2xl font-serif text-gray-900 mb-2">
-                      {posts[0].title}
-                    </h2>
-                    <p class="text-sm text-gray-600 mb-4">{posts[0].excerpt}</p>
-                    <div class="text-xs text-gray-500">
-                      {posts[0].date} · {posts[0].author}
-                    </div>
-                  </div>
-                </a>
+                </div>
               </article>
             )
           }
 
           {
-            /* Static post cards (no .map/.filter) — explicit references to p2..p5 */
-          }
-          {
-            posts[1] && (
-              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
-                <a href={`/posts_blog/${posts[1].id}`} class="block">
-                  <div class="h-40 bg-gray-100 overflow-hidden">
-                    <img
-                      src={posts[1].image}
-                      alt={posts[1].title}
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+            posts.slice(1).map((post, i) => (
+              <article
+                class={
+                  i % 4 === 1
+                    ? "md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden"
+                    : "md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden"
+                }
+              >
+                <div class="h-40 bg-gray-100 overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                    {post.title}
+                  </h3>
+                  <p class="text-sm text-gray-600">{post.excerpt}</p>
+                  <div class="text-xs text-gray-500 mt-3">
+                    {post.date} · {post.author}
                   </div>
-                  <div class="p-4">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
-                      {posts[1].title}
-                    </h3>
-                    <p class="text-sm text-gray-600">{posts[1].excerpt}</p>
-                    <div class="text-xs text-gray-500 mt-3">
-                      {posts[1].date} · {posts[1].author}
-                    </div>
-                  </div>
-                </a>
+                </div>
               </article>
-            )
-          }
-
-          {
-            posts[2] && (
-              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
-                <a href={`/posts_blog/${posts[2].id}`} class="block">
-                  <div class="h-40 bg-gray-100 overflow-hidden">
-                    <img
-                      src={posts[2].image}
-                      alt={posts[2].title}
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="p-4">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
-                      {posts[2].title}
-                    </h3>
-                    <p class="text-sm text-gray-600">{posts[2].excerpt}</p>
-                    <div class="text-xs text-gray-500 mt-3">
-                      {posts[2].date} · {posts[2].author}
-                    </div>
-                  </div>
-                </a>
-              </article>
-            )
-          }
-
-          {
-            posts[3] && (
-              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
-                <a href={`/posts_blog/${posts[3].id}`} class="block">
-                  <div class="h-40 bg-gray-100 overflow-hidden">
-                    <img
-                      src={posts[3].image}
-                      alt={posts[3].title}
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="p-4">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
-                      {posts[3].title}
-                    </h3>
-                    <p class="text-sm text-gray-600">{posts[3].excerpt}</p>
-                    <div class="text-xs text-gray-500 mt-3">
-                      {posts[3].date} · {posts[3].author}
-                    </div>
-                  </div>
-                </a>
-              </article>
-            )
-          }
-
-          {
-            posts[4] && (
-              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
-                <a href={`/posts_blog/${posts[4].id}`} class="block">
-                  <div class="h-40 bg-gray-100 overflow-hidden">
-                    <img
-                      src={posts[4].image}
-                      alt={posts[4].title}
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="p-4">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
-                      {posts[4].title}
-                    </h3>
-                    <p class="text-sm text-gray-600">{posts[4].excerpt}</p>
-                    <div class="text-xs text-gray-500 mt-3">
-                      {posts[4].date} · {posts[4].author}
-                    </div>
-                  </div>
-                </a>
-              </article>
-            )
+            ))
           }
         </div>
 
@@ -256,10 +177,7 @@ import { posts, recientes } from "../content/blog.js";
               {
                 recientes.map((r) => (
                   <li>
-                    <a
-                      href={`/posts_blog/${r.id}`}
-                      class="flex items-start gap-3 hover:underline"
-                    >
+                    <div class="flex items-start gap-3">
                       <img
                         src={r.image}
                         alt={r.title}
@@ -272,7 +190,7 @@ import { posts, recientes } from "../content/blog.js";
                         </div>
                         <div class="text-xs text-gray-500">{r.date}</div>
                       </div>
-                    </a>
+                    </div>
                   </li>
                 ))
               }
