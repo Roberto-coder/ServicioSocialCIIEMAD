@@ -8,7 +8,9 @@ import { personas } from "../content/personas.js";
   <!-- Sección Introductoria -->
   <section class="text-center max-w-4xl mx-auto my-20 px-4 font-sans">
     <div class="flex justify-center mb-6">
-      <div class="bg-guinda/10 p-4 rounded-full">
+      <div
+        class="bg-guinda/10 p-4 rounded-full animate-pulse motion-reduce:animate-none"
+      >
         <Users class="w-12 h-12 text-guinda" />
       </div>
     </div>
@@ -29,7 +31,9 @@ import { personas } from "../content/personas.js";
       <div class="grid md:grid-cols-2 gap-12">
         <div class="text-center">
           <div class="flex justify-center mb-4">
-            <div class="bg-verde/10 p-3 rounded-full">
+            <div
+              class="bg-verde/10 p-3 rounded-full animate-pulse motion-reduce:animate-none"
+            >
               <Target class="w-8 h-8 text-verde" />
             </div>
           </div>
@@ -44,7 +48,9 @@ import { personas } from "../content/personas.js";
         </div>
         <div class="text-center">
           <div class="flex justify-center mb-4">
-            <div class="bg-guinda/10 p-3 rounded-full">
+            <div
+              class="bg-guinda/10 p-3 rounded-full animate-pulse motion-reduce:animate-none"
+            >
               <Eye class="w-8 h-8 text-guinda" />
             </div>
           </div>
@@ -67,20 +73,26 @@ import { personas } from "../content/personas.js";
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-3xl font-serif text-guinda mb-8">Nuestros Valores</h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="space-y-2">
-          <div class="text-4xl">🌱</div>
+        <div class="space-y-2 text-center">
+          <div class="text-4xl animate-bounce motion-reduce:animate-none">
+            🌱
+          </div>
           <h3 class="text-xl font-semibold text-verde">Sostenibilidad</h3>
           <p class="text-gray-600">Compromiso con el futuro del planeta</p>
         </div>
-        <div class="space-y-2">
-          <div class="text-4xl">🤝</div>
+        <div class="space-y-2 text-center">
+          <div class="text-4xl animate-bounce motion-reduce:animate-none">
+            🤝
+          </div>
           <h3 class="text-xl font-semibold text-verde">Colaboración</h3>
           <p class="text-gray-600">
             Trabajo interdisciplinario y participativo
           </p>
         </div>
-        <div class="space-y-2">
-          <div class="text-4xl">🔬</div>
+        <div class="space-y-2 text-center">
+          <div class="text-4xl animate-bounce motion-reduce:animate-none">
+            🔬
+          </div>
           <h3 class="text-xl font-semibold text-verde">Rigor Científico</h3>
           <p class="text-gray-600">Investigación basada en evidencia</p>
         </div>
@@ -93,7 +105,9 @@ import { personas } from "../content/personas.js";
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-16">
         <div class="flex justify-center mb-6">
-          <div class="bg-verde/10 p-4 rounded-full">
+          <div
+            class="bg-verde/10 p-4 rounded-full animate-pulse motion-reduce:animate-none"
+          >
             <User class="w-12 h-12 text-verde" />
           </div>
         </div>
@@ -109,7 +123,7 @@ import { personas } from "../content/personas.js";
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           personas.map((miembro) => (
-            <article class="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
+            <article class="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group transform motion-reduce:transform-none hover:-translate-y-1">
               <div class="aspect-square overflow-hidden">
                 <img
                   src={miembro.foto}
@@ -132,7 +146,7 @@ import { personas } from "../content/personas.js";
                 </div>
                 <a
                   href={`/equipo/${miembro.id}`}
-                  class="inline-flex items-center justify-center w-full bg-verde text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+                  class="inline-flex items-center justify-center w-full bg-verde text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium transform hover:scale-105"
                 >
                   <User class="w-4 h-4 mr-2" />
                   Ver perfil completo

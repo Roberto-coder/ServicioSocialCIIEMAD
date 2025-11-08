@@ -20,7 +20,9 @@ import {
   >
     <div class="max-w-4xl mx-auto px-4 text-center">
       <div class="flex justify-center mb-6">
-        <div class="bg-white/10 p-4 rounded-full">
+        <div
+          class="bg-white/10 p-4 rounded-full animate-pulse motion-reduce:animate-none"
+        >
           <Mail class="w-12 h-12 text-white" />
         </div>
       </div>
@@ -40,7 +42,9 @@ import {
       <div class="grid md:grid-cols-2 gap-12">
         <!-- Información Institucional -->
         <div class="space-y-8">
-          <div class="flex items-start space-x-4">
+          <div
+            class="flex items-start space-x-4 transition-transform duration-200 hover:-translate-y-1"
+          >
             <div class="bg-verde/10 p-3 rounded-lg">
               <Building class="w-6 h-6 text-verde" />
             </div>
@@ -56,7 +60,9 @@ import {
             </div>
           </div>
 
-          <div class="flex items-start space-x-4">
+          <div
+            class="flex items-start space-x-4 transition-transform duration-200 hover:-translate-y-1"
+          >
             <div class="bg-guinda/10 p-3 rounded-lg">
               <MapPin class="w-6 h-6 text-guinda" />
             </div>
@@ -70,7 +76,9 @@ import {
             </div>
           </div>
 
-          <div class="flex items-start space-x-4">
+          <div
+            class="flex items-start space-x-4 transition-transform duration-200 hover:-translate-y-1"
+          >
             <div class="bg-verde/10 p-3 rounded-lg">
               <Phone class="w-6 h-6 text-verde" />
             </div>
@@ -80,7 +88,9 @@ import {
             </div>
           </div>
 
-          <div class="flex items-start space-x-4">
+          <div
+            class="flex items-start space-x-4 transition-transform duration-200 hover:-translate-y-1"
+          >
             <div class="bg-guinda/10 p-3 rounded-lg">
               <Clock class="w-6 h-6 text-guinda" />
             </div>
@@ -97,7 +107,9 @@ import {
         </div>
 
         <!-- Formulario de Contacto -->
-        <div class="bg-gray-50 p-8 rounded-xl">
+        <div
+          class="bg-gray-50 p-8 rounded-xl transition-shadow hover:shadow-lg"
+        >
           <h3 class="text-2xl font-serif text-guinda mb-6">
             Envíanos un mensaje
           </h3>
@@ -181,7 +193,7 @@ import {
 
             <button
               type="submit"
-              class="w-full bg-verde text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium inline-flex items-center justify-center"
+              class="w-full bg-verde text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium inline-flex items-center justify-center transform hover:scale-105"
             >
               <Send class="w-5 h-5 mr-2" />
               Enviar mensaje

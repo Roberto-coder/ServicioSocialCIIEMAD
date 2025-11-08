@@ -25,26 +25,18 @@ import { posts, recientes } from "../content/blog.js";
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+              <path
+                d="M15.7639 7C16.3132 6.38625 17.1115 6 18 6C19.6569 6 21 7.34315 21 9C21 10.6569 19.6569 12 18 12H3M8.50926 4.66667C8.87548 4.2575 9.40767 4 10 4C11.1046 4 12 4.89543 12 6C12 7.10457 11.1046 8 10 8H3M11.5093 19.3333C11.8755 19.7425 12.4077 20 13 20C14.1046 20 15 19.1046 15 18C15 16.8954 14.1046 16 13 16H3"
+                stroke="#90B2FA"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </g></svg
           >
-            <path
-              d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M12 8V12L15 15"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M8.5 15.5L6 18"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
           <div class="flex-1">
             <h4 class="text-lg font-serif text-guinda mb-2">
               Calidad del aire (US AQI)
@@ -63,23 +55,18 @@ import { posts, recientes } from "../content/blog.js";
           <svg
             class="w-8 h-8 text-guinda flex-shrink-0"
             viewBox="0 0 24 24"
-            fill="none"
+            fill="#A4B15E"
             xmlns="http://www.w3.org/2000/svg"
-            aria-hidden
+            aria-hidden="true"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"
+              ><path
+                d="M7,12A5,5,0,1,0,2,7,5.006,5.006,0,0,0,7,12ZM7,4A3,3,0,1,1,4,7,3,3,0,0,1,7,4Zm5,10a4,4,0,1,0,4,4A4,4,0,0,0,12,14Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,20ZM22,9a3,3,0,1,0-3,3A3,3,0,0,0,22,9Zm-3,1a1,1,0,1,1,1-1A1,1,0,0,1,19,10ZM16,5a1,1,0,1,1-1-1A1,1,0,0,1,16,5Zm3,10a1,1,0,1,1-1,1A1,1,0,0,1,19,15ZM6,13a1,1,0,1,1-1,1A1,1,0,0,1,6,13Z"
+              ></path></g
+            ></svg
           >
-            <path
-              d="M3 12c0-4.97 4.03-9 9-9s9 4.03 9 9-4.03 9-9 9S3 16.97 3 12z"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M9 12h6"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
           <div class="flex-1">
             <h4 class="text-lg font-serif text-guinda mb-2">
               Monóxido de Carbono
@@ -87,7 +74,9 @@ import { posts, recientes } from "../content/blog.js";
             <div id="co" class="text-2xl font-semibold text-gray-900">
               Cargando...
             </div>
-            <div id="co-units" class="text-sm text-gray-500 mt-1">&nbsp;</div>
+            <div class="flex items-center justify-between mt-2">
+              <div id="co-units" class="text-sm text-gray-500">&nbsp;</div>
+            </div>
           </div>
         </div>
 
@@ -332,8 +321,8 @@ import { posts, recientes } from "../content/blog.js";
         // Fetch inicial al cargar la página
         fetchAqi();
 
-        // Intervalo razonable para datos meteorológicos / calidad del aire: 15 minutos
-        const intervalId = setInterval(fetchAqi, 900000); // 900000ms = 15min
+        // Intervalo para pruebas: 30 segundos (30000 ms). Ajusta a 900000 (15 min) en producción.
+        const intervalId = setInterval(fetchAqi, 30000); // 30000ms = 30s
 
         // Limpiar el intervalo cuando el usuario salga de la página
         window.addEventListener("beforeunload", function () {
