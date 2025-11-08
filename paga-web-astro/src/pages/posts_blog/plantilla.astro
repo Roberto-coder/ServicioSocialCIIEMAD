@@ -2,7 +2,8 @@
 import Layout from "../../layouts/BaseLayout.astro";
 import { posts } from "../../content/blog.js";
 
-const requestedId = Astro.params?.id ?? "p5";
+// This template is static (not dynamic). Set the post ID to render below.
+const requestedId = "p5";
 const post = posts.find((p) => p.id === requestedId) || null;
 
 ---

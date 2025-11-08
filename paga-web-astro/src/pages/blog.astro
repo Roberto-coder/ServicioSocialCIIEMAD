@@ -322,7 +322,7 @@ import { posts, recientes } from "../content/blog.js";
         fetchAqi();
 
         // Intervalo para pruebas: 30 segundos (30000 ms). Ajusta a 900000 (15 min) en producción.
-        const intervalId = setInterval(fetchAqi, 30000); // 30000ms = 30s
+        const intervalId = setInterval(fetchAqi, 900000); // 900000ms = 15min
 
         // Limpiar el intervalo cuando el usuario salga de la página
         window.addEventListener("beforeunload", function () {
