@@ -7,7 +7,7 @@ const galeriaItems = [
     src: "/galeria/VISITA CECYT 7 A CIIEMAD TALLERES AMBIENTALES.jpg",
     alt: "VISITA CECYT 7 A CIIEMAD TALLERES AMBIENTALES",
     title: "VISITA CECYT 7 A CIIEMAD TALLERES AMBIENTALES",
-    categoria: "Talleres y actividades educativas",
+    categoria: "Talleres y Actividades Educativas",
     description: "Actividades impartidas por los integrantes del Sustentaterra a estudiantes del CECyT 7 del IPN, quienes participaron en talleres ambientales y visitas guiadas al CIIEMAD.",
     fecha: "2024-05-20",
   },
@@ -15,7 +15,7 @@ const galeriaItems = [
     src: "/galeria/40ANIV CIIEMAD DIRECTOR.jpg",
     alt: "40ANIV CIIEMAD DIRECTOR IPN",
     title: "40ANIV CIIEMAD DIRECTOR IPN",
-    categoria: "Eventos institucionales",
+    categoria: "Eventos Institucionales",
     description: "Integrantes del equipo Sustentaterra en el día del 40 aniversario del CIIEMAD-IPN, en compañía del Director del IPN Dr. Arturo Reyes Sandoval.",
     fecha: "2024-04-15",
   },
@@ -23,7 +23,7 @@ const galeriaItems = [
     src: "/galeria/COLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN.jpeg",
     alt: "COLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN",
     title: "COLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN",
-    categoria: "Eventos Institucionales",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Participación de Ana Laura Cervantes y Dra María Concepción como coordinadora y profesora acompañante en la inauguración del 12° Coloquio de Estudiantes del CIIEMAD.",
     fecha: "2024-06-01",
   },
@@ -31,7 +31,7 @@ const galeriaItems = [
     src: "/galeria/COORDINADORA CEIMAS2024.jpeg",
     alt: "COORDINADORA CEIMAS2024",
     title: "COORDINADORA CEIMAS2024",
-    categoria: "Eventos Institucionales",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Participación de Xochitl Bello, Karla Ginez y Esperanza Hernández en el equipo de coordinación del 1er Congreso Estudiantil Interdisciplinario sobre Medio Ambiente y Sustentabilidad (CEIMAS 2024)",
     fecha: "2023-11-10",
   },
@@ -39,7 +39,7 @@ const galeriaItems = [
     src: "/galeria/ALCN PONENCIA CONGRESO INT EN ADMON DE EMPRESAS PARA LA SOSTENIBILIDAD ESCA.jpg",
     alt: "ALCN PONENCIA CONGRESO INT EN ADMON DE EMPRESAS PARA LA SOSTENIBILIDAD ESCA",
     title: "ALCN PONENCIA CONGRESO INT EN ADMON DE EMPRESAS PARA LA SOSTENIBILIDAD ESCA",
-    categoria: "Eventos Institucionales",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Ponencia presentada por Ana Laura Cervantes en el Congreso Internacional en Administración de Empresas para la Sostenibilidad organizado por la ESCA-IPN 2024.",
     fecha: "2023-09-05",
   },
@@ -47,7 +47,7 @@ const galeriaItems = [
     src: "/galeria/CARTEL CATEDRA MAYAGOITA 2023.jpg",
     alt: "CARTEL CATEDRA MAYAGOITA 2023",
     title: "CARTEL CATEDRA MAYAGOITA 2023",
-    categoria: "Eventos Institucionales",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Participación de Ana Laura Cervantes presentando cartel en la Cátedra Mayagoitia 2023.",
     fecha: "2023-02-28",
   },
@@ -55,7 +55,7 @@ const galeriaItems = [
     src: "/galeria/equipo cartel catedra.jpg",
     alt: "Equipo cartel catedra.jpg",
     title: "EQUIPO CARTEL CATEDRA",
-    categoria: "Eventos Institucionales",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Fotografía de integrantes del equipo de Sustentaterra en la Cátedra Mayagoitia 2023.",
     fecha: "2024-02-28",
   },
@@ -63,7 +63,7 @@ const galeriaItems = [
     src: "/galeria/team tnt SIEA 2023.jpg",
     alt: "team tnt SIEA 2023",
     title: "Team SIEA 2023",
-    categoria: "Eventos Institucionales",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Foto del equipo del Sustentaterra en el SIEA 2023.",
     fecha: "2023-02-28",
   },
@@ -71,7 +71,7 @@ const galeriaItems = [
     src: "/galeria/SIEA 2023.jpg",
     alt: "SIEA 2023",
     title: "SIEA 2023",
-    categoria: "Eventos Institucionales",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Participación de Ana Laura Cervantes en el Simposio y Seminario Internacional de Educación Ambiental y Desarrollo Sustentable (SIEA 2023).",
     fecha: "2023-02-28",
   },
@@ -103,7 +103,7 @@ const galeriaItems = [
     src: "/galeria/DÍA STEM UNIVERSIDAD FIDEL VELAZQUEZ 2024.jpg",
     alt: "DÍA STEM UNIVERSIDAD FIDEL VELAZQUEZ 2024",
     title: "DÍA STEM UNIVERSIDAD FIDEL VELAZQUEZ 2024",
-    categoria: "Charlas, Premios y Reconocimientos",
+    categoria: "Talleres y Actividades Educativas",
     description: "Actividad realizada por integrantes del equipo de Sustentaterra en el Día STEM 2024 en la Universidad Fidel Velázquez, con actividades lúdicas sobre ciencia y sustentabilidad.",
     fecha: "2024-02-28",
   },
@@ -151,13 +151,40 @@ const galeriaItems = [
 
 // Ordenar los elementos de la galería por fecha, de más reciente a más antiguo
 galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+
+// Obtener categorías únicas para los filtros
+const categoriasUnicas = [...new Set(galeriaItems.map(item => item.categoria))].sort();
 ---
 
 <Layout>
   <!-- Sección de la Galería -->
   <section class="max-w-7xl mx-auto my-12 px-4 sm:px-6 lg:px-8">
-    <h1 class="text-4xl font-bold text-center text-guinda mb-12">Galería</h1>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <h1 class="text-4xl font-bold text-center text-guinda mb-8">Galería</h1>
+
+	<!-- Contenedor de Filtros -->
+	<div id="filter-container" class="flex justify-center flex-wrap gap-6 mb-12">
+		<!-- Filtro por Fecha (Año) -->
+		<div class="relative">
+			<label for="year-filter" class="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600">Fecha</label>
+			<select id="year-filter" class="filter-select appearance-none w-48">
+				<option value="todos">Todos los años</option>
+				<option value="2025">2025</option>
+				<option value="2024">2024</option>
+				<option value="2023">2023</option>
+			</select>
+		</div>
+
+		<!-- Filtro por Categoría -->
+		<div class="relative">
+			<label for="category-filter" class="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600">Categoría</label>
+			<select id="category-filter" class="filter-select appearance-none w-64">
+				<option value="todos">Todas las categorías</option>
+				{categoriasUnicas.map(categoria => <option value={categoria}>{categoria}</option>)}
+			</select>
+		</div>
+	</div>
+
+    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {
         galeriaItems.map((item, index) => (
           <div
@@ -169,14 +196,6 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
                 alt={item.alt}
                 class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
               />
-            </div>
-            <div class="absolute bottom-2 right-2 flex items-center space-x-1 bg-black bg-opacity-60 rounded-full px-2 py-1 text-white text-sm">
-              <button class="like-button" data-index={index} title="Me gusta">
-                <svg class="w-5 h-5 fill-current text-white transition-colors duration-200" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
-                </svg>
-              </button>
-              <span class="like-counter" data-index={index}>0</span>
             </div>
           </div>
         ))
@@ -233,6 +252,13 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
     const lightboxClose = document.getElementById("lightbox-close");
     const lightboxLikeButton = document.getElementById("lightbox-like-button");
     const lightboxLikeCounter = document.getElementById("lightbox-like-counter");
+
+    // --- Lógica de Filtros ---
+    const yearFilter = document.getElementById('year-filter');
+    const categoryFilter = document.getElementById('category-filter');
+    const galleryGrid = document.getElementById('gallery-grid');
+    const galleryItemsElements = Array.from(galleryGrid?.children || []);
+
 
     let currentLightboxIndex = -1;
     function openLightbox(index) {
@@ -307,10 +333,7 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
       setCookie(USER_LIKED_COOKIE, JSON.stringify(userLiked));
 
       // Actualizar la UI
-      updateLikeUIForImage(index);
-      if (index === currentLightboxIndex) {
-        updateLikeUIForLightbox(index);
-      }
+      updateLikeUIForLightbox(index);
     }
 
     function updateLikeUIForImage(index) {
@@ -335,15 +358,35 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
 
     // --- Event Listeners ---
 
+    function applyFilters() {
+        const selectedYear = yearFilter.value;
+        const selectedCategory = categoryFilter.value;
+
+        galleryItemsElements.forEach(itemElement => {
+            const index = itemElement.querySelector('[data-index]').dataset.index;
+            const item = galeriaItems[index];
+            
+            const itemYear = new Date(item.fecha).getFullYear().toString();
+
+            const yearMatch = selectedYear === 'todos' || itemYear === selectedYear;
+            const categoryMatch = selectedCategory === 'todos' || item.categoria === selectedCategory;
+
+            if (yearMatch && categoryMatch) {
+                itemElement.style.display = 'block';
+            } else {
+                itemElement.style.display = 'none';
+            }
+        });
+    }
+
+    yearFilter?.addEventListener('change', applyFilters);
+    categoryFilter?.addEventListener('change', applyFilters);
+
     document.querySelectorAll('.image-container').forEach(container => {
       container.addEventListener("click", () => {
         const index = parseInt(container.dataset.index, 10);
         openLightbox(index);
       });
-    });
-
-    document.querySelectorAll('.like-button').forEach(button => {
-        button.addEventListener('click', () => handleLike(parseInt(button.dataset.index, 10)));
     });
 
     lightboxLikeButton.addEventListener('click', () => handleLike(currentLightboxIndex));
@@ -354,6 +397,20 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
     });
 
     // Inicializar la UI con los datos de las cookies al cargar la página
-    galeriaItems.forEach((_, index) => updateLikeUIForImage(index));
   </script>
+
+  <style>
+	.filter-select {
+		border: 2px solid #e5e7eb;
+		border-radius: 0.5rem;
+		padding: 0.65rem 1rem;
+		font-weight: 500;
+		transition: border-color 0.2s ease-in-out;
+		background-color: white;
+	}
+	.filter-select:focus {
+		outline: none;
+		border-color: #8C1D40; /* guinda */
+	}
+  </style>
 </Layout>
