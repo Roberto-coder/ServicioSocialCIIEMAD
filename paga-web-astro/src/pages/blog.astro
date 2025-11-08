@@ -133,35 +133,110 @@ import { posts, recientes } from "../content/blog.js";
           }
 
           {
-            posts.slice(1).map((post, i) => (
-              <article
-                class={
-                  i % 4 === 1
-                    ? "md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden"
-                    : "md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden"
-                }
-              >
-                <a href={`/posts_blog/${post.id}`} class="block">
+            /* Static post cards (no .map/.filter) — explicit references to p2..p5 */
+          }
+          {
+            posts[1] && (
+              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
+                <a href={`/posts_blog/${posts[1].id}`} class="block">
                   <div class="h-40 bg-gray-100 overflow-hidden">
                     <img
-                      src={post.image}
-                      alt={post.title}
+                      src={posts[1].image}
+                      alt={posts[1].title}
                       class="w-full h-full object-cover"
                       loading="lazy"
                     />
                   </div>
                   <div class="p-4">
                     <h3 class="text-lg font-semibold text-gray-900 mb-1">
-                      {post.title}
+                      {posts[1].title}
                     </h3>
-                    <p class="text-sm text-gray-600">{post.excerpt}</p>
+                    <p class="text-sm text-gray-600">{posts[1].excerpt}</p>
                     <div class="text-xs text-gray-500 mt-3">
-                      {post.date} · {post.author}
+                      {posts[1].date} · {posts[1].author}
                     </div>
                   </div>
                 </a>
               </article>
-            ))
+            )
+          }
+
+          {
+            posts[2] && (
+              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
+                <a href={`/posts_blog/${posts[2].id}`} class="block">
+                  <div class="h-40 bg-gray-100 overflow-hidden">
+                    <img
+                      src={posts[2].image}
+                      alt={posts[2].title}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                      {posts[2].title}
+                    </h3>
+                    <p class="text-sm text-gray-600">{posts[2].excerpt}</p>
+                    <div class="text-xs text-gray-500 mt-3">
+                      {posts[2].date} · {posts[2].author}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            )
+          }
+
+          {
+            posts[3] && (
+              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
+                <a href={`/posts_blog/${posts[3].id}`} class="block">
+                  <div class="h-40 bg-gray-100 overflow-hidden">
+                    <img
+                      src={posts[3].image}
+                      alt={posts[3].title}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                      {posts[3].title}
+                    </h3>
+                    <p class="text-sm text-gray-600">{posts[3].excerpt}</p>
+                    <div class="text-xs text-gray-500 mt-3">
+                      {posts[3].date} · {posts[3].author}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            )
+          }
+
+          {
+            posts[4] && (
+              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
+                <a href={`/posts_blog/${posts[4].id}`} class="block">
+                  <div class="h-40 bg-gray-100 overflow-hidden">
+                    <img
+                      src={posts[4].image}
+                      alt={posts[4].title}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                      {posts[4].title}
+                    </h3>
+                    <p class="text-sm text-gray-600">{posts[4].excerpt}</p>
+                    <div class="text-xs text-gray-500 mt-3">
+                      {posts[4].date} · {posts[4].author}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            )
           }
         </div>
 
