@@ -1,61 +1,37 @@
 ---
-import Layout from '../layouts/BaseLayout.astro';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Send, 
-  Linkedin, 
-  ExternalLink, 
-  Users, 
-  Building 
-} from 'lucide-astro';
-
-const equipoContactos = [
-  {
-    nombre: 'Dra. María Concepción Martínez Rodríguez',
-    titulo: 'Profesora Investigadora',
-    email: 'mcmartinezr@ipn.mx',
-    linkedin: 'https://mx.linkedin.com/in/mar%C3%ADa-concepci%C3%B3n-mart%C3%ADnez-rodr%C3%ADguez-804062214',
-    researchgate: 'https://www.researchgate.net/profile/Maria-Martinez-Rodriguez-2',
-    scholar: 'https://scholar.google.com/citations?user=NByc9WUAAAAJ&hl=es',
-    orcid: 'https://orcid.org/0000-0003-3094-5411'
-  },
-  {
-    nombre: 'Héctor Ramírez',
-    titulo: 'Maestro en Ciencias',
-    email: 'hector.ramirez@ciiemad.ipn.mx',
-    linkedin: 'www.linkedin.com/in/ramírez-héctor-g-2611b8292',
-    researchgate: 'https://www.researchgate.net/profile/Hector-Ramirez-Escamilla?ev=hdr_xprf',
-    scholar: 'https://scholar.google.com/citations?user=fyJvKSQAAAAJ&hl=es ',
-    orcid: 'https://orcid.org/0000-0001-9440-4644 '
-  },
-  {
-    nombre: 'Ana Laura',
-    titulo: 'Maestra en Ciencias',
-    email: 'ana.laura@ciiemad.ipn.mx',
-    linkedin: 'https://www.linkedin.com/in/ana-laura-cervantes-n-462942157/',
-    researchgate: 'https://www.researchgate.net/profile/Ana-Cervantes-Najera?ev=hdr_xprf',
-    scholar: 'https://scholar.google.es/citations?user=CBs19IoAAAAJ&hl=es',
-    orcid: 'https://orcid.org/0000-0003-3841-2011'
-  }
-];
+import Layout from "../layouts/BaseLayout.astro";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  Linkedin,
+  ExternalLink,
+  Users,
+  Building,
+} from "lucide-astro";
 ---
 
 <Layout>
   <!-- Header -->
-  <section class="bg-gradient-to-br from-verde to-green-600 text-white py-20 font-sans">
+  <section
+    class="bg-gradient-to-br from-verde to-green-600 text-white py-20 font-sans"
+  >
     <div class="max-w-4xl mx-auto px-4 text-center">
       <div class="flex justify-center mb-6">
-        <div class="bg-white/10 p-4 rounded-full">
+        <div
+          class="bg-white/10 p-4 rounded-full animate-pulse motion-reduce:animate-none"
+        >
           <Mail class="w-12 h-12 text-white" />
         </div>
       </div>
       <h1 class="text-5xl font-serif mb-6">Contacto</h1>
-      <p class="text-xl text-green-100 max-w-2xl mx-auto leading-relaxed font-sans">
-        Ponte en contacto con nuestro equipo de investigación. Estamos aquí para colaborar 
-        y compartir conocimiento sobre desarrollo sustentable.
+      <p
+        class="text-xl text-green-100 max-w-2xl mx-auto leading-relaxed font-sans"
+      >
+        Ponte en contacto con nuestro equipo de investigación. Estamos aquí para
+        colaborar y compartir conocimiento sobre desarrollo sustentable.
       </p>
     </div>
   </section>
@@ -64,39 +40,45 @@ const equipoContactos = [
   <section class="py-16 bg-white">
     <div class="max-w-6xl mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-12">
-        
         <!-- Información Institucional -->
         <div class="space-y-8">
-          <div class="flex items-start space-x-4">
+          <div
+            class="flex items-start space-x-4 transition-transform duration-200 hover:-translate-y-1"
+          >
             <div class="bg-verde/10 p-3 rounded-lg">
               <Building class="w-6 h-6 text-verde" />
             </div>
             <div>
               <h3 class="text-xl font-semibold text-guinda mb-2">Ubicación</h3>
               <p class="text-gray-700">
-                Centro Interdisciplinario de Investigaciones y Estudios sobre Medio Ambiente y Desarrollo (CIIEMAD)
+                Centro Interdisciplinario de Investigaciones y Estudios sobre
+                Medio Ambiente y Desarrollo (CIIEMAD)
               </p>
               <p class="text-gray-600 mt-2">
-                Instituto Politécnico Nacional<br>
+                Instituto Politécnico Nacional<br />
               </p>
             </div>
           </div>
 
-          <div class="flex items-start space-x-4">
+          <div
+            class="flex items-start space-x-4 transition-transform duration-200 hover:-translate-y-1"
+          >
             <div class="bg-guinda/10 p-3 rounded-lg">
               <MapPin class="w-6 h-6 text-guinda" />
             </div>
             <div>
               <h3 class="text-xl font-semibold text-guinda mb-2">Dirección</h3>
               <p class="text-gray-700">
-                
-                30 de Junio de 1520 s/n, La Laguna Ticoman, Gustavo A. Madero, <br>
+                30 de Junio de 1520 s/n, La Laguna Ticoman, Gustavo A. Madero, <br
+                />
                 07340 Ciudad de México, CDMX
               </p>
             </div>
           </div>
 
-          <div class="flex items-start space-x-4">
+          <div
+            class="flex items-start space-x-4 transition-transform duration-200 hover:-translate-y-1"
+          >
             <div class="bg-verde/10 p-3 rounded-lg">
               <Phone class="w-6 h-6 text-verde" />
             </div>
@@ -106,14 +88,18 @@ const equipoContactos = [
             </div>
           </div>
 
-          <div class="flex items-start space-x-4">
+          <div
+            class="flex items-start space-x-4 transition-transform duration-200 hover:-translate-y-1"
+          >
             <div class="bg-guinda/10 p-3 rounded-lg">
               <Clock class="w-6 h-6 text-guinda" />
             </div>
             <div>
-              <h3 class="text-xl font-semibold text-guinda mb-2">Horarios de Atención</h3>
+              <h3 class="text-xl font-semibold text-guinda mb-2">
+                Horarios de Atención
+              </h3>
               <p class="text-gray-700">
-                Lunes a Viernes: 7:00 - 21:00<br>
+                Lunes a Viernes: 7:00 - 21:00<br />
                 Sábados: 9:00 - 13:00
               </p>
             </div>
@@ -121,68 +107,93 @@ const equipoContactos = [
         </div>
 
         <!-- Formulario de Contacto -->
-        <div class="bg-gray-50 p-8 rounded-xl">
-          <h3 class="text-2xl font-serif text-guinda mb-6">Envíanos un mensaje</h3>
-          <form class="space-y-6" action="https://formsubmit.co/tu-correo@gmail.com" method="POST">
+        <div
+          class="bg-gray-50 p-8 rounded-xl transition-shadow hover:shadow-lg"
+        >
+          <h3 class="text-2xl font-serif text-guinda mb-6">
+            Envíanos un mensaje
+          </h3>
+          <form
+            class="space-y-6"
+            action="https://formsubmit.co/sustentalapp@gmail.com"
+            method="POST"
+          >
             <div>
-              <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                for="nombre"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Nombre completo
               </label>
-              <input 
-                type="text" 
-                id="nombre" 
+              <input
+                type="text"
+                id="nombre"
                 name="nombre"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde focus:border-transparent transition-colors"
                 placeholder="Tu nombre completo"
                 required
               />
             </div>
-            
+
             <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Correo electrónico
               </label>
-              <input 
-                type="email" 
-                id="email" 
+              <input
+                type="email"
+                id="email"
                 name="email"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde focus:border-transparent transition-colors"
                 placeholder="tu@email.com"
                 required
               />
             </div>
-            
+
             <div>
-              <label for="asunto" class="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                for="asunto"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Asunto
               </label>
-              <input 
-                type="text" 
-                id="asunto" 
+              <select
+                id="asunto"
                 name="asunto"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde focus:border-transparent transition-colors"
-                placeholder="Motivo de tu consulta"
                 required
-              />
+              >
+                <option value="">Seleccione...</option>
+                <option value="servicio-social">Servicio Social</option>
+                <option value="colaboracion">Colaboración</option>
+                <option value="solicitud-informacion"
+                  >Solicitud de Información</option
+                >
+                <option value="otro">Otro</option>
+              </select>
             </div>
-            
+
             <div>
-              <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                for="mensaje"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Mensaje
               </label>
-              <textarea 
-                id="mensaje" 
-                name="mensaje" 
+              <textarea
+                id="mensaje"
+                name="mensaje"
                 rows="5"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-verde focus:border-transparent transition-colors resize-none"
                 placeholder="Escribe tu mensaje aquí..."
-                required
-              ></textarea>
+                required></textarea>
             </div>
-            
-            <button 
+
+            <button
               type="submit"
-              class="w-full bg-verde text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium inline-flex items-center justify-center"
+              class="w-full bg-verde text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium inline-flex items-center justify-center transform hover:scale-105"
             >
               <Send class="w-5 h-5 mr-2" />
               Enviar mensaje
@@ -202,89 +213,72 @@ const equipoContactos = [
             <Users class="w-12 h-12 text-guinda" />
           </div>
         </div>
-        <h2 class="text-4xl font-serif text-guinda mb-4">Conecta con Nuestro Equipo</h2>
+        <h2 class="text-4xl font-serif text-guinda mb-4">
+          Conecta con Nuestro Equipo
+        </h2>
         <p class="text-lg text-gray-600 max-w-3xl mx-auto font-sans">
-          Encuentra a nuestros investigadores en las principales plataformas académicas y profesionales
+          Encuentra a nuestros investigadores en las principales plataformas
+          académicas y profesionales
         </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {equipoContactos.map((miembro) => (
-          <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-            <h3 class="text-xl font-bold text-guinda mb-2">{miembro.nombre}</h3>
-            <p class="text-verde font-medium mb-4">{miembro.titulo}</p>
-            
-            <!-- Email -->
-            <div class="flex items-center mb-4">
-              <Mail class="w-4 h-4 text-gray-500 mr-2" />
-              <a href={`mailto:${miembro.email}`} class="text-gray-700 hover:text-guinda transition-colors text-sm">
-                {miembro.email}
-              </a>
-            </div>
-
-            <!-- Enlaces Académicos -->
-            <div class="space-y-3">
-              <h4 class="text-sm font-semibold text-gray-800">Enlaces Académicos:</h4>
-              <div class="grid grid-cols-2 gap-2">
-                <a 
-                  href={miembro.linkedin} 
-                  class="inline-flex items-center justify-center px-3 py-2 bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors rounded-md text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin class="w-4 h-4 mr-1" />
-                  LinkedIn
-                </a>
-                <a 
-                  href={miembro.researchgate} 
-                  class="inline-flex items-center justify-center px-3 py-2 bg-green-50 text-green-600 hover:bg-green-100 transition-colors rounded-md text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink class="w-4 h-4 mr-1" />
-                  ResearchGate
-                </a>
-                <a 
-                  href={miembro.scholar} 
-                  class="inline-flex items-center justify-center px-3 py-2 bg-red-50 text-red-600 hover:bg-red-100 transition-colors rounded-md text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink class="w-4 h-4 mr-1" />
-                  Scholar
-                </a>
-                <a 
-                  href={miembro.orcid} 
-                  class="inline-flex items-center justify-center px-3 py-2 bg-purple-50 text-purple-600 hover:bg-purple-100 transition-colors rounded-md text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink class="w-4 h-4 mr-1" />
-                  ORCID
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
+        <hr class="my-6 border-gray-300" />
+        <div class="flex flex-wrap justify-center gap-6">
+          <a
+            href="https://www.facebook.com/profile.php?id=100080595766135"
+            target="_blank"
+            rel="noopener"
+            title="Facebook"
+          >
+            <img
+              src="/redes/logo2/facebook.png"
+              alt="Facebook"
+              class="w-12 h-12 hover:scale-110 transition-transform"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/sustentaterra_/"
+            target="_blank"
+            rel="noopener"
+            title="Instagram"
+          >
+            <img
+              src="/redes/logo2/instagram.png"
+              alt="Instagram"
+              class="w-12 h-12 hover:scale-110 transition-transform"
+            />
+          </a>
+          <a
+            href="https://twitter.com/NantliTour?t=1zLFzq-5T_GOpGImZQghhA&s=09"
+            target="_blank"
+            rel="noopener"
+            title="Twitter"
+          >
+            <img
+              src="/redes/logo2/x.png"
+              alt="Twitter"
+              class="w-12 h-12 hover:scale-110 transition-transform"
+            />
+          </a>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Mapa (placeholder) -->
-  <section class="py-16 bg-white">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-serif text-guinda mb-8 text-center">Nuestra Ubicación</h2>
-      <div class="w-full h-96 rounded-xl overflow-hidden shadow-inner">
-  <iframe
-    src="https://www.google.com/maps?q=19.514689097540565,-99.12876907529137&z=16&output=embed"
-    width="100%"
-    height="100%"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-  ></iframe>
-</div>
-    </div>
+    <!-- Mapa (placeholder) -->
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-serif text-guinda mb-8 text-center">
+          Nuestra Ubicación
+        </h2>
+        <div class="w-full h-96 rounded-xl overflow-hidden shadow-inner">
+          <iframe
+            src="https://www.google.com/maps?q=19.514689097540565,-99.12876907529137&z=16&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
   </section>
 </Layout>

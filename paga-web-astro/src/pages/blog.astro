@@ -1,13 +1,398 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
+import { posts, recientes } from "../content/blog.js";
+// import get from "../api/app.js";
 ---
 
 <Layout>
-  <section class="max-w-4xl mx-auto my-16 text-center font-sans">
-    <h1 class="text-4xl font-serif text-guinda mb-6">Blog Académico</h1>
-    <p class="text-gray-700 font-sans">
-      Reflexiones, avances y artículos breves de nuestros investigadores. Muy
-      pronto.
-    </p>
-  </section>
+  <main class="max-w-7xl mx-auto px-4 py-12">
+    <header class="mb-8 text-center">
+      <h1 class="text-4xl font-serif text-guinda">Blog Académico</h1>
+      <p class="text-gray-700 mt-2 max-w-2xl mx-auto font-sans">
+        Reflexiones, avances y artículos breves de nuestro equipo de
+        investigación.
+      </p>
+    </header>
+
+    <section class="mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl shadow-md p-6 flex items-start gap-3">
+          <svg
+            class="w-8 h-8 text-guinda flex-shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+              <path
+                d="M15.7639 7C16.3132 6.38625 17.1115 6 18 6C19.6569 6 21 7.34315 21 9C21 10.6569 19.6569 12 18 12H3M8.50926 4.66667C8.87548 4.2575 9.40767 4 10 4C11.1046 4 12 4.89543 12 6C12 7.10457 11.1046 8 10 8H3M11.5093 19.3333C11.8755 19.7425 12.4077 20 13 20C14.1046 20 15 19.1046 15 18C15 16.8954 14.1046 16 13 16H3"
+                stroke="#90B2FA"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </g></svg
+          >
+          <div class="flex-1">
+            <h4 class="text-lg font-serif text-guinda mb-2">
+              Calidad del aire (US AQI)
+            </h4>
+            <div id="aqi" class="text-3xl font-bold text-gray-900">
+              Cargando...
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <div id="aqi-units" class="text-sm text-gray-500">US AQI</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 flex items-start gap-3">
+          <svg
+            class="w-8 h-8 text-guinda flex-shrink-0"
+            viewBox="0 0 24 24"
+            fill="#A4B15E"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"
+              ><path
+                d="M7,12A5,5,0,1,0,2,7,5.006,5.006,0,0,0,7,12ZM7,4A3,3,0,1,1,4,7,3,3,0,0,1,7,4Zm5,10a4,4,0,1,0,4,4A4,4,0,0,0,12,14Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,20ZM22,9a3,3,0,1,0-3,3A3,3,0,0,0,22,9Zm-3,1a1,1,0,1,1,1-1A1,1,0,0,1,19,10ZM16,5a1,1,0,1,1-1-1A1,1,0,0,1,16,5Zm3,10a1,1,0,1,1-1,1A1,1,0,0,1,19,15ZM6,13a1,1,0,1,1-1,1A1,1,0,0,1,6,13Z"
+              ></path></g
+            ></svg
+          >
+          <div class="flex-1">
+            <h4 class="text-lg font-serif text-guinda mb-2">
+              Monóxido de Carbono
+            </h4>
+            <div id="co" class="text-2xl font-semibold text-gray-900">
+              Cargando...
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <div id="co-units" class="text-sm text-gray-500">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 flex items-start gap-3">
+          <svg
+            class="w-8 h-8 text-verde flex-shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden
+          >
+            <path
+              d="M14 14.76V6a2 2 0 10-4 0v8.76A4 4 0 1014 14.76z"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <div class="flex-1">
+            <h4 class="text-lg font-serif text-guinda mb-2">Temperatura</h4>
+            <div id="temp" class="text-2xl font-semibold text-gray-900">
+              Cargando...
+            </div>
+            <div id="temp-units" class="text-sm text-gray-500 mt-1">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <section class="lg:col-span-3">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            posts.length > 0 && (
+              <article class="md:col-span-2 row-span-2 bg-white rounded-xl shadow-md overflow-hidden">
+                <a href={`/posts_blog/${posts[0].id}`} class="block h-full">
+                  <div class="h-56 md:h-64 bg-gray-100 overflow-hidden">
+                    <img
+                      src={posts[0].image}
+                      alt={posts[0].title}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-6">
+                    <h2 class="text-2xl font-serif text-gray-900 mb-2">
+                      {posts[0].title}
+                    </h2>
+                    <p class="text-sm text-gray-600 mb-4">{posts[0].excerpt}</p>
+                    <div class="text-xs text-gray-500">
+                      {posts[0].date} · {posts[0].author}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            )
+          }
+
+          {
+            /* Static post cards (no .map/.filter) — explicit references to p2..p5 */
+          }
+          {
+            posts[1] && (
+              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
+                <a href={`/posts_blog/${posts[1].id}`} class="block">
+                  <div class="h-40 bg-gray-100 overflow-hidden">
+                    <img
+                      src={posts[1].image}
+                      alt={posts[1].title}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                      {posts[1].title}
+                    </h3>
+                    <p class="text-sm text-gray-600">{posts[1].excerpt}</p>
+                    <div class="text-xs text-gray-500 mt-3">
+                      {posts[1].date} · {posts[1].author}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            )
+          }
+
+          {
+            posts[2] && (
+              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
+                <a href={`/posts_blog/${posts[2].id}`} class="block">
+                  <div class="h-40 bg-gray-100 overflow-hidden">
+                    <img
+                      src={posts[2].image}
+                      alt={posts[2].title}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                      {posts[2].title}
+                    </h3>
+                    <p class="text-sm text-gray-600">{posts[2].excerpt}</p>
+                    <div class="text-xs text-gray-500 mt-3">
+                      {posts[2].date} · {posts[2].author}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            )
+          }
+
+          {
+            posts[3] && (
+              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
+                <a href={`/posts_blog/${posts[3].id}`} class="block">
+                  <div class="h-40 bg-gray-100 overflow-hidden">
+                    <img
+                      src={posts[3].image}
+                      alt={posts[3].title}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                      {posts[3].title}
+                    </h3>
+                    <p class="text-sm text-gray-600">{posts[3].excerpt}</p>
+                    <div class="text-xs text-gray-500 mt-3">
+                      {posts[3].date} · {posts[3].author}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            )
+          }
+
+          {
+            posts[4] && (
+              <article class="md:col-span-1 bg-white rounded-xl shadow-md overflow-hidden">
+                <a href={`/posts_blog/${posts[4].id}`} class="block">
+                  <div class="h-40 bg-gray-100 overflow-hidden">
+                    <img
+                      src={posts[4].image}
+                      alt={posts[4].title}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                      {posts[4].title}
+                    </h3>
+                    <p class="text-sm text-gray-600">{posts[4].excerpt}</p>
+                    <div class="text-xs text-gray-500 mt-3">
+                      {posts[4].date} · {posts[4].author}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            )
+          }
+        </div>
+
+        <div class="mt-8 text-center">
+          <button
+            class="px-5 py-2 bg-guinda text-white rounded shadow hover:brightness-95"
+            >Cargar más</button
+          >
+        </div>
+      </section>
+
+      <aside class="lg:col-span-1">
+        <div class="sticky top-24 space-y-6">
+          <div class="bg-white rounded-xl shadow-md p-4">
+            <h4 class="text-lg font-serif text-guinda mb-3">Recientes</h4>
+            <ul class="space-y-3">
+              {
+                recientes.map((r) => (
+                  <li>
+                    <a
+                      href={`/posts_blog/${r.id}`}
+                      class="flex items-start gap-3 hover:underline"
+                    >
+                      <img
+                        src={r.image}
+                        alt={r.title}
+                        class="w-16 h-12 object-cover rounded"
+                        loading="lazy"
+                      />
+                      <div>
+                        <div class="text-sm font-medium text-gray-900">
+                          {r.title}
+                        </div>
+                        <div class="text-xs text-gray-500">{r.date}</div>
+                      </div>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-md p-4">
+            <h5 class="font-serif text-guinda mb-2">Suscríbete</h5>
+            <p class="text-sm text-gray-600 mb-3">
+              Recibe actualizaciones cuando publiquemos nuevos artículos.
+            </p>
+            <form action="#" class="flex gap-2">
+              <input
+                type="email"
+                placeholder="tu@correo.com"
+                class="flex-1 px-3 py-2 border rounded"
+              />
+              <button class="px-3 py-2 bg-verde text-white rounded">Ok</button>
+            </form>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <script>
+      // @ts-nocheck
+      document.addEventListener("DOMContentLoaded", function () {
+        const aqiEl = document.getElementById("aqi");
+        const aqiExtraEl = document.getElementById("aqi-extra");
+        const aqiUnitsEl = document.getElementById("aqi-units");
+        const coEl = document.getElementById("co");
+        const coUnitsEl = document.getElementById("co-units");
+        const tempEl = document.getElementById("temp");
+        const tempUnitsEl = document.getElementById("temp-units");
+        const refreshBtn = document.getElementById("refresh-aqi");
+
+        if (!aqiEl || !coEl || !tempEl) {
+          console.warn(
+            "Elementos mínimos de la UI de sustentabilidad no encontrados (aqi/co/temp), abortando."
+          );
+          return;
+        }
+
+        async function fetchAqi() {
+          try {
+            // llamamos a nuestro endpoint combinado
+            const res = await fetch("/api/app");
+            if (!res.ok) throw new Error("Error al obtener datos de la API");
+            const data = await res.json();
+
+            // air: data.air.current (us_aqi, carbon_monoxide)
+            // weather: data.weather.current_weather (temperature)
+            const airCurrent = data?.air?.current ?? null;
+            const weatherCurrent = data?.weather?.current_weather ?? null;
+
+            if (airCurrent) {
+              const aqi = airCurrent.us_aqi ?? airCurrent.aqi ?? "N/D";
+              const co = airCurrent.carbon_monoxide ?? "N/D";
+              aqiEl.textContent = String(aqi);
+              if (aqiExtraEl)
+                aqiExtraEl.textContent = airCurrent.description ?? "";
+              // unidades (intentar leer del API combinado, con fallback)
+              const aqiUnit =
+                data?.air?.current_units?.us_aqi ??
+                data?.air?.hourly_units?.us_aqi ??
+                "US AQI";
+              if (aqiUnitsEl) aqiUnitsEl.textContent = aqiUnit;
+              coEl.textContent = String(co);
+              const coUnit =
+                data?.air?.current_units?.carbon_monoxide ??
+                data?.air?.hourly_units?.carbon_monoxide ??
+                "µg/m³";
+              if (coUnitsEl) coUnitsEl.textContent = coUnit;
+            } else {
+              aqiEl.textContent = "N/D";
+              coEl.textContent = "N/D";
+              if (aqiUnitsEl) aqiUnitsEl.textContent = "";
+              if (coUnitsEl) coUnitsEl.textContent = "";
+            }
+
+            if (weatherCurrent) {
+              const temp =
+                typeof weatherCurrent.temperature !== "undefined"
+                  ? weatherCurrent.temperature
+                  : null;
+              if (temp !== null) {
+                tempEl.textContent = String(temp);
+                if (tempUnitsEl) tempUnitsEl.textContent = "°C";
+              } else {
+                tempEl.textContent = "N/D";
+                if (tempUnitsEl) tempUnitsEl.textContent = "";
+              }
+            } else {
+              tempEl.textContent = "N/D";
+              if (tempUnitsEl) tempUnitsEl.textContent = "";
+            }
+          } catch (err) {
+            aqiEl.textContent = "Error";
+            coEl.textContent = "Error";
+            tempEl.textContent = "Error";
+            if (aqiExtraEl) aqiExtraEl.textContent = "";
+            if (coUnitsEl) coUnitsEl.textContent = "";
+            if (tempUnitsEl) tempUnitsEl.textContent = "";
+            console.warn(err);
+          }
+        }
+
+        if (refreshBtn) refreshBtn.addEventListener("click", fetchAqi);
+
+        // Fetch inicial al cargar la página
+        fetchAqi();
+
+        // Intervalo para pruebas: 30 segundos (30000 ms). Ajusta a 900000 (15 min) en producción.
+        const intervalId = setInterval(fetchAqi, 900000); // 900000ms = 15min
+
+        // Limpiar el intervalo cuando el usuario salga de la página
+        window.addEventListener("beforeunload", function () {
+          clearInterval(intervalId);
+        });
+      });
+    </script>
+  </main>
 </Layout>

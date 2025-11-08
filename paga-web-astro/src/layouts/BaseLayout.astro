@@ -10,13 +10,141 @@ import Footer from "../components/Footer.astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SUSTENTA-LAPP / Nuestro trabajo</title>
-    <link rel="icon" type="image/png" href="/ciiemad.png" />
+    <link rel="icon" type="image/png" href="/logos/ciiemad.png" />
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"
+    ></script>
+    <script async src="https://connect.facebook.net/es_LA/sdk.js"></script>
+    <script async src="https://www.instagram.com/embed.js"></script>
   </head>
   <body class="font-sans bg-white text-gray-900 leading-relaxed">
     <Header />
     <main class="min-h-screen">
-      <slot />
+      <div id="fb-root"></div>
+      <div
+        id="page-transition"
+        class="opacity-0 translate-y-2 transition duration-300 ease-out"
+      >
+        <slot />
+      </div>
     </main>
     <Footer />
+    <script is:inline>
+      /**
+       * Esta función le dice a Twitter que busque y cargue
+       * cualquier widget nuevo en la página (como tu timeline).
+       */
+
+      function loadSocialWidgets() {
+        // Para Facebook
+        if (
+          typeof window.FB === "object" &&
+          typeof window.FB.XFBML === "object"
+        ) {
+          window.FB.XFBML.parse();
+        }
+
+        // Para Twitter
+        if (
+          typeof window.twttr === "object" &&
+          typeof window.twttr.widgets === "object"
+        ) {
+          window.twttr.widgets.load();
+        }
+
+        if (
+          typeof window.instgrm === "object" &&
+          typeof window.instgrm.Embeds === "object"
+        ) {
+          window.instgrm.Embeds.process();
+        }
+      }
+
+      // Transiciones de página (fade-in / fade-out)
+      (function setupPageTransitions() {
+        const page = document.getElementById("page-transition");
+        const FADE_DURATION = 300; // ms, debe coincidir con duration-300
+
+        function showPage() {
+          // Remover clases que dejan la página oculta para activar la transición
+          requestAnimationFrame(() => {
+            page?.classList.remove("opacity-0", "translate-y-2");
+            page?.classList.add("opacity-100", "translate-y-0");
+          });
+        }
+
+        function hideAndNavigate(href) {
+          // Añadir clases de ocultamiento
+          page?.classList.add("opacity-0", "translate-y-2");
+          page?.classList.remove("opacity-100", "translate-y-0");
+          setTimeout(() => {
+            window.location.href = href;
+          }, FADE_DURATION);
+        }
+
+        // On initial load, mostrar la página
+        document.addEventListener("DOMContentLoaded", showPage);
+
+        // Cuando Astro termina una navegación cliente, asegurarse de mostrar widgets y el contenido
+        document.addEventListener("astro:page-load", (event) => {
+          loadSocialWidgets();
+          showPage();
+        });
+
+        // Interceptar clicks en enlaces internos para animar salida
+        document.addEventListener("click", (e) => {
+          // Buscar el <a> más cercano
+          const anchor =
+            e.target instanceof Element ? e.target.closest("a") : null;
+          if (!anchor) return;
+
+          // Ignorar si no tiene href o es enlace externo / nueva ventana / descarga
+          const href = anchor.getAttribute("href");
+          if (!href) return;
+          if (anchor.target === "_blank" || anchor.hasAttribute("download"))
+            return;
+          if (href.startsWith("mailto:") || href.startsWith("tel:")) return;
+          // Ignorar anclas internas en la misma página
+          if (href.startsWith("#") && anchor.pathname === location.pathname)
+            return;
+
+          // Resolver URL absoluta para comparar host
+          let url;
+          try {
+            url = new URL(href, location.href);
+          } catch (err) {
+            return; // href no válido
+          }
+
+          // Si es externo, no interceptamos
+          if (url.origin !== location.origin) return;
+
+          // Por defecto, permitir navegación normal para recursos como archivos
+          // Interceptar solo navegación de páginas HTML (heurística simple)
+          const isSamePage =
+            url.pathname === location.pathname && url.hash && !url.search;
+          if (isSamePage) return;
+
+          // Evitar interceptar enlaces marcados para evitar transición
+          if (anchor.hasAttribute("data-no-transition")) return;
+
+          // Interceptar la navegación interna y aplicar fade-out
+          e.preventDefault();
+          hideAndNavigate(url.href);
+        });
+      })();
+
+      // Ejecuta la función CADA VEZ que Astro termina de cargar una página
+      document.addEventListener("astro:page-load", loadSocialWidgets);
+    </script>
+    <!-- SDK oficial de Facebook (en español de Latinoamérica). Si tu layout
+           ya incluye este script, puedes eliminarlo aquí para evitar doble carga. -->
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v16.0"
+    ></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"
+    ></script>
   </body>
 </html>

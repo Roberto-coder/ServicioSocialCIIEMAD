@@ -1,5 +1,6 @@
 export const publicaciones = [
-  //tipo: ARTÍCULO, PAPER, TESIS, CAPITULO DE LIBRO, REVISTA
+  //tipo: ARTÍCULO, LIBROS, CAPITULO DE LIBRO, CONGEESOS, TESIS, INFORMES
+
   //ana laura
   {
     tipo: "ARTÍCULO",
@@ -11,7 +12,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.3390/recycling9040069",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo:
       "Bibliometric analysis of Life Cycle Assessment articles visible in Scopus and Web of Science",
@@ -20,7 +21,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.35381/cm.v10i18.1236",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo:
       "Integral Study of a Light Green Roof with Draining Organic Material in Gustavo A. Madero, Mexico City.",
@@ -29,7 +30,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.1007/978-3-030-98067-2_68-1",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2023",
     titulo:
       "La conexión de las personas con las áreas verdes urbanas. Una revisión de la literatura.",
@@ -37,7 +38,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.15658/10.15658/INVESTIGIUMIRE.231401.05",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2022",
     titulo:
       "Evaluación de la calidad nutricional de los productos agrícolas caso: mercados de la Ciudad de México",
@@ -46,7 +47,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.5154/r.rchsagt.2022.02.04",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2021",
     titulo:
       "Green spaces resume their importance in cities after the COVID-19 pandemicA case of study from Mexico City, in Environmental Resilience and Transformation in Times of COVID-19",
@@ -55,7 +56,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.1016/B978-0-323-85512-9.00024-3",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2022",
     titulo:
       "Indicadores de Carbono en la Industria Farmacéutica: Huella de Carbono vs Huella Ecológica.",
@@ -64,18 +65,19 @@ export const publicaciones = [
     enlace: "https://doi.org/10.21664/2238-8869.2022v11i1.p60-75",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2025",
     titulo:
       " Innovación gubernamental: Políticas de conservación para las ecorregiones. Abordajes Teóricos, Impactos externos, políticas públicas y dinámica económica en el Desarrollo Regional ",
     autores:
       "Martínez-Rodríguez, M.-C., Saseendran, P. & Cervantes-Nájera, A. L.",
     enlace:
-      "https://ru.iiec.unam.mx/4669/1/4-166-Martinez-Saseendran-Cervantes.pdf ISBN: 978-607-30-2640-6.",
+      "https://ru.iiec.unam.mx/4669/1/4-166-Martinez-Saseendran-Cervantes.pdf",
+    isbn: "978-607-30-2640-6",
   },
   //Hector
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo:
       "Advancing Toward Sustainability: A Systematic Review Of Circular Economy Strategies In The Textile Industry.",
@@ -90,7 +92,7 @@ export const publicaciones = [
       "Propuesta de un plan de manejo basado en una economía circular para residuos sólidos textiles preconsumo: Chiconcuac, Estado de México, México ",
     autores:
       "Héctor Guadalupe Ramírez-Escamilla, María Concepción Martínez-Rodríguez.",
-    enlace: "enlace proximamente",
+    enlace: "",
   },
   {
     tipo: "CAPITULO DE LIBRO",
@@ -121,7 +123,7 @@ export const publicaciones = [
   },
   //Diego
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo:
       "Implementación de estrategias para un desarrollo sustentable en México: una reflexión social, política y cultural. Revista Investigium IRE Ciencias Sociales y Humanas, 14(1), 63-72",
@@ -130,7 +132,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.15658/10.15658/investigiumire.231401.06",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2023",
     titulo:
       "Plan de negocio para la producción de biometano envasado en tanques, como propuesta de aprovechamiento para residuos de estiércol: Business plan to produce packaged biomethane in tanks as a proposal for the utilization of manure waste. LATAM Revista Latinoamericana De Ciencias Sociales Y Humanidades",
@@ -139,20 +141,22 @@ export const publicaciones = [
     enlace: "https://doi.org/10.56712/latam.v4i2.710",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo: "La gobernanza para la solución de problemas ambientales. ",
     autores:
       "Martínez‑Rodríguez, M. C., Cervantes‑Nájera, A. L., Nieto Moreno, C., & Pardo Santos, O. (Eds.)",
-    enlace: "",
+    enlace:
+      "https://www.researchgate.net/publication/392244336_La_gobernanza_para_la_solucion_de_problemas_ambientales",
   },
   {
-    tipo: "CAPITULO DEL LIBRO",
+    tipo: "CAPITULO DE LIBRO",
     anio: "2024",
     titulo:
       "Aprovechamiento de residuos de la industria alimentaria para la producción de biocombustibles",
     autores: " Martínez‑Rodríguez, M. C., & Domínguez-Solís, D.",
-    enlace: "Sostenibilidad Multisectorial.",
+    enlace:
+      "https://www.researchgate.net/publication/381306294_Aprovechamiento_de_residuos_de_la_industria_alimentaria_para_la_produccion_de_biocombustibles",
   },
   {
     tipo: "CAPITULO DE LIBRO",
@@ -164,16 +168,17 @@ export const publicaciones = [
       "https://www.researchgate.net/publication/385311545_El_uso_de_tecnologias_de_informacion_y_comunicacion_en_los_ecosistemas_de_innovacion_en_Mexico",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo:
       "Traducción de datos duros científicos a incidencia socioambiental en México. Comunicación Científica.",
     autores:
       "Silva Rodríguez de San Miguel, J. A., Monroy Becerril, D. M., Martínez-Rodríguez, M. C., & Pardo Santos, O. (Eds.)  ",
-    enlace: "",
+    enlace:
+      "https://comunicacion-cientifica.com/libros/traduccion-de-datos-duros-cientificos-a-incidencia-socioambiental-en-mexico/",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo:
       "El papel de las escuelas verdes en la concientización y acción contra el cambio climático en México.",
@@ -182,7 +187,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.52501/cc.187.02",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo:
       "Advancing toward sustainability: A systematic review of circular economy strategies in the textile industry. Recycling, 9(5), 95",
@@ -191,7 +196,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.3390/recycling9050095",
   },
   {
-    tipo: "REVISTA",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo:
       "Análisis de un cuerpo de agua localizado en la comunidad de San Jerónimo Amanalco, Estado de México, México. Revista Chapingo Serie Agricultura Tropical, l, 4(2), 1-15.",
@@ -200,7 +205,7 @@ export const publicaciones = [
     enlace: "https://doi.org/10.5154/r.rchsat.2024.04.06",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2024",
     titulo:
       "Ecological flow as a water stress control strategy: San Rodrigo River, Coahuila, Mexico. Limnological Review, 24(4), 543-556",
@@ -209,12 +214,32 @@ export const publicaciones = [
     enlace: "https://doi.org/10.3390/limnolrev24040031",
   },
   {
-    tipo: "PAPER",
+    tipo: "ARTÍCULO",
     anio: "2025",
     titulo:
       "Constructed wetlands as a decentralized treatment option for domestic wastewater: A systematic review (2015–2024). Water, 17(10), 1451.",
     autores:
       "Domínguez-Solís, D., Martínez-Rodríguez, M. C., Ramírez-Escamilla, H. G., Campos-Villegas, L. E., & Domínguez-Solís, R.",
     enlace: "https://doi.org/10.3390/w17101451",
+  },
+  //jose angel cortes
+  {
+    tipo: "CAPITULO DE LIBRO",
+    anio: "2024",
+    titulo:
+      "Tendencias globales del uso de plantas acuáticas como fuentes alternativas de alimento: oportunidades para México",
+    autores: "Cortés Fuentes, J. Á., & Martínez-Rodríguez, M. C.",
+    enlace:
+      "https://www.researchgate.net/publication/392244336_Tendencias_globales_del_uso_de_plantas_acuaticas_como_fuentes_alternativas_de_alimento_oportunidades_para_Mexico",
+  },
+  //edgar brian martinez
+  {
+    tipo: "CAPITULO DE LIBRO",
+    anio: "2024",
+    titulo:
+      "Tendencias globales en las estrategias de Economía Circular aplicadas a Autos eléctricos y Manejo de Residuos.",
+    autores: "Martínez-Merino, E. B., & Domínguez-Solís, D.",
+    enlace:
+      "https://www.researchgate.net/publication/392244336_Tendencias_globales_en_las_estrategias_de_Economia_Circular_aplicadas_a_Autos_electricos_y_Manejo_de_Residuos",
   },
 ];

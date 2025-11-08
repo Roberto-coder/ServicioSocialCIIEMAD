@@ -1,5 +1,5 @@
 ---
-import Layout from "../layouts/BaseLayout.astro";
+import Layout from '../layouts/BaseLayout.astro';
 
 // Datos de ejemplo para la galería. Puedes agregar más aquí.
 const galeriaItems = [
@@ -7,6 +7,7 @@ const galeriaItems = [
     src: "/galeria/VISITA CECYT 7 A CIIEMAD TALLERES AMBIENTALES.jpg",
     alt: "VISITA CECYT 7 A CIIEMAD TALLERES AMBIENTALES",
     title: "VISITA CECYT 7 A CIIEMAD TALLERES AMBIENTALES",
+    categoria: "Talleres y Actividades Educativas",
     description: "Actividades impartidas por los integrantes del Sustentaterra a estudiantes del CECyT 7 del IPN, quienes participaron en talleres ambientales y visitas guiadas al CIIEMAD.",
     fecha: "2024-05-20",
   },
@@ -14,13 +15,15 @@ const galeriaItems = [
     src: "/galeria/40ANIV CIIEMAD DIRECTOR.jpg",
     alt: "40ANIV CIIEMAD DIRECTOR IPN",
     title: "40ANIV CIIEMAD DIRECTOR IPN",
+    categoria: "Eventos Institucionales",
     description: "Integrantes del equipo Sustentaterra en el día del 40 aniversario del CIIEMAD-IPN, en compañía del Director del IPN Dr. Arturo Reyes Sandoval.",
     fecha: "2024-04-15",
   },
   {
     src: "/galeria/COLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN.jpeg",
-    alt: "OLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN",
+    alt: "COLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN",
     title: "COLOQUIO DE ESTUDIANTES CIIEMAD COORDINACIÓN",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Participación de Ana Laura Cervantes y Dra María Concepción como coordinadora y profesora acompañante en la inauguración del 12° Coloquio de Estudiantes del CIIEMAD.",
     fecha: "2024-06-01",
   },
@@ -28,6 +31,7 @@ const galeriaItems = [
     src: "/galeria/COORDINADORA CEIMAS2024.jpeg",
     alt: "COORDINADORA CEIMAS2024",
     title: "COORDINADORA CEIMAS2024",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Participación de Xochitl Bello, Karla Ginez y Esperanza Hernández en el equipo de coordinación del 1er Congreso Estudiantil Interdisciplinario sobre Medio Ambiente y Sustentabilidad (CEIMAS 2024)",
     fecha: "2023-11-10",
   },
@@ -35,6 +39,7 @@ const galeriaItems = [
     src: "/galeria/ALCN PONENCIA CONGRESO INT EN ADMON DE EMPRESAS PARA LA SOSTENIBILIDAD ESCA.jpg",
     alt: "ALCN PONENCIA CONGRESO INT EN ADMON DE EMPRESAS PARA LA SOSTENIBILIDAD ESCA",
     title: "ALCN PONENCIA CONGRESO INT EN ADMON DE EMPRESAS PARA LA SOSTENIBILIDAD ESCA",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Ponencia presentada por Ana Laura Cervantes en el Congreso Internacional en Administración de Empresas para la Sostenibilidad organizado por la ESCA-IPN 2024.",
     fecha: "2023-09-05",
   },
@@ -42,6 +47,7 @@ const galeriaItems = [
     src: "/galeria/CARTEL CATEDRA MAYAGOITA 2023.jpg",
     alt: "CARTEL CATEDRA MAYAGOITA 2023",
     title: "CARTEL CATEDRA MAYAGOITA 2023",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Participación de Ana Laura Cervantes presentando cartel en la Cátedra Mayagoitia 2023.",
     fecha: "2023-02-28",
   },
@@ -49,6 +55,7 @@ const galeriaItems = [
     src: "/galeria/equipo cartel catedra.jpg",
     alt: "Equipo cartel catedra.jpg",
     title: "EQUIPO CARTEL CATEDRA",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Fotografía de integrantes del equipo de Sustentaterra en la Cátedra Mayagoitia 2023.",
     fecha: "2024-02-28",
   },
@@ -56,6 +63,7 @@ const galeriaItems = [
     src: "/galeria/team tnt SIEA 2023.jpg",
     alt: "team tnt SIEA 2023",
     title: "Team SIEA 2023",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Foto del equipo del Sustentaterra en el SIEA 2023.",
     fecha: "2023-02-28",
   },
@@ -63,6 +71,7 @@ const galeriaItems = [
     src: "/galeria/SIEA 2023.jpg",
     alt: "SIEA 2023",
     title: "SIEA 2023",
+    categoria: "Congresos, Conferencias y Cátedras",
     description: "Participación de Ana Laura Cervantes en el Simposio y Seminario Internacional de Educación Ambiental y Desarrollo Sustentable (SIEA 2023).",
     fecha: "2023-02-28",
   },
@@ -70,6 +79,7 @@ const galeriaItems = [
     src: "/galeria/TALLER MA PRIMARIA C IZCALLI .jpg",
     alt: "TALLER MA PRIMARIA C IZCALLI",
     title: "TALLER MA PRIMARIA C IZCALLI",
+    categoria: "Talleres y Actividades Educativas",
     description: "Taller ambiental impartido por integrantes del Sustentaterra a estudiantes de nivel primaria en Cuautitlán Izcalli, promoviendo la educación para la sustentabilidad.",
     fecha: "2024-02-28",
   },
@@ -77,6 +87,7 @@ const galeriaItems = [
     src: "/galeria/TALLER MA SEC GAM3.jpg",
     alt: "TALLER MA SEC GAM",
     title: "TALLER MA SEC GAM",
+    categoria: "Talleres y Actividades Educativas",
     description: "Serie de talleres ambientales impartido por Ana Laura Cervantes realizados en la Escuela Secundaria Diurna N° 110 'Máximo Gorki' de la alcaldía Gustavo A. Madero, orientados a la sensibilización ecológica y el aprendizaje de las soluciones basadas.",
     fecha: "2024-02-28",
   },
@@ -84,6 +95,7 @@ const galeriaItems = [
     src: "/galeria/FOTO EQUIPO SUSTENTALAB.jpg",
     alt: "FOTO EQUIPO SUSTENTALAB",
     title: "FOTO EQUIPO SUSTENTALAB",
+    categoria: "Equipo SustentaLab",
     description: "Fotografía del equipo Sustentaterra, conformado por alumnos de maestría, doctorado y profesora investigadora.",
     fecha: "2024-02-28",
   },
@@ -91,6 +103,7 @@ const galeriaItems = [
     src: "/galeria/DÍA STEM UNIVERSIDAD FIDEL VELAZQUEZ 2024.jpg",
     alt: "DÍA STEM UNIVERSIDAD FIDEL VELAZQUEZ 2024",
     title: "DÍA STEM UNIVERSIDAD FIDEL VELAZQUEZ 2024",
+    categoria: "Talleres y Actividades Educativas",
     description: "Actividad realizada por integrantes del equipo de Sustentaterra en el Día STEM 2024 en la Universidad Fidel Velázquez, con actividades lúdicas sobre ciencia y sustentabilidad.",
     fecha: "2024-02-28",
   },
@@ -98,6 +111,7 @@ const galeriaItems = [
     src: "/galeria/PREMIO PODCAST 2023.jpg",
     alt: "PREMIO PODCAST 2023",
     title: "PREMIO PODCAST 2023",
+    categoria: "Charlas, Premios y Reconocimientos",
     description: "Reconocimiento obtenido por el equipo Sustentaterra por su proyecto de divulgación científica en formato podcast.",
     fecha: "2023-02-28",
   },
@@ -105,6 +119,7 @@ const galeriaItems = [
     src: "/galeria/PONENCIA EN CECYT 7 2023.jpg",
     alt: "PONENCIA EN CECYT 7 2023",
     title: "PONENCIA EN CECYT 7 2023",
+    categoria: "Charlas, Premios y Reconocimientos",
     description: "Ponencia de Ana Laura Cervantes sobre materiales orgánicos en techos verdes impartida en el CECyT 7, dirigida a jóvenes interesados en temas de sustentabilidad y medio ambiente.",
     fecha: "2023-02-28",
   },
@@ -112,6 +127,7 @@ const galeriaItems = [
     src: "/galeria/PLATICADÍADELAMUJER 2023.jpg",
     alt: "PLATICA DÍA DE LA MUJER 2023",
     title: "PLATICA DÍA DE LA MUJER 2023",
+    categoria: "Charlas, Premios y Reconocimientos",
     description: "Participación de Ana Laura Cervantes en la charla conmemorativa por el Día Internacional de la Mujer 2023 en el evento organizado por la Alcaldía GAM.",
     fecha: "2023-02-28",
   },
@@ -119,6 +135,7 @@ const galeriaItems = [
     src: "/galeria/PRESENTACION LIBRO ECONOMIA CIRCULAR MEXICANA FIL IPN 2024.jpg",
     alt: "PRESENTACION LIBRO ECONOMIA CIRCULAR MEXICANA FIL IPN 2024",
     title: "PRESENTACION LIBRO ECONOMIA CIRCULAR MEXICANA FIL IPN 2024",
+    categoria: "Difusión y Divulgación Científica",
     description: "Participación de integrantes equipo Sustentaterra, presentando el libro 'Economía Circular Mexicana' durante la FIL IPN 2024.",
     fecha: "2024-02-28",
   },
@@ -126,6 +143,7 @@ const galeriaItems = [
     src: "/galeria/FERIADELLIBRO 2025.jpeg",
     alt: "FERIA DEL LIBRO 2025",
     title: "FERIA DEL LIBRO 2025",
+    categoria: "Difusión y Divulgación Científica",
     description: "Participación de integrantes equipo Sustentaterra en la Feria del Libro IPN 2025, presentando el libro 'La Gobernanza para la solución de problemas ambientales'.",
     fecha: "2025-02-28",
   },
@@ -133,24 +151,52 @@ const galeriaItems = [
 
 // Ordenar los elementos de la galería por fecha, de más reciente a más antiguo
 galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+
+// Obtener categorías únicas para los filtros
+const categoriasUnicas = [...new Set(galeriaItems.map(item => item.categoria))].sort();
 ---
 
 <Layout>
   <!-- Sección de la Galería -->
   <section class="max-w-7xl mx-auto my-12 px-4 sm:px-6 lg:px-8">
-    <h1 class="text-4xl font-bold text-center text-guinda mb-12">Galería</h1>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <h1 class="text-4xl font-bold text-center text-guinda mb-8">Galería</h1>
+
+	<!-- Contenedor de Filtros -->
+	<div id="filter-container" class="flex justify-center flex-wrap gap-6 mb-12">
+		<!-- Filtro por Fecha (Año) -->
+		<div class="relative">
+			<label for="year-filter" class="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600">Fecha</label>
+			<select id="year-filter" class="filter-select appearance-none w-48">
+				<option value="todos">Todos los años</option>
+				<option value="2025">2025</option>
+				<option value="2024">2024</option>
+				<option value="2023">2023</option>
+			</select>
+		</div>
+
+		<!-- Filtro por Categoría -->
+		<div class="relative">
+			<label for="category-filter" class="absolute -top-2.5 left-3 bg-white px-1 text-sm text-gray-600">Categoría</label>
+			<select id="category-filter" class="filter-select appearance-none w-64">
+				<option value="todos">Todas las categorías</option>
+				{categoriasUnicas.map(categoria => <option value={categoria}>{categoria}</option>)}
+			</select>
+		</div>
+	</div>
+
+    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {
         galeriaItems.map((item, index) => (
           <div
             class="group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
-            data-index={index}
           >
-            <img
-              src={item.src}
-              alt={item.alt}
-              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-            />
+            <div class="image-container" data-index={index}>
+              <img
+                src={item.src}
+                alt={item.alt}
+                class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
           </div>
         ))
       }
@@ -173,9 +219,20 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
         class="w-full h-auto max-h-[70vh] object-contain rounded-t-lg"
       />
       <div class="p-6">
-        <p id="lightbox-date" class="text-sm text-gray-500 mb-1"></p>
+        <div class="flex justify-between items-center text-sm text-gray-500 mb-1">
+          <p id="lightbox-date-container"></p>
+          <p id="lightbox-category" class="font-semibold"></p>
+        </div>
         <h3 id="lightbox-title" class="text-xl font-bold text-guinda mb-2"></h3>
         <p id="lightbox-desc" class="text-gray-700"></p>
+        <div class="mt-4 flex items-center space-x-2 text-gray-600">
+            <button id="lightbox-like-button" title="Me gusta">
+                <svg class="w-6 h-6 fill-current transition-colors duration-200" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                </svg>
+            </button>
+            <span id="lightbox-like-counter" class="font-semibold">0</span>
+        </div>
       </div>
     </div>
     <button
@@ -189,11 +246,21 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     const lightboxTitle = document.getElementById("lightbox-title");
-    const lightboxDate = document.getElementById("lightbox-date");
+    const lightboxDateContainer = document.getElementById("lightbox-date-container");
+    const lightboxCategory = document.getElementById("lightbox-category");
     const lightboxDesc = document.getElementById("lightbox-desc");
     const lightboxClose = document.getElementById("lightbox-close");
-    const galleryImages = document.querySelectorAll("[data-index]");
+    const lightboxLikeButton = document.getElementById("lightbox-like-button");
+    const lightboxLikeCounter = document.getElementById("lightbox-like-counter");
 
+    // --- Lógica de Filtros ---
+    const yearFilter = document.getElementById('year-filter');
+    const categoryFilter = document.getElementById('category-filter');
+    const galleryGrid = document.getElementById('gallery-grid');
+    const galleryItemsElements = Array.from(galleryGrid?.children || []);
+
+
+    let currentLightboxIndex = -1;
     function openLightbox(index) {
       const item = galeriaItems[index];
       if (!item || !lightbox) return;
@@ -201,31 +268,149 @@ galeriaItems.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getT
       lightboxImg.src = item.src;
       lightboxImg.alt = item.alt;
       lightboxTitle.textContent = item.title;
+      currentLightboxIndex = index;
       
       // Formatear y mostrar la fecha
       const date = new Date(item.fecha);
       const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
-      lightboxDate.textContent = date.toLocaleDateString('es-ES', options);
+      lightboxDateContainer.textContent = date.toLocaleDateString('es-ES', options);
+      lightboxCategory.textContent = item.categoria;
 
       lightboxDesc.textContent = item.description;
 
+      updateLikeUIForLightbox(index);
       lightbox.classList.remove("hidden");
     }
 
     function closeLightbox() {
       if (lightbox) lightbox.classList.add("hidden");
+      currentLightboxIndex = -1;
     }
 
-    galleryImages.forEach((img) => {
-      img.addEventListener("click", () => {
-        const index = parseInt(img.dataset.index, 10);
+    // --- Lógica de Likes con Cookies ---
+
+    const LIKES_COOKIE = 'galleryLikes';
+    const USER_LIKED_COOKIE = 'userLikedImages';
+
+    // Funciones para manejar cookies
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    function setCookie(name, value, days = 365) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+    }
+
+    // Cargar estado inicial desde las cookies
+    let likes = JSON.parse(getCookie(LIKES_COOKIE)) || {};
+    let userLiked = JSON.parse(getCookie(USER_LIKED_COOKIE)) || [];
+
+    function handleLike(index) {
+      const imageId = galeriaItems[index].src;
+      const isLiked = userLiked.includes(imageId);
+
+      if (isLiked) {
+        // Quitar like
+        likes[imageId] = (likes[imageId] || 1) - 1;
+        userLiked = userLiked.filter(id => id !== imageId);
+      } else {
+        // Dar like
+        likes[imageId] = (likes[imageId] || 0) + 1;
+        userLiked.push(imageId);
+      }
+
+      // Guardar en cookies
+      setCookie(LIKES_COOKIE, JSON.stringify(likes));
+      setCookie(USER_LIKED_COOKIE, JSON.stringify(userLiked));
+
+      // Actualizar la UI
+      updateLikeUIForLightbox(index);
+    }
+
+    function updateLikeUIForImage(index) {
+      const imageId = galeriaItems[index].src;
+      const counter = document.querySelector(`.like-counter[data-index="${index}"]`);
+      const button = document.querySelector(`.like-button[data-index="${index}"] svg`);
+      
+      if (counter) counter.textContent = likes[imageId] || 0;
+      if (button) {
+        button.classList.toggle('text-red-500', userLiked.includes(imageId));
+        button.classList.toggle('text-white', !userLiked.includes(imageId));
+      }
+    }
+
+    function updateLikeUIForLightbox(index) {
+        const imageId = galeriaItems[index].src;
+        const svg = lightboxLikeButton.querySelector('svg');
+        lightboxLikeCounter.textContent = likes[imageId] || 0;
+        svg.classList.toggle('text-red-500', userLiked.includes(imageId));
+        svg.classList.toggle('text-gray-400', !userLiked.includes(imageId));
+    }
+
+    // --- Event Listeners ---
+
+    function applyFilters() {
+        const selectedYear = yearFilter.value;
+        const selectedCategory = categoryFilter.value;
+
+        galleryItemsElements.forEach(itemElement => {
+            const index = itemElement.querySelector('[data-index]').dataset.index;
+            const item = galeriaItems[index];
+            
+            const itemYear = new Date(item.fecha).getFullYear().toString();
+
+            const yearMatch = selectedYear === 'todos' || itemYear === selectedYear;
+            const categoryMatch = selectedCategory === 'todos' || item.categoria === selectedCategory;
+
+            if (yearMatch && categoryMatch) {
+                itemElement.style.display = 'block';
+            } else {
+                itemElement.style.display = 'none';
+            }
+        });
+    }
+
+    yearFilter?.addEventListener('change', applyFilters);
+    categoryFilter?.addEventListener('change', applyFilters);
+
+    document.querySelectorAll('.image-container').forEach(container => {
+      container.addEventListener("click", () => {
+        const index = parseInt(container.dataset.index, 10);
         openLightbox(index);
       });
     });
+
+    lightboxLikeButton.addEventListener('click', () => handleLike(currentLightboxIndex));
 
     lightboxClose?.addEventListener("click", closeLightbox);
     lightbox?.addEventListener("click", (e) => {
       if (e.target === lightbox) closeLightbox();
     });
+
+    // Inicializar la UI con los datos de las cookies al cargar la página
   </script>
+
+  <style>
+	.filter-select {
+		border: 2px solid #e5e7eb;
+		border-radius: 0.5rem;
+		padding: 0.65rem 1rem;
+		font-weight: 500;
+		transition: border-color 0.2s ease-in-out;
+		background-color: white;
+	}
+	.filter-select:focus {
+		outline: none;
+		border-color: #8C1D40; /* guinda */
+	}
+  </style>
 </Layout>

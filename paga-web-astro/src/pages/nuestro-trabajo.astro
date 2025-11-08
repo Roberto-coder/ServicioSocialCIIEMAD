@@ -5,40 +5,18 @@ import {
   Users,
   FileText,
   ExternalLink,
+  Target,
+  Award,
+  Search,
   Leaf,
   Zap,
   Building,
-  UserCheck,
   BarChart3,
   Globe,
-  Search,
-  Target,
-  Award,
   Clock,
 } from "lucide-astro";
 
-const publicaciones = [
-  {
-    titulo: "Indicadores de resiliencia urbana",
-    autores: "Dra. Gómez, Mtro. Hernández",
-    enlace: "#",
-    tipo: "articulo",
-  },
-  {
-    titulo: "Análisis de política energética en México",
-    autores: "Dr. Ruiz, Dra. Martínez",
-    enlace: "#",
-    tipo: "investigacion",
-  },
-  {
-    titulo: "Diseño participativo en espacios públicos",
-    autores: "Dra. López, Ing. Jiménez",
-    enlace: "#",
-    tipo: "proyecto",
-  },
-];
-
-const lineasInvestigacion = [
+export const lineasInvestigacion = [
   {
     titulo: "Sustentabilidad urbana",
     icono: Leaf,
@@ -74,73 +52,252 @@ const lineasInvestigacion = [
 
 <Layout>
   <!-- Header Section -->
-  <section class="max-w-5xl mx-auto my-20 px-4 font-sans">
+  <section class="py-12 bg-gray-50 font-sans">
     <div class="text-center mb-16">
       <div class="flex justify-center mb-6">
         <div class="bg-verde/10 p-4 rounded-full">
           <Target class="w-12 h-12 text-verde" />
         </div>
       </div>
-      <h1 class="text-5xl font-serif text-guinda mb-4">Nuestro Trabajo</h1>
+      <h1 class="text-5xl font-serif text-guinda mb-4">Nuestro Aporte</h1>
       <p class="text-lg text-gray-600 max-w-3xl mx-auto font-sans">
-        Publicaciones y proyectos que reflejan nuestro compromiso con el
-        desarrollo sostenible y la toma de decisiones basadas en evidencia
+        Actividades culturales y proyectos que reflejan nuestro compromiso con
+        el desarrollo sostenible y la toma de decisiones basadas en evidencia
         científica.
       </p>
     </div>
+  </section>
 
-    <!-- Publicaciones Grid -->
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {
-        publicaciones.map((pub) => (
-          <article class="bg-white border border-gray-200 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group">
-            <div class="flex items-center mb-4">
-              <div class="bg-verde/10 p-2 rounded-lg mr-3">
-                {pub.tipo === "articulo" && (
-                  <FileText class="w-6 h-6 text-verde" />
-                )}
-                {pub.tipo === "investigacion" && (
-                  <Search class="w-6 h-6 text-verde" />
-                )}
-                {pub.tipo === "proyecto" && (
-                  <Award class="w-6 h-6 text-verde" />
-                )}
+  <!-- Actividades -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-serif text-guinda mb-2">Actividades</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Eventos, visitas y actividades del centro. Haz clic en una tarjeta
+          para más información o para agregar el evento a tu calendario.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Club de Ajedrez -->
+        <div
+          class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
+        >
+          <img
+            src="https://tse1.mm.bing.net/th/id/OIP.vd4hFo0GiA7LdAp5eoekHwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="Club de Ajedrez"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-guinda">Club de Ajedrez</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Encuentros semanales para fomentar el pensamiento estratégico y la
+              convivencia entre estudiantes.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-xs text-gray-500"
+                >Todos los jueves • Biblioteca</span
+              >
+              <span class="inline-block text-sm text-verde font-semibold"
+                >Ver</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Feria de Libro -->
+        <div
+          class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
+        >
+          <img
+            src="/galeria/FERIADELLIBRO 2025.jpeg"
+            alt="Feria de Libro"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-guinda">Feria de Libro</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Exposición de libros, talleres y charlas para la comunidad.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-xs text-gray-500">Anual • Auditorio</span>
+              <span class="inline-block text-sm text-verde font-semibold"
+                >Ver</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Visita a CECyT -->
+        <div
+          class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
+        >
+          <img
+            src="/galeria/VISITA CECYT 7 A CIIEMAD TALLERES AMBIENTALES.jpg"
+            alt="Visita a CECyT"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-guinda">Visita a CECyT</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Recorridos y actividades con estudiantes del CECyT para
+              vinculación académica.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-xs text-gray-500"
+                >Programado • Salida desde CIIEMAD</span
+              >
+              <span class="inline-block text-sm text-verde font-semibold"
+                >Ver</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Taller -->
+        <div
+          class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
+        >
+          <img
+            src="/galeria/TALLER MA SEC GAM3.jpg"
+            alt="Taller"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-guinda">Taller</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Participación en eventos nacionales e internacionales con
+              ponencias y posters.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-xs text-gray-500">Inscripción abierta</span>
+              <span class="inline-block text-sm text-verde font-semibold"
+                >Ver</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Concurso (con calendario) -->
+        <div
+          class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
+        >
+          <img
+            src="/galeria/PREMIO PODCAST 2023.jpg"
+            alt="Concurso"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-guinda">
+              Concurso Intercolegial
+            </h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Concurso de proyectos estudiantiles con premiación y exposición
+              pública.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-gray-500">Fecha: 2025-12-05 • 09:00</div>
+              <div class="flex items-center gap-2">
+                <a
+                  href="/events/concurso.ics"
+                  class="text-sm text-verde font-semibold"
+                  download>Agregar a calendario</a
+                >
               </div>
-              <div class="flex-1">
-                <span class="text-xs uppercase tracking-wide text-gray-500 font-medium">
-                  {pub.tipo === "articulo"
-                    ? "Artículo"
-                    : pub.tipo === "investigacion"
-                      ? "Investigación"
-                      : "Proyecto"}
-                </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Talleres infantiles (con calendario) -->
+        <div
+          class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
+        >
+          <img
+            src="https://formainfancia.com/wp-content/uploads/talleres-para-nin%CC%83os.jpg"
+            alt="Talleres infantiles"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-guinda">
+              Talleres Infantiles
+            </h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Actividades lúdicas y educativas para niños y niñas.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-gray-500">Fecha: 2025-12-05 • 09:00</div>
+              <div class="flex items-center gap-2">
+                <a
+                  href="/events/talleres-infantiles.ics"
+                  class="text-sm text-verde font-semibold"
+                  download>Agregar a calendario</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendario de Actividades -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8 items-start">
+        <div class="flex-1">
+          <h2 class="text-3xl font-serif text-guinda mb-3">Calendario</h2>
+          <p class="text-gray-600 mb-6">
+            Enterate de las próximas actividades y eventos programados en el
+            calendario.
+          </p>
+
+          <div class="bg-white p-4 rounded-xl shadow-md">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <button
+                  id="cal-prev"
+                  class="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200"
+                  >‹</button
+                >
+                <div id="cal-month" class="text-lg font-semibold"></div>
+                <button
+                  id="cal-next"
+                  class="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200"
+                  >›</button
+                >
+              </div>
+              <div class="text-sm text-gray-500">
+                Hoy: <span id="cal-today-label"></span>
               </div>
             </div>
 
-            <h2 class="text-xl font-serif text-guinda mb-2 group-hover:text-verde transition-colors">
-              {pub.titulo}
-            </h2>
-            <p class="text-sm text-gray-600 mb-4 flex items-center">
-              <Users class="w-4 h-4 mr-1" />
-              {pub.autores}
-            </p>
-
-            <a
-              href={pub.enlace}
-              class="inline-flex items-center text-verde hover:text-guinda transition-colors font-medium"
+            <div
+              class="grid grid-cols-7 gap-1 text-center text-xs text-gray-600 mb-2"
             >
-              <BookOpen class="w-4 h-4 mr-2" />
-              Ver publicación
-              <ExternalLink class="w-4 h-4 ml-1" />
-            </a>
-          </article>
-        ))
-      }
+              <div>Dom</div><div>Lun</div><div>Mar</div><div>Mie</div><div>
+                Jue
+              </div><div>Vie</div><div>Sáb</div>
+            </div>
+
+            <div id="calendar-grid" class="grid grid-cols-7 gap-2"></div>
+          </div>
+        </div>
+
+        <aside class="w-full lg:w-80">
+          <h3 class="text-xl font-serif text-guinda mb-3">Eventos del día</h3>
+          <div
+            id="events-list"
+            class="bg-white p-4 rounded-xl shadow-md min-h-[160px]"
+          >
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 
   <!-- Líneas de Investigación -->
-  <section class="bg-gray-50 py-20">
+  <section class="bg-white py-20">
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center mb-16">
         <div class="flex justify-center mb-6">
@@ -176,6 +333,254 @@ const lineasInvestigacion = [
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    // Calendario de Actividades - editar esta constante para agregar/editar eventos
+    // Soporta eventos puntuales ({id, title, date: 'YYYY-MM-DD', time, location, description, icsLink?})
+    // y eventos semanales recurrentes ({id, title, weekly: { weekday: 4 }, time, location, description})
+    const EVENTS = [
+      {
+        id: "club-ajedrez",
+        title: "Club de Ajedrez",
+        weekly: { weekday: 4 }, // 0=Dom,1=Lun,...4=Jue
+        time: "18:00",
+        location: "Biblioteca",
+        description: "Encuentros semanales para práctica y torneos internos.",
+      },
+      {
+        id: "feria-ciencia",
+        title: "Feria de Ciencia",
+        date: "2025-11-20",
+        time: "10:00",
+        location: "Auditorio",
+        description: "Exposición de proyectos estudiantiles.",
+      },
+      {
+        id: "visita-cecyt",
+        title: "Visita a CECyT",
+        date: "2025-11-13",
+        time: "09:00",
+        location: "CECyT - Salida desde CIIEMAD",
+        description: "Vinculación académica y recorridos.",
+      },
+      {
+        id: "congreso",
+        title: "Congreso",
+        date: "2025-11-28",
+        time: "09:00",
+        location: "Centro de Convenciones",
+        description: "Participación con ponencias y posters.",
+      },
+      {
+        id: "concurso",
+        title: "Concurso Intercolegial",
+        date: "2025-12-05",
+        time: "09:00",
+        location: "Auditorio",
+        description: "Concurso de proyectos estudiantiles.",
+        icsLink: "/events/concurso.ics", // opcional: fichero existente
+      },
+    ];
+
+    (function () {
+      const grid = document.getElementById("calendar-grid");
+      const monthLabel = document.getElementById("cal-month");
+      const prevBtn = document.getElementById("cal-prev");
+      const nextBtn = document.getElementById("cal-next");
+      const todayLabel = document.getElementById("cal-today-label");
+      const eventsList = document.getElementById("events-list");
+      if (
+        !grid ||
+        !monthLabel ||
+        !prevBtn ||
+        !nextBtn ||
+        !todayLabel ||
+        !eventsList
+      )
+        return;
+
+      const today = new Date();
+      let viewYear = today.getFullYear();
+      let viewMonth = today.getMonth(); // 0-indexed
+      let selectedDate = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+      );
+
+      todayLabel.textContent = today.toLocaleDateString();
+
+      function formatDateYMD(d) {
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        return `${y}-${m}-${dd}`;
+      }
+
+      function eventsForDate(d) {
+        const ymd = formatDateYMD(d);
+        const dow = d.getDay();
+        return EVENTS.filter((ev) => {
+          if (ev.date && ev.date === ymd) return true;
+          if (
+            ev.weekly &&
+            typeof ev.weekly.weekday === "number" &&
+            ev.weekly.weekday === dow
+          )
+            return true;
+          return false;
+        });
+      }
+
+      function clearChildren(el) {
+        while (el.firstChild) el.removeChild(el.firstChild);
+      }
+
+      function renderEventsFor(d) {
+        clearChildren(eventsList);
+        const evs = eventsForDate(d);
+        if (evs.length === 0) {
+          eventsList.innerHTML =
+            '<div class="text-sm text-gray-600">No hay eventos para este día.</div>';
+          return;
+        }
+        evs.forEach((ev) => {
+          const card = document.createElement("div");
+          card.className = "mb-3 p-3 rounded border border-gray-100";
+          card.innerHTML = `
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="font-semibold">${ev.title}</div>
+                  <div class="text-xs text-gray-500">${ev.time || ""} • ${ev.location || ""}</div>
+                </div>
+                <div class="text-right">
+                  ${ev.icsLink ? `<a href="${ev.icsLink}" class="text-sm text-verde" download>ICS</a>` : `<button class="text-sm text-verde js-download-ics">ICS</button>`}
+                </div>
+              </div>
+              <div class="text-sm text-gray-700 mt-2">${ev.description || ""}</div>
+            `;
+          eventsList.appendChild(card);
+          if (!ev.icsLink) {
+            const btn = card.querySelector(".js-download-ics");
+            if (btn) btn.addEventListener("click", () => downloadICS(ev, d));
+          }
+        });
+      }
+
+      function downloadICS(ev, dateObj) {
+        // Genera un .ics básico desde los datos del evento
+        const dtStart = (() => {
+          const date = ev.date
+            ? new Date(ev.date + "T" + (ev.time || "00:00"))
+            : new Date(
+                dateObj.getFullYear(),
+                dateObj.getMonth(),
+                dateObj.getDate(),
+                ...(ev.time ? ev.time.split(":").map(Number) : [0, 0])
+              );
+          function toUtcString(d) {
+            return d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+          }
+          return toUtcString(date);
+        })();
+        const dtEnd = dtStart; // simple: same time (could add duration)
+        const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//CIIEMAD//Evento//ES\r\nBEGIN:VEVENT\r\nUID:${ev.id || "evt"}-${dtStart}@ciiemad.local\r\nDTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z\r\nDTSTART:${dtStart}\r\nDTEND:${dtEnd}\r\nSUMMARY:${ev.title}\r\nLOCATION:${ev.location || ""}\r\nDESCRIPTION:${ev.description || ""}\r\nEND:VEVENT\r\nEND:VCALENDAR`;
+        const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${(ev.title || "evento").replace(/[^a-z0-9]/gi, "_")}.ics`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      function renderCalendar() {
+        clearChildren(grid);
+        const first = new Date(viewYear, viewMonth, 1);
+        const startDow = first.getDay();
+        const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+        monthLabel.textContent = first.toLocaleString(undefined, {
+          month: "long",
+          year: "numeric",
+        });
+
+        // pad blanks
+        for (let i = 0; i < startDow; i++) {
+          const el = document.createElement("div");
+          el.className = "h-14";
+          grid.appendChild(el);
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const dateObj = new Date(viewYear, viewMonth, d);
+          const cell = document.createElement("button");
+          cell.type = "button";
+          cell.className =
+            "h-14 flex flex-col items-center justify-center rounded hover:bg-gray-100 transition";
+          const isToday = dateObj.toDateString() === new Date().toDateString();
+          if (isToday) {
+            cell.classList.add("bg-verde/10", "ring-2", "ring-verde/30");
+          }
+          // mark if events exist
+          const evs = eventsForDate(dateObj);
+          let badge = "";
+          if (evs.length > 0)
+            badge = `<span class="mt-1 w-2 h-2 rounded-full ${evs.length > 0 ? "bg-verde" : ""}"></span>`;
+          cell.innerHTML = `<div class="text-sm font-medium">${d}</div>${badge}`;
+          cell.addEventListener("click", () => {
+            selectedDate = dateObj;
+            renderEventsFor(dateObj);
+            // visual selected state
+            Array.from(grid.children).forEach((c) =>
+              c.classList.remove("ring-2", "ring-verde/40")
+            );
+            cell.classList.add("ring-2", "ring-verde/40");
+          });
+          grid.appendChild(cell);
+        }
+      }
+
+      prevBtn.addEventListener("click", () => {
+        viewMonth -= 1;
+        if (viewMonth < 0) {
+          viewMonth = 11;
+          viewYear -= 1;
+        }
+        renderCalendar();
+      });
+      nextBtn.addEventListener("click", () => {
+        viewMonth += 1;
+        if (viewMonth > 11) {
+          viewMonth = 0;
+          viewYear += 1;
+        }
+        renderCalendar();
+      });
+
+      // init
+      renderCalendar();
+      // open today's events by default
+      renderEventsFor(selectedDate);
+      // visually mark today's cell if in view
+      // find cell for today and add ring
+      Array.from(grid.children).forEach((c) => {
+        if (
+          c.textContent &&
+          c.textContent.trim().startsWith(String(today.getDate()))
+        ) {
+          if (
+            new Date(viewYear, viewMonth, today.getDate()).toDateString() ===
+            new Date().toDateString()
+          ) {
+            c.classList.add("ring-2", "ring-verde/40");
+          }
+        }
+      });
+    })();
+  </script>
 
   <!-- Stats Section -->
   <section class="py-16 bg-verde text-white">

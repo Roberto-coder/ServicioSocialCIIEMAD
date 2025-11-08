@@ -1,0 +1,83 @@
+---
+import Layout from "../../layouts/BaseLayout.astro";
+import { posts } from "../../content/blog.js";
+
+// If this file is meant to be a static page (p5.astro), Astro.params.id may be undefined.
+// Use the param when available (dynamic route), otherwise fall back to the known id for this file.
+const requestedId = Astro.params?.id ?? "p5";
+const meta = posts.find((p) => p.id === requestedId) || null;
+
+// const meta = {
+//   id: "p5",
+//   title: "Movilidad sostenible: un enfoque interdisciplinario",
+//   date: "2025-07-10",
+//   author: "Varios autores",
+//   image:
+//     "https://www.gob.mx/cms/uploads/article/main_image/64798/movilidad-sustentable.jpg",
+// };
+---
+
+<Layout>
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    {
+      meta ? (
+        <article class="bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="h-64 bg-gray-100 overflow-hidden">
+            <img
+              src={meta.image}
+              alt={meta.title}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-8">
+            <h1 class="text-3xl font-serif text-guinda mb-3">{meta.title}</h1>
+            <div class="text-sm text-gray-500 mb-6">
+              {meta.date} · {meta.author}
+            </div>
+
+            <div class="prose max-w-none text-gray-700">
+              <p>
+                Reflexión interdisciplinaria sobre políticas, diseño urbano y
+                participación social para promover movilidad sostenible.
+              </p>
+
+              <h2>Políticas públicas</h2>
+              <p>
+                Descripción de intervenciones gubernamentales y su impacto en la
+                movilidad.
+              </p>
+
+              <h3>Diseño urbano</h3>
+              <p>
+                Buenas prácticas en infraestructura segura para peatones y
+                ciclistas.
+              </p>
+            </div>
+
+            <div class="mt-8">
+              <a href="/blog" class="text-guinda hover:underline">
+                ← Volver al Blog
+              </a>
+            </div>
+          </div>
+        </article>
+      ) : (
+        <div class="bg-white rounded-xl shadow-md p-8 text-center">
+          <h2 class="text-2xl font-serif text-guinda mb-4">
+            Publicación no encontrada
+          </h2>
+          <p class="text-gray-600 mb-6">
+            El post solicitado no existe o no está disponible.
+          </p>
+          <a
+            href="/blog"
+            class="inline-block bg-verde text-white px-4 py-2 rounded"
+          >
+            Volver al Blog
+          </a>
+        </div>
+      )
+    }
+  </main>
+</Layout>
