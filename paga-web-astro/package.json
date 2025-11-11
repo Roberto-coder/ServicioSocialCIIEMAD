@@ -6,9 +6,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "start": "node dist/server/entry.mjs",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.0",
     "@astrojs/tailwind": "^6.0.2",
     "@iconify-json/lucide": "^1.2.57",
     "astro": "^5.11.0",
