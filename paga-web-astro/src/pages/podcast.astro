@@ -2,53 +2,54 @@
 import Layout from "../layouts/BaseLayout.astro";
 
 // He añadido una lista de episodios para cada temporada.
-// Puedes actualizar los títulos y los 'videoId' con los de tus capítulos.
+// Puedes actualizar los títulos y los 'videoId' con los de tus Episodios.
 const temporadas = [
   {
     id: 1,
     nombre: "Temporada 1",
     episodios: [
-      { titulo: "T1-Capítulo 1: Introducción a la Teledetección", videoId: "g7UXSm4CaSk" },
-      { titulo: "T1-Capítulo 2: Ciudad que respira: ...contaminación del aire en la CDMX", videoId: "AawJWn-D__Q" }, // Reemplazar VIDEO_ID
-      { titulo: "T1-Capítulo 3: El Futuro del Sector Espacial Ciencia, Sociedad e Innovación", videoId: "AJjM8nqEUs0" }, // Reemplazar VIDEO_ID
-      { titulo: "T1-Capítulo 4: El futuro de la humanidad y la exploración del espacio", videoId: "fdr14bw6k50" }
+      { titulo: "T1-Episodio 1: Introducción a la Teledetección", videoId: "g7UXSm4CaSk" },
+      { titulo: "T1-Episodio 2: Ciudad que respira: ...contaminación del aire en la CDMX", videoId: "AawJWn-D__Q" }, // Reemplazar VIDEO_ID
+      { titulo: "T1-Episodio 3: El Futuro del Sector Espacial Ciencia, Sociedad e Innovación", videoId: "AJjM8nqEUs0" }, // Reemplazar VIDEO_ID
+      { titulo: "T1-Episodio 4: El futuro de la humanidad y la exploración del espacio", videoId: "fdr14bw6k50" }
     ],
   },
   {
     id: 2,
     nombre: "Temporada 2",
     episodios: [
-      { titulo: "T2-Capítulo 1: La importancia de la interdisciplina en las ciencias ambientales", videoId: "zAC50S1AIG4" },
-      { titulo: "T2-Capítulo 2: Del plástico al micro plástico. La solución que se convirtió en...", videoId: "w-438N1PAHM" }, // Reemplazar VIDEO_ID
-      { titulo: "T2-Capítulo 3: Uso de índices geo-ambientales para la evaluación de la", videoId: "tuSYecVRRSc" },
-      { titulo: "T2-Capítulo 4: ¿Por qué los países del “primer mundo” no están más avanzados en...", videoId: "As_EURLV0JM" },
-      { titulo: "T2-Capítulo 5 parte 1: La maternidad y los estudios de doctorado", videoId: "Vwfr5LtMr0Q" },
-      { titulo: "T2-Capítulo 5 parte 2: La maternidad y los estudios de doctorado", videoId: "kncYvXkAbzY" },
-      { titulo: "T2-Capítulo 5 parte 3: La maternidad y los estudios de doctorado", videoId: "q67e4emI8Eg" },
-      { titulo: "T2-Capítulo 5 parte 4: La maternidad y los estudios de doctorado", videoId: "tOCXDBup-Hs" },
-      { titulo: "T2-Capítulo 6: ¿Gas o ballenas? El dilema del Golfo de California", videoId: "ifPTzTSyOLE" },
-      { titulo: "T2-Capítulo 7: Reúso y tratamiento de los residuos mineros", videoId: "mvBYm1C7FjU" },
+      { titulo: "T2-Episodio 1: La importancia de la interdisciplina en las ciencias ambientales", videoId: "zAC50S1AIG4" },
+      { titulo: "T2-Episodio 2: Del plástico al micro plástico. La solución que se convirtió en...", videoId: "w-438N1PAHM" }, // Reemplazar VIDEO_ID
+      { titulo: "T2-Episodio 3: Uso de índices geo-ambientales para la evaluación de la", videoId: "tuSYecVRRSc" },
+      { titulo: "T2-Episodio 4: ¿Por qué los países del “primer mundo” no están más avanzados en...", videoId: "As_EURLV0JM" },
+      { titulo: "T2-Episodio 5 parte 1: La maternidad y los estudios de doctorado", videoId: "Vwfr5LtMr0Q" },
+      { titulo: "T2-Episodio 5 parte 2: La maternidad y los estudios de doctorado", videoId: "kncYvXkAbzY" },
+      { titulo: "T2-Episodio 5 parte 3: La maternidad y los estudios de doctorado", videoId: "q67e4emI8Eg" },
+      { titulo: "T2-Episodio 5 parte 4: La maternidad y los estudios de doctorado", videoId: "tOCXDBup-Hs" },
+      { titulo: "T2-Episodio 6: ¿Gas o ballenas? El dilema del Golfo de California", videoId: "ifPTzTSyOLE" },
+      { titulo: "T2-Episodio 7: Reúso y tratamiento de los residuos mineros", videoId: "mvBYm1C7FjU" },
     ],
   },
   {
     id: 3,
     nombre: "Temporada 3",
     episodios: [
-      { titulo: "T3-Capítulo 1: Humedal artificial: una solución natural para tratar aguas residuales", videoId: "H-DxaiIEjzI" },
-      { titulo: "T3-Capítulo 2: Captación de agua de lluvia para recarga del acuífero en CDMX", videoId: "yIMepdNNIvI" }, // Reemplazar VIDEO_ID
-      { titulo: "T3-Capítulo 3: Crisis Hídrica en la Ciudad de México: Agua y futuro", videoId: "QomqNoLel2I" },
-      { titulo: "T3-Capítulo 4: El derecho humano al agua en México: Concesiones, leyes y retos", videoId: "_aVMsQbaXVo" },
-      { titulo: "T3-Capítulo 5: Derecho humano al agua en México: indicadores, saneamiento y Acuerdo de Escazú", videoId: "yPP1282Fph8" },
+      { titulo: "T3-Episodio 1: Humedal artificial: una solución natural para tratar aguas residuales", videoId: "H-DxaiIEjzI" },
+      { titulo: "T3-Episodio 2: Captación de agua de lluvia para recarga del acuífero en CDMX", videoId: "yIMepdNNIvI" }, // Reemplazar VIDEO_ID
+      { titulo: "T3-Episodio 3: Crisis Hídrica en la Ciudad de México: Agua y futuro", videoId: "QomqNoLel2I" },
+      { titulo: "T3-Episodio 4: El derecho humano al agua en México: Concesiones, leyes y retos", videoId: "_aVMsQbaXVo" },
+      { titulo: "T3-Episodio 5: Derecho humano al agua en México: indicadores, saneamiento y Acuerdo de Escazú", videoId: "yPP1282Fph8" },
     ],
   },
   {
     id: 4,
     nombre: "Temporada 4",
     episodios: [
-      { titulo: "T4-Capítulo 1: Infraestructura verde en la Ciudad de México ", videoId: "bEhVzRyd-JA" },
-      { titulo: "T4-Capítulo 2: Hagamos Composta: Ideas que transforman", videoId: "vTPegDzfWr4" }, // Reemplazar VIDEO_ID
-      { titulo: "T4-Capítulo 3: Infraestructura verde en la Ciudad de México", videoId: "70kH4clXKXo" },
-      { titulo: "T4-Capítulo 4: Protección del Medio Ambiente en el Sector Industrial", videoId: "_vmnnhTmUvY" },
+      { titulo: "T4-Episodio 1: Infraestructura verde en la Ciudad de México ", videoId: "bEhVzRyd-JA" },
+      { titulo: "T4-Episodio 2: Hagamos Composta: Ideas que transforman", videoId: "vTPegDzfWr4" }, // Reemplazar VIDEO_ID
+      { titulo: "T4-Episodio 3: Infraestructura verde en la Ciudad de México", videoId: "70kH4clXKXo" },
+      { titulo: "T4-Episodio 4: Protección del Medio Ambiente en el Sector Industrial", videoId: "_vmnnhTmUvY" },
+      { titulo: "T4-Episodio 5: Diseño del paisaje y polinizadores urbanos: biodiversidad en la ciudad ", videoId: "MoUpVGb9on0" },
     ],
   },
 ];
