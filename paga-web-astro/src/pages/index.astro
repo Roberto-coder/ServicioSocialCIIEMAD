@@ -13,50 +13,6 @@ import Layout from "../layouts/BaseLayout.astro";
   <section class="w-full relative">
     <div class="swiper mySwiper h-[500px]">
       <div class="swiper-wrapper">
-        <!-- Slide Servicio Social -->
-        <div class="swiper-slide relative">
-          <img
-            src="/banner/ss1.png"
-            class="w-full h-full object-cover"
-          />
-          <div
-            class="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-end pr-16"
-          >
-            <div class="text-right text-white max-w-lg">
-              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">
-                <a href="/contacto" class="hover:underline">
-                  LIBERA TU SERVICIO SOCIAL CON NOSOTROS
-                </a>
-              </h3>
-              <p class="text-xl drop-shadow-md">
-                Pon en práctica tus conocimientos y habilidades, contáctanos.
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- Slide Podcast Dra. Cristina -->
-        <div class="swiper-slide relative">
-          <img
-            src="/banner/PodcastT4E5.jpg"
-            class="w-full h-full object-contain"
-            style="background-color: rgb(239, 225, 176);"
-            alt="Podcast Dra. Cristina Ayala Azcárraga"
-          />
-          <div
-            class="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-end pr-16"
-          >
-            <div class="text-right text-white max-w-lg">
-              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">
-                <a href="/podcast" class="hover:underline">
-                  NUEVO PODCAST CON LA DRA. CRISTINA AYALA AZCÁRRAGA
-                </a>
-              </h3>
-              <p class="text-xl drop-shadow-md">
-                Escucha nuestro más reciente episodio sobre sustentabilidad.
-              </p>
-            </div>
-          </div>
-        </div>
         <div class="swiper-slide relative">
           <img
             src="/slider/image1i.jpg"
@@ -111,6 +67,50 @@ import Layout from "../layouts/BaseLayout.astro";
               </h3>
               <p class="text-xl drop-shadow-md">
                 Generando cambios positivos en la sociedad
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide Servicio Social -->
+        <div class="swiper-slide relative">
+          <img
+            src="/banner/ss1.png"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-end pr-16"
+          >
+            <div class="text-right text-white max-w-lg">
+              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">
+                <a href="/contacto" class="hover:underline">
+                  LIBERA TU SERVICIO SOCIAL CON NOSOTROS
+                </a>
+              </h3>
+              <p class="text-xl drop-shadow-md">
+                Pon en práctica tus conocimientos y habilidades, contáctanos.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide Podcast Dra. Cristina -->
+        <div class="swiper-slide relative">
+          <img
+            src="/banner/PodcastT4E5.jpg"
+            class="w-full h-full object-contain"
+            style="background-color: rgb(239, 225, 176);"
+            alt="Podcast Dra. Cristina Ayala Azcárraga"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-end pr-16"
+          >
+            <div class="text-right text-white max-w-lg">
+              <h3 class="text-4xl font-bold mb-4 drop-shadow-lg">
+                <a href="/podcast" class="hover:underline">
+                  NUEVO PODCAST CON LA DRA. CRISTINA AYALA AZCÁRRAGA
+                </a>
+              </h3>
+              <p class="text-xl drop-shadow-md">
+                Escucha nuestro más reciente episodio sobre sustentabilidad.
               </p>
             </div>
           </div>
@@ -246,6 +246,25 @@ import Layout from "../layouts/BaseLayout.astro";
           class="px-3 py-1 bg-verde text-white rounded hidden">Reanudar</button
         >
       </div>
+    </div>
+  </section>
+
+  <!-- CTA Diviértete y Aprende -->
+  <section class="py-16 px-4 bg-verde text-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+        🎮 ¡Diviértete y aprende con nosotros!
+      </h2>
+      <p class="text-lg md:text-xl mb-6 opacity-95">
+        ¿Quieres divertirte y aprender? ¡Envíanos un mensaje y disfruta de nuestro
+        📱 videojuego móvil y una 🥽 app de realidad aumentada!
+      </p>
+      <a
+        href="/contacto"
+        class="inline-block bg-white text-guinda px-6 py-3 rounded-md font-semibold shadow hover:shadow-lg transition-transform duration-200 hover:-translate-y-0.5"
+      >
+        ¡Envíanos un mensaje!
+      </a>
     </div>
   </section>
 
