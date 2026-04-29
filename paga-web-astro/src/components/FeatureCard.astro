@@ -1,0 +1,50 @@
+---
+// FeatureCard: tarjeta destacada con título coloreado, descripción justificada y CTA.
+// Usado en la home (Nuestro Trabajo, Quiénes Somos, Publicaciones).
+
+interface Props {
+  title: string;
+  /** Color del título y CTA. */
+  color?: "verde" | "guinda" | "gray";
+  /** URL del CTA. Si se omite, no se renderiza el botón. */
+  ctaHref?: string;
+  /** Texto del CTA. */
+  ctaLabel?: string;
+}
+
+const { title, color = "verde", ctaHref, ctaLabel = "Conocer más" } =
+  Astro.props;
+
+const titleColorMap = {
+  verde: "text-verde",
+  guinda: "text-guinda",
+  gray: "text-gray-700",
+};
+
+const ctaColorMap = {
+  verde: "bg-verde hover:bg-green-700",
+  guinda: "bg-guinda hover:bg-red-800",
+  gray: "bg-gray-700 hover:bg-gray-800",
+};
+---
+
+<article
+  class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 motion-reduce:transform-none"
+>
+  <div class="p-6">
+    <h3 class={`text-2xl font-bold mb-4 ${titleColorMap[color]}`}>{title}</h3>
+    <p class="text-black font-sans mb-6 leading-relaxed text-justify hyphens-auto">
+      <slot />
+    </p>
+    {
+      ctaHref && (
+        <a
+          href={ctaHref}
+          class={`inline-block text-white px-6 py-3 rounded-md transition-colors duration-200 font-medium ${ctaColorMap[color]}`}
+        >
+          {ctaLabel}
+        </a>
+      )
+    }
+  </div>
+</article>

@@ -1,5 +1,6 @@
 ---
 // src/components/Footer.astro
+import SmartImage from "./SmartImage.astro";
 ---
 
 <footer class="bg-guinda text-white py-12 mt-20">
@@ -10,9 +11,9 @@
     >
       <!-- Logo Izquierdo -->
       <div class="flex-shrink-0">
-        <img
+        <SmartImage
           src="/logos/lapp.png"
-          alt="Logo izquierdo"
+          alt="Logo SUSTENTA-LAPP"
           class="h-32 w-auto md:h-40"
         />
       </div>
@@ -38,7 +39,7 @@
 
       <!-- Logo Derecho -->
       <div class="flex-shrink-0">
-        <img
+        <SmartImage
           src="/podcast/ST.png"
           alt="Logo CIIEMAD"
           class="h-32 w-auto md:h-40"

@@ -1,0 +1,66 @@
+---
+// YouTubeFacade: muestra una miniatura clickeable en lugar del iframe de YouTube.
+// Beneficios:
+//   - No carga ~600KB de scripts de YouTube hasta que el usuario decida ver el video
+//   - Elimina las llamadas de telemetría que disparan errores con ad-blockers
+//   - Mejora LCP/CLS y el INP del thread principal
+// Una vez clickeado, se reemplaza por un <iframe> a youtube-nocookie.com con autoplay.
+//
+// El bloque externo lleva data-yt-slot para identificar el contenedor; el script de la
+// página puede cambiar el videoId en este elemento (cambio de episodio sin clickear play).
+
+interface Props {
+  videoId: string;
+  title?: string;
+  /** Calidad del thumbnail: maxresdefault (1280x720) o hqdefault (480x360, siempre existe). */
+  quality?: "maxres" | "hq";
+  class?: string;
+}
+
+const {
+  videoId,
+  title = "Reproducir video de YouTube",
+  quality = "hq",
+  class: classProp = "",
+} = Astro.props;
+
+const thumbBase = quality === "maxres" ? "maxresdefault" : "hqdefault";
+const poster = `https://i.ytimg.com/vi/${videoId}/${thumbBase}.jpg`;
+const posterFallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<div
+  data-yt-slot
+  data-video-id={videoId}
+  class:list={[
+    "relative overflow-hidden rounded-lg shadow-lg bg-black",
+    classProp,
+  ]}
+  style="padding-top: 56.25%;"
+>
+  <button
+    type="button"
+    data-yt-facade
+    class="absolute inset-0 w-full h-full group cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-guinda/50"
+    aria-label={title}
+  >
+    <img
+      src={poster}
+      onerror={`this.onerror=null;this.src='${posterFallback}'`}
+      alt=""
+      width="1280"
+      height="720"
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+    <span class="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-colors"></span>
+    <span
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-guinda/95 text-white shadow-lg group-hover:scale-110 transition-transform"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 sm:w-10 sm:h-10 ml-1">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </span>
+  </button>
+</div>

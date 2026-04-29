@@ -1,0 +1,95 @@
+---
+// SmartImage: <picture> con <source> WebP + <img> de respaldo.
+// Las variantes .webp las genera `npm run optimize:images:apply` (Sharp).
+// Si no existe el .webp, el navegador cae al <img> original sin error visible.
+//
+// Para imágenes LCP/above-the-fold pasar priority={true} → loading="eager" +
+// decoding="sync" + fetchpriority="high".
+//
+// No envuelve en <picture> cuando:
+//   - el src es remoto (http(s)://, //, data:)
+//   - el src ya es .webp, .svg, .gif o .avif
+//   - se pasa noWebp={true} explícitamente
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number | string;
+  height?: number | string;
+  class?: string;
+  /** true para imagen crítica (LCP, hero). false (default) para todo lo demás. */
+  priority?: boolean;
+  /** Atributo sizes (responsive). */
+  sizes?: string;
+  /** Atributo srcset extra para el <img> (no para el <source> webp). */
+  srcset?: string;
+  /** Estilo inline opcional. */
+  style?: string;
+  /** Desactiva la generación de <source type="image/webp">. */
+  noWebp?: boolean;
+  /** id pasante al <img>. Útil si scripts del cliente lo referencian. */
+  id?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: classProp = "",
+  priority = false,
+  sizes,
+  srcset,
+  style,
+  noWebp = false,
+  id,
+} = Astro.props;
+
+const isRemote = /^(https?:|\/\/|data:)/i.test(src);
+const isLocalRaster = /\.(png|jpe?g)$/i.test(src);
+const useWebp = !noWebp && !isRemote && isLocalRaster;
+// srcset usa espacios como separadores entre URL y descriptor (1x, 800w, etc.).
+// Si el archivo tiene espacios, el parser corta la URL en el primer espacio.
+// encodeURI preserva "/" pero escapa espacios y caracteres no ASCII.
+const webpSrc = useWebp
+  ? encodeURI(src.replace(/\.(png|jpe?g)$/i, ".webp"))
+  : null;
+
+const loading = priority ? "eager" : "lazy";
+const decoding = priority ? "sync" : "async";
+const fetchpriority = priority ? "high" : "auto";
+---
+
+{useWebp ? (
+  <picture>
+    <source srcset={webpSrc} type="image/webp" sizes={sizes} />
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      class={classProp}
+      loading={loading}
+      decoding={decoding}
+      fetchpriority={fetchpriority}
+      sizes={sizes}
+      srcset={srcset}
+      style={style}
+      id={id}
+    />
+  </picture>
+) : (
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class={classProp}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    sizes={sizes}
+    srcset={srcset}
+    style={style}
+  />
+)}

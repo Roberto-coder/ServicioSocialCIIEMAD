@@ -106,7 +106,7 @@ export const personas = [
     id: "ana-laura",
     nombre: "Ana Laura",
     titulo:
-      "Maestra en Ciencias en Estudios Ambientales y de la Sustentabilidad",
+      "Doctora en Ciencias en Estudios Ambientales y de la Sustentabilidad",
     foto: "/equipo/ALCN.jpg",
     email: "ana.laura@ciiemad.ipn.mx",
     especialidades: [
@@ -158,7 +158,7 @@ export const personas = [
     id: "diego-dominguez",
     nombre: "Diego Domínguez Solís",
     titulo:
-      "Ingeniero Ambiental y Maestro en Ciencias en Estudios Ambientales y de la Sustentabilidad",
+      "Maestro en Ciencias en Estudios Ambientales y de la Sustentabilidad",
     foto: "/equipo/diego_dominguez.png",
     email: "diegossolis32@gmail.com",
     especialidades: [

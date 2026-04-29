@@ -15,6 +15,8 @@ import {
   Globe,
   Clock,
 } from "lucide-astro";
+import PageHero from "../components/PageHero.astro";
+import SmartImage from "../components/SmartImage.astro";
 
 export const lineasInvestigacion = [
   {
@@ -51,22 +53,14 @@ export const lineasInvestigacion = [
 ---
 
 <Layout>
-  <!-- Header Section -->
-  <section class="py-12 bg-gray-50 font-sans">
-    <div class="text-center mb-16">
-      <div class="flex justify-center mb-6">
-        <div class="bg-verde/10 p-4 rounded-full">
-          <Target class="w-12 h-12 text-verde" />
-        </div>
-      </div>
-      <h1 class="text-5xl font-serif text-guinda mb-4">Nuestro Aporte</h1>
-      <p class="text-lg text-gray-600 max-w-3xl mx-auto font-sans">
-        Actividades culturales y proyectos que reflejan nuestro compromiso con
-        el desarrollo sostenible y la toma de decisiones basadas en evidencia
-        científica.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    title="Nuestro Aporte"
+    subtitle="Actividades culturales y proyectos que reflejan nuestro compromiso con el desarrollo sostenible y la toma de decisiones basadas en evidencia científica."
+    iconColor="verde"
+    class="bg-gray-50 my-0 py-12 max-w-none"
+  >
+    <Target slot="icon" class="w-12 h-12 text-verde" />
+  </PageHero>
 
   <!-- Actividades -->
   <section class="py-16 bg-white">
@@ -84,7 +78,7 @@ export const lineasInvestigacion = [
         <div
           class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
         >
-          <img
+          <SmartImage
             src="https://tse1.mm.bing.net/th/id/OIP.vd4hFo0GiA7LdAp5eoekHwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
             alt="Club de Ajedrez"
             class="w-full h-40 object-cover"
@@ -110,7 +104,7 @@ export const lineasInvestigacion = [
         <div
           class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
         >
-          <img
+          <SmartImage
             src="/galeria/FERIADELLIBRO 2025.jpeg"
             alt="Feria de Libro"
             class="w-full h-40 object-cover"
@@ -133,7 +127,7 @@ export const lineasInvestigacion = [
         <div
           class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
         >
-          <img
+          <SmartImage
             src="/galeria/VISITA CECYT 7 A CIIEMAD TALLERES AMBIENTALES.jpg"
             alt="Visita a CECyT"
             class="w-full h-40 object-cover"
@@ -159,7 +153,7 @@ export const lineasInvestigacion = [
         <div
           class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
         >
-          <img
+          <SmartImage
             src="/galeria/TALLER MA SEC GAM3.jpg"
             alt="Taller"
             class="w-full h-40 object-cover"
@@ -183,7 +177,7 @@ export const lineasInvestigacion = [
         <div
           class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
         >
-          <img
+          <SmartImage
             src="/galeria/PREMIO PODCAST 2023.jpg"
             alt="Concurso"
             class="w-full h-40 object-cover"
@@ -213,7 +207,7 @@ export const lineasInvestigacion = [
         <div
           class="group block bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 overflow-hidden"
         >
-          <img
+          <SmartImage
             src="https://formainfancia.com/wp-content/uploads/talleres-para-nin%CC%83os.jpg"
             alt="Talleres infantiles"
             class="w-full h-40 object-cover"

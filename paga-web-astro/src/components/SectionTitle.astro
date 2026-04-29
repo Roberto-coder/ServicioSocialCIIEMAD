@@ -1,0 +1,46 @@
+---
+// SectionTitle: encabezado centrado para secciones internas (h2 + sub opcional).
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  /** Color del título. */
+  color?: "guinda" | "verde";
+  /** Si true, agrega icono via slot="icon" sobre el título. */
+  withIcon?: boolean;
+  /** Tamaño del título. */
+  size?: "md" | "lg";
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  color = "guinda",
+  withIcon = false,
+  size = "lg",
+  class: classProp = "",
+} = Astro.props;
+
+const titleColor = color === "guinda" ? "text-guinda" : "text-verde";
+const titleSize = size === "lg" ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl";
+---
+
+<div class={`text-center ${classProp}`}>
+  {
+    withIcon && (
+      <div class="flex justify-center mb-6">
+        <slot name="icon" />
+      </div>
+    )
+  }
+  <h2 class={`${titleSize} font-serif ${titleColor} mb-4`}>{title}</h2>
+  {
+    subtitle && (
+      <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto font-sans">
+        {subtitle}
+      </p>
+    )
+  }
+  <slot />
+</div>

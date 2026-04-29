@@ -1,0 +1,47 @@
+---
+// IconBadge: círculo con tinta sobre fondo translúcido, contiene un icono via slot.
+// Sustituye al patrón <div class="bg-{color}/10 p-N rounded-full"><Icon class="w-X h-X text-{color}" /></div>
+
+interface Props {
+  /** Color del tema. Mapea a la paleta custom (guinda, verde) o cualquier utilitario Tailwind. */
+  color?: "guinda" | "verde" | "white";
+  /** Tamaño visual. sm = p-3 + icono w-8, md = p-4 + icono w-12. */
+  size?: "sm" | "md";
+  /** Animación pulse opcional (respeta prefers-reduced-motion). */
+  pulse?: boolean;
+  /** Clase adicional para el wrapper. */
+  class?: string;
+}
+
+const {
+  color = "guinda",
+  size = "md",
+  pulse = false,
+  class: classProp = "",
+} = Astro.props;
+
+const bgMap = {
+  guinda: "bg-guinda/10",
+  verde: "bg-verde/10",
+  white: "bg-white/10",
+};
+
+const sizeMap = {
+  sm: "p-3",
+  md: "p-4",
+};
+
+const wrapper = [
+  bgMap[color],
+  sizeMap[size],
+  "rounded-full inline-flex items-center justify-center",
+  pulse ? "animate-pulse motion-reduce:animate-none" : "",
+  classProp,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={wrapper}>
+  <slot />
+</div>

@@ -7,7 +7,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "start": "node dist/server/entry.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "optimize:images:apply": "node scripts/optimize-images.mjs --apply"
   },
   "dependencies": {
     "@astrojs/node": "^9.5.0",

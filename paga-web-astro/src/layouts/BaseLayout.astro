@@ -3,6 +3,10 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+// El preload del LCP del slider solo aplica en la home; emitirlo en otras
+// rutas dispara el warning "preloaded but not used".
+const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "";
 ---
 
 <html lang="es">
@@ -14,10 +18,18 @@ import Footer from "../components/Footer.astro";
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"
-    ></script>
-    <script async src="https://connect.facebook.net/es_LA/sdk.js"></script>
-    <script async src="https://www.instagram.com/embed.js"></script>
+
+    <!-- Preconnect a orígenes de terceros usados en el sitio -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="https://platform.twitter.com">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
+    <link rel="dns-prefetch" href="https://www.instagram.com">
+
+    {/* Hint del LCP solo en la home (slider) */}
+    {isHome && (
+      <link rel="preload" as="image" href="/slider/image1i.jpg" fetchpriority="high" />
+    )}
   </head>
   <body class="font-sans bg-white text-gray-900 leading-relaxed">
     <Header />
@@ -87,6 +99,21 @@ import Footer from "../components/Footer.astro";
         // On initial load, mostrar la página
         document.addEventListener("DOMContentLoaded", showPage);
 
+        // pageshow se dispara tanto en carga inicial como al restaurar desde bfcache
+        // (botón "atrás"). Sin esto, la página queda en blanco porque hideAndNavigate
+        // dejó #page-transition en opacity-0 antes de que el navegador la congelara.
+        window.addEventListener("pageshow", (event) => {
+          showPage();
+          if (event.persisted) loadSocialWidgets();
+        });
+
+        // Antes de descongelarse en bfcache, restaurar al estado visible para que
+        // el snapshot guardado no quede oculto.
+        window.addEventListener("pagehide", () => {
+          page?.classList.remove("opacity-0", "translate-y-2");
+          page?.classList.add("opacity-100", "translate-y-0");
+        });
+
         // Cuando Astro termina una navegación cliente, asegurarse de mostrar widgets y el contenido
         document.addEventListener("astro:page-load", (event) => {
           loadSocialWidgets();
@@ -139,15 +166,43 @@ import Footer from "../components/Footer.astro";
       // Ejecuta la función CADA VEZ que Astro termina de cargar una página
       document.addEventListener("astro:page-load", loadSocialWidgets);
     </script>
-    <!-- SDK oficial de Facebook (en español de Latinoamérica). Si tu layout
-           ya incluye este script, puedes eliminarlo aquí para evitar doble carga. -->
-    <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v16.0"
-    ></script>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"
-    ></script>
+    <!-- Carga diferida de SDKs sociales: sólo si la página contiene embeds -->
+    <script is:inline>
+      (function loadSocialSdksOnDemand() {
+        const has = (sel) => document.querySelector(sel);
+        const inject = (src, attrs) => {
+          if (document.querySelector(`script[src*="${src}"]`)) return;
+          const s = document.createElement("script");
+          s.src = src;
+          s.async = true;
+          s.defer = true;
+          if (attrs) Object.entries(attrs).forEach(([k, v]) => s.setAttribute(k, v));
+          document.body.appendChild(s);
+        };
+
+        const run = () => {
+          if (has(".fb-page, .fb-post, .fb-video, [data-fb]")) {
+            inject(
+              "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v16.0",
+              { crossorigin: "anonymous" }
+            );
+          }
+          if (has("blockquote.twitter-tweet, [data-twitter]")) {
+            inject("https://platform.twitter.com/widgets.js", {
+              charset: "utf-8",
+            });
+          }
+          if (has("blockquote.instagram-media, [data-instagram]")) {
+            inject("https://www.instagram.com/embed.js");
+          }
+        };
+
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(run, { timeout: 2500 });
+        } else {
+          setTimeout(run, 1500);
+        }
+      })();
+    </script>
   </body>
 </html>

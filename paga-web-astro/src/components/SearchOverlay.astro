@@ -1,0 +1,322 @@
+---
+// src/components/SearchOverlay.astro
+// Buscador interno del sitio. Indexa secciones estáticas + personas + posts del blog.
+import { personas } from "../content/personas.js";
+import { posts } from "../content/blog.js";
+
+const secciones = [
+  {
+    titulo: "Inicio",
+    url: "/",
+    descripcion: "Página principal de SUSTENTA-LAPP",
+    keywords: ["inicio", "home", "principal", "sustentaterra", "sustenta", "lapp", "ciiemad"],
+  },
+  {
+    titulo: "Sobre nosotros — Misión y Visión",
+    url: "/sobre-nosotros#mision-vision",
+    descripcion: "Quiénes somos, misión y visión",
+    keywords: ["sobre nosotros", "quiénes somos", "misión", "visión", "valores", "objetivos"],
+  },
+  {
+    titulo: "Sobre nosotros — Nuestro equipo",
+    url: "/sobre-nosotros#equipo",
+    descripcion: "Investigadores e integrantes",
+    keywords: ["equipo", "investigadores", "personas", "miembros", "staff", "integrantes"],
+  },
+  {
+    titulo: "Nuestro trabajo",
+    url: "/nuestro-trabajo",
+    descripcion: "Líneas de investigación, proyectos y actividades",
+    keywords: ["trabajo", "proyectos", "investigación", "líneas", "actividades", "aporte", "eventos"],
+  },
+  {
+    titulo: "Publicaciones",
+    url: "/publicaciones",
+    descripcion: "Artículos, libros, capítulos, congresos, tesis e informes",
+    keywords: ["publicaciones", "artículos", "papers", "libros", "capítulos", "congresos", "tesis", "informes", "investigación"],
+  },
+  {
+    titulo: "Galería",
+    url: "/galeria",
+    descripcion: "Fotos y videos de eventos y actividades",
+    keywords: ["galería", "fotos", "imágenes", "videos", "eventos", "talleres", "ponencias"],
+  },
+  {
+    titulo: "Podcast Sustentaterra",
+    url: "/podcast",
+    descripcion: "Episodios y temporadas",
+    keywords: ["podcast", "audio", "episodios", "temporadas", "sustentaterra", "spotify", "youtube"],
+  },
+  {
+    titulo: "Blog",
+    url: "/blog",
+    descripcion: "Artículos del blog y datos de calidad del aire",
+    keywords: ["blog", "noticias", "calidad del aire", "clima", "aqi"],
+  },
+  {
+    titulo: "Contacto",
+    url: "/contacto",
+    descripcion: "Ubicación, teléfono, correo y formulario",
+    keywords: ["contacto", "contáctanos", "ubicación", "dirección", "teléfono", "email", "correo", "formulario", "servicio social", "redes sociales", "mapa"],
+  },
+];
+
+const equipo = personas.map((p) => ({
+  titulo: p.nombre,
+  url: `/equipo/${p.id}`,
+  descripcion: p.titulo,
+  keywords: [p.nombre, p.titulo, ...(p.especialidades || [])],
+}));
+
+const blogPosts = posts.map((p) => ({
+  titulo: p.title,
+  url: `/posts_blog/${p.id}`,
+  descripcion: p.excerpt,
+  keywords: [p.title, p.excerpt, p.author].filter(Boolean),
+}));
+
+const searchIndex = [...secciones, ...equipo, ...blogPosts];
+---
+
+<!-- Botón disparador (se inserta donde se importe el componente) -->
+<button
+  type="button"
+  id="search-open"
+  aria-label="Abrir buscador"
+  class="inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-700 hover:text-guinda hover:bg-gray-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-guinda"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <circle cx="11" cy="11" r="7"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</button>
+
+<!-- Overlay del buscador -->
+<div
+  id="search-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="search-title"
+  class="fixed inset-0 z-[100] hidden bg-black/40 backdrop-blur-sm"
+>
+  <div
+    class="absolute inset-x-0 top-0 mx-auto bg-white shadow-xl
+           h-full sm:h-auto sm:max-h-[85vh] sm:mt-16 sm:max-w-2xl sm:rounded-2xl
+           flex flex-col overflow-hidden"
+  >
+    <!-- Encabezado con input -->
+    <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-200">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-gray-500 flex-shrink-0">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <label for="search-input" id="search-title" class="sr-only">Buscar en el sitio</label>
+      <input
+        id="search-input"
+        type="search"
+        autocomplete="off"
+        placeholder="Buscar páginas, personas, publicaciones..."
+        class="flex-1 min-w-0 bg-transparent text-base text-gray-900 placeholder-gray-400 outline-none"
+      />
+      <button
+        type="button"
+        id="search-close"
+        aria-label="Cerrar buscador"
+        class="flex-shrink-0 w-9 h-9 rounded-full text-gray-500 hover:bg-gray-100 hover:text-guinda flex items-center justify-center"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Sugerencias de palabras clave -->
+    <div class="px-4 pt-3 pb-2 border-b border-gray-100">
+      <p class="text-xs uppercase tracking-wider text-gray-500 mb-2">Sugerencias</p>
+      <div class="flex flex-wrap gap-2" id="search-suggestions">
+        {["Equipo", "Publicaciones", "Podcast", "Servicio social", "Galería", "Misión"].map((s) => (
+          <button
+            type="button"
+            class="suggestion-chip text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-guinda/10 hover:text-guinda transition-colors"
+            data-query={s}
+          >
+            {s}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Resultados -->
+    <ul id="search-results" class="flex-1 overflow-y-auto divide-y divide-gray-100"></ul>
+
+    <!-- Empty state -->
+    <div id="search-empty" class="hidden px-6 py-10 text-center">
+      <p class="text-gray-700 font-medium mb-3">
+        ¿No encontraste lo que buscabas?
+      </p>
+      <a
+        href="/contacto"
+        class="inline-flex items-center gap-2 bg-verde text-white px-5 py-2.5 rounded-full font-medium hover:bg-green-700 transition-colors"
+      >
+        Contáctanos
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ searchIndex }}>
+  document.addEventListener("DOMContentLoaded", function () {
+    const openBtn = document.getElementById("search-open");
+    const overlay = document.getElementById("search-overlay");
+    const closeBtn = document.getElementById("search-close");
+    const input = document.getElementById("search-input");
+    const list = document.getElementById("search-results");
+    const empty = document.getElementById("search-empty");
+    const chips = document.querySelectorAll(".suggestion-chip");
+    if (!openBtn || !overlay || !input || !list || !empty) return;
+
+    function normalize(s) {
+      return (s || "")
+        .toString()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    // Pre-normalizar índice una sola vez
+    const index = searchIndex.map((item) => ({
+      ...item,
+      _haystack: normalize(
+        [item.titulo, item.descripcion, ...(item.keywords || [])].join(" ")
+      ),
+      _title: normalize(item.titulo),
+    }));
+
+    function renderResults(query) {
+      const q = normalize(query).trim();
+      list.innerHTML = "";
+
+      if (!q) {
+        empty.classList.add("hidden");
+        list.classList.remove("hidden");
+        // Estado por defecto: mostrar las primeras 6 secciones como acceso rápido
+        const defaults = index.slice(0, 6);
+        defaults.forEach((item) => list.appendChild(buildItem(item)));
+        return;
+      }
+
+      const tokens = q.split(/\s+/).filter(Boolean);
+      const matches = index
+        .map((item) => {
+          let score = 0;
+          for (const t of tokens) {
+            if (item._title.includes(t)) score += 3;
+            else if (item._haystack.includes(t)) score += 1;
+            else return null;
+          }
+          return { item, score };
+        })
+        .filter(Boolean)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 12);
+
+      if (matches.length === 0) {
+        list.classList.add("hidden");
+        empty.classList.remove("hidden");
+        return;
+      }
+
+      empty.classList.add("hidden");
+      list.classList.remove("hidden");
+      matches.forEach(({ item }) => list.appendChild(buildItem(item)));
+    }
+
+    function buildItem(item) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = item.url;
+      a.className =
+        "flex items-start gap-3 px-4 py-3 hover:bg-gray-50 active:bg-gray-100 transition-colors";
+      a.setAttribute("data-no-transition", "");
+      a.innerHTML =
+        '<span class="mt-1 w-2 h-2 rounded-full bg-guinda flex-shrink-0"></span>' +
+        '<span class="flex-1 min-w-0">' +
+        '<span class="block font-semibold text-gray-900 truncate">' +
+        escapeHtml(item.titulo) +
+        "</span>" +
+        (item.descripcion
+          ? '<span class="block text-sm text-gray-600 truncate">' +
+            escapeHtml(item.descripcion) +
+            "</span>"
+          : "") +
+        "</span>";
+      li.appendChild(a);
+      return li;
+    }
+
+    function escapeHtml(s) {
+      return (s || "")
+        .toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function open() {
+      overlay.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      renderResults(input.value);
+      // Microtask para enfocar después del repaint (iOS)
+      setTimeout(() => input.focus(), 50);
+    }
+
+    function close() {
+      overlay.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    openBtn.addEventListener("click", open);
+    closeBtn?.addEventListener("click", close);
+
+    overlay.addEventListener("click", (e) => {
+      // Cerrar al tocar fuera del panel
+      if (e.target === overlay) close();
+    });
+
+    input.addEventListener("input", (e) => {
+      renderResults(e.target.value);
+    });
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const q = chip.getAttribute("data-query") || "";
+        input.value = q;
+        renderResults(q);
+        input.focus();
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !overlay.classList.contains("hidden")) {
+        close();
+      }
+      // Atajo: "/" abre el buscador (si no está escribiendo en otro input)
+      if (
+        e.key === "/" &&
+        overlay.classList.contains("hidden") &&
+        !["INPUT", "TEXTAREA", "SELECT"].includes(
+          document.activeElement?.tagName || ""
+        )
+      ) {
+        e.preventDefault();
+        open();
+      }
+    });
+  });
+</script>

@@ -1,254 +1,374 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
 import { publicaciones } from "../content/publicaciones.js";
+import PageHero from "../components/PageHero.astro";
+import PublicationCard from "../components/PublicationCard.astro";
+import { BookOpen, Search, X, SlidersHorizontal } from "lucide-astro";
 
-// Obtener años y tipos únicos
-//Debes convertirlos a número al ordenar:
-const anios = [...new Set(publicaciones.map((p) => Number(p.anio)))].sort(
-  (a, b) => Number(b) - Number(a)
-);
-const tipos = [...new Set(publicaciones.map((p) => p.tipo))];
+// Años únicos, descendentes
+const anios = [...new Set(publicaciones.map((p) => Number(p.anio)))]
+  .filter((a) => !Number.isNaN(a))
+  .sort((a, b) => b - a);
 
-// Ordenar publicaciones por año descendente por defecto
-const publicacionesOrdenadas = [...publicaciones].sort((a, b) =>
-  b.anio.localeCompare(a.anio)
-);
+// Tipos únicos, ordenados alfabéticamente
+const tipos = [...new Set(publicaciones.map((p) => p.tipo))].sort();
+
+// Agrupar publicaciones por año (ya ordenado descendente)
+const grupos = anios.map((anio) => ({
+  anio,
+  items: publicaciones
+    .filter((p) => Number(p.anio) === anio)
+    .sort((a, b) => a.titulo.localeCompare(b.titulo, "es")),
+}));
+
+const total = publicaciones.length;
 ---
 
 <Layout>
-  <section class="max-w-3xl mx-auto my-16 px-4 font-sans">
-    <h1 class="text-4xl font-serif text-guinda mb-10 text-center drop-shadow">
-      Publicaciones
-    </h1>
-    <div class="flex flex-col md:flex-row gap-4 mb-8 justify-center items-center">
-      <!-- Año (select estilizado) -->
-      <div class="relative">
-        <label for="filtro-anio" class="sr-only">Año</label>
-        <select
-          id="filtro-anio"
-          class="appearance-none bg-white border border-gray-200 rounded-full px-4 py-2 pr-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-verde/30"
-        >
-          <option value="">Todos los años</option>
-          {anios.map((anio) => <option value={anio}>{anio}</option>)}
-        </select>
-        <svg class="pointer-events-none w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+  <PageHero
+    title="Publicaciones"
+    subtitle={`Explora nuestra producción académica: ${total} publicaciones entre artículos, capítulos de libro y tesis.`}
+    iconColor="guinda"
+  >
+    <BookOpen slot="icon" class="w-12 h-12 text-guinda" />
+  </PageHero>
+
+  <section class="max-w-6xl mx-auto px-4 pb-20 -mt-8 sm:-mt-12 font-sans">
+    <!-- Barra de filtros sticky -->
+    <div
+      id="filters-bar"
+      class="sticky top-[4.5rem] z-30 bg-white/95 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm p-4 sm:p-5 mb-8"
+    >
+      <!-- Fila 1: búsqueda + año -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <!-- Buscador -->
+        <div class="relative flex-1">
+          <Search class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Buscar por título o autor..."
+            autocomplete="off"
+            class="w-full pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-guinda/30 focus:border-guinda/50 focus:bg-white transition-colors"
+          />
+          <button
+            id="search-clear"
+            type="button"
+            aria-label="Limpiar búsqueda"
+            class="hidden absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-600 flex items-center justify-center"
+          >
+            <X class="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        <!-- Año -->
+        <div class="relative sm:w-48">
+          <label for="filtro-anio" class="sr-only">Filtrar por año</label>
+          <select
+            id="filtro-anio"
+            class="appearance-none w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 pr-10 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-guinda/30 focus:border-guinda/50 focus:bg-white transition-colors"
+          >
+            <option value="">Todos los años</option>
+            {anios.map((anio) => <option value={anio}>{anio}</option>)}
+          </select>
+          <svg
+            class="pointer-events-none w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
       </div>
 
-      <!-- Tipos (chips) -->
-      <div class="flex flex-wrap items-center gap-2">
-        <button id="tipo-clear" type="button" class="text-sm px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition">Todos</button>
+      <!-- Fila 2: tipos -->
+      <div class="flex items-center gap-2 mt-3 flex-wrap">
+        <span class="hidden sm:inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-gray-500 font-semibold mr-1">
+          <SlidersHorizontal class="w-3.5 h-3.5" />
+          Tipo
+        </span>
+        <button
+          type="button"
+          data-tipo=""
+          class="tipo-chip is-active text-xs sm:text-sm px-3 py-1.5 rounded-full font-medium transition-all"
+        >
+          Todos
+        </button>
         {tipos.map((tipo) => (
           <button
             type="button"
-            class="tipo-chip text-sm px-3 py-1 rounded-full bg-white border border-gray-200 text-gray-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-transform duration-200"
             data-tipo={tipo}
+            class="tipo-chip text-xs sm:text-sm px-3 py-1.5 rounded-full font-medium transition-all"
           >
             {tipo}
           </button>
         ))}
       </div>
-    </div>
-    <ul id="lista-publicaciones" class="space-y-8">
-      {
-        publicacionesOrdenadas.map((pub, idx) => (
-            <li
-              tabindex="0"
-              class="relative list-item-pub bg-transparent"
-              data-anio={pub.anio}
-              data-tipo={pub.tipo}
-              data-idx={idx}
-            >
-              <!-- Stacked layers to simulate books/folders -->
-              <div aria-hidden="true" class="stack-layers absolute inset-0 pointer-events-none">
-                <div class="layer absolute inset-0 bg-white rounded-xl shadow-sm transform -translate-y-3 -translate-x-1 rotate-[1deg] opacity-70"></div>
-                <div class="layer absolute inset-0 bg-white rounded-xl shadow-sm transform -translate-y-1 -translate-x-0.5 rotate-[-1deg] opacity-85"></div>
-              </div>
 
-              <!-- Main card -->
-              <div class="relative z-10 flex items-start bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-transform duration-300 transform hover:-translate-y-1 border-l-8 border-verde outline-none focus:ring-4 focus:ring-verde/30 focus:border-verde">
-                <span class="mr-4 mt-1 text-verde">
-                  <svg
-                    class="w-7 h-7"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h4l2-2h6a2 2 0 012 2v12a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                </span>
-                <div class="flex-1">
-                  <div class="flex items-center gap-3 mb-1">
-                    <span class="bg-verde/90 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                      {pub.tipo}
-                    </span>
-                    <span class="bg-guinda/90 text-white text-xs font-bold px-2 py-0.5 rounded shadow">
-                      {pub.anio}
-                    </span>
-                  </div>
-                  <h2 class="text-xl font-bold text-gray-900 mb-1 leading-snug">
-                    {pub.titulo}
-                  </h2>
-                  <p class="text-sm text-gray-700 mb-2">{pub.autores}</p>
-                </div>
-                <a
-                  href={pub.enlace}
-                  class="ml-4 mt-2 bg-verde/90 text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-guinda transition-colors duration-200 self-center"
-                >
-                  Ver
-                </a>
-              </div>
-            </li>
-          ))
-      }
-    </ul>
-    <!-- Contenedor para mostrar/ocultar el resto de publicaciones si hay muchas -->
-    <div class="mt-6 text-center">
+      <!-- Fila 3: contador + clear-all -->
+      <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+        <p class="text-sm text-gray-600">
+          <span id="result-count" class="font-semibold text-guinda">{total}</span>
+          <span id="result-label">publicaciones</span>
+        </p>
+        <button
+          id="clear-all"
+          type="button"
+          class="hidden text-xs sm:text-sm font-medium text-gray-500 hover:text-guinda inline-flex items-center gap-1 transition-colors"
+        >
+          <X class="w-3.5 h-3.5" />
+          Limpiar filtros
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista agrupada por año -->
+    <div id="pub-list" class="space-y-12">
+      {grupos.map((grupo) => (
+        <section class="year-group" data-year-group={grupo.anio}>
+          <header class="flex items-baseline gap-3 mb-5 sticky top-[14rem] sm:top-56 z-10 bg-gradient-to-b from-white via-white/95 to-white/0 py-2 -mx-4 px-4">
+            <h2 class="text-3xl sm:text-4xl font-serif text-guinda font-bold">{grupo.anio}</h2>
+            <span class="year-count text-sm text-gray-500 font-medium" data-year-count={grupo.anio}>
+              {grupo.items.length} {grupo.items.length === 1 ? "publicación" : "publicaciones"}
+            </span>
+            <div class="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent ml-2"></div>
+          </header>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {grupo.items.map((pub) => <PublicationCard {...pub} />)}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden text-center py-16">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+        <Search class="w-8 h-8 text-gray-400" />
+      </div>
+      <h3 class="text-xl font-serif text-gray-800 mb-2">Sin resultados</h3>
+      <p class="text-gray-600 mb-6 max-w-md mx-auto">
+        Ninguna publicación coincide con los filtros actuales. Intenta con otros términos o limpia los filtros.
+      </p>
       <button
-        id="pub-toggle"
+        id="empty-clear"
         type="button"
-        class="hidden px-4 py-2 bg-guinda text-white rounded shadow hover:brightness-95 focus:outline-none"
-        aria-expanded="false"
+        class="inline-flex items-center gap-2 bg-guinda text-white px-5 py-2.5 rounded-full font-medium hover:bg-guinda/90 transition-colors"
       >
-        Mostrar más
+        <X class="w-4 h-4" />
+        Limpiar filtros
       </button>
     </div>
   </section>
 </Layout>
 
+<style>
+  /* Estilo base de los chips de tipo */
+  .tipo-chip {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid transparent;
+  }
+  .tipo-chip:hover {
+    background: #e5e7eb;
+  }
+  .tipo-chip.is-active {
+    background: #6e1942; /* guinda */
+    color: white;
+    border-color: #6e1942;
+  }
+  .tipo-chip.is-active:hover {
+    background: #5a1437;
+  }
+
+  /* Animación de entrada/salida de cards */
+  .pub-card {
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
+  .pub-card.is-hidden {
+    display: none;
+  }
+
+  /* Sticky de los headers de año por debajo del filter bar */
+  @media (min-width: 640px) {
+    .year-group > header {
+      backdrop-filter: blur(6px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pub-card {
+      transition: none;
+    }
+  }
+</style>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", () => {
+    const search = document.getElementById("search-input") as HTMLInputElement | null;
+    const searchClear = document.getElementById("search-clear") as HTMLButtonElement | null;
     const filtroAnio = document.getElementById("filtro-anio") as HTMLSelectElement | null;
-    const tipoChips = Array.from(document.querySelectorAll('.tipo-chip')) as HTMLButtonElement[];
-    const tipoClear = document.getElementById('tipo-clear') as HTMLButtonElement | null;
-    const lista = document.getElementById("lista-publicaciones") as HTMLUListElement | null;
-    const toggleBtn = document.getElementById("pub-toggle") as HTMLButtonElement | null;
-  if (!filtroAnio || !lista || !toggleBtn || !tipoClear) return;
+    const tipoChips = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(".tipo-chip")
+    );
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".pub-card"));
+    const yearGroups = Array.from(
+      document.querySelectorAll<HTMLElement>(".year-group")
+    );
+    const yearCounts = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-year-count]")
+    );
+    const resultCount = document.getElementById("result-count");
+    const resultLabel = document.getElementById("result-label");
+    const clearAll = document.getElementById("clear-all") as HTMLButtonElement | null;
+    const emptyClear = document.getElementById("empty-clear") as HTMLButtonElement | null;
+    const emptyState = document.getElementById("empty-state");
+    const pubList = document.getElementById("pub-list");
 
-  const filtroAnioEl = filtroAnio as HTMLSelectElement;
-  const tipoClearEl = tipoClear as HTMLButtonElement;
-  const toggleBtnEl = toggleBtn as HTMLButtonElement;
-  const listaEl = lista as HTMLUListElement;
-    const items = Array.from(listaEl.querySelectorAll('li')) as HTMLLIElement[];
-    const COLLAPSE_LIMIT = 10;
-    let expanded = false;
-    let selectedTipo = '';
+    if (!search || !filtroAnio || !pubList) return;
 
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let selectedTipo = "";
+    let selectedAnio = "";
+    let query = "";
 
-    function hideItem(item: HTMLLIElement) {
-      if (reduceMotion) {
-        item.style.display = 'none';
-        return;
-      }
-      // animate out
-      item.classList.add('opacity-0', 'scale-95');
-      item.classList.add('transition', 'duration-300');
-      setTimeout(() => {
-        item.style.display = 'none';
-        item.classList.remove('transition', 'duration-300', 'opacity-0', 'scale-95');
-      }, 300);
+    const normalize = (s: string) =>
+      s
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    function syncClearVisibility() {
+      const hasFilter = !!(query || selectedTipo || selectedAnio);
+      clearAll?.classList.toggle("hidden", !hasFilter);
+      searchClear?.classList.toggle("hidden", !query);
     }
 
-    function showItem(item: HTMLLIElement) {
-      if (reduceMotion) {
-        item.style.display = '';
-        return;
-      }
-      item.style.display = '';
-      // start hidden
-      item.classList.add('opacity-0', 'scale-95');
-      requestAnimationFrame(() => {
-        item.classList.add('transition', 'duration-300');
-        item.classList.remove('opacity-0', 'scale-95');
-        setTimeout(() => {
-          item.classList.remove('transition', 'duration-300');
-        }, 300);
-      });
-    }
+    function apply() {
+      const q = normalize(query.trim());
+      let visibleTotal = 0;
+      const perYear: Record<string, number> = {};
 
-    function applyFiltersAndCollapse() {
-  const anio = filtroAnioEl.value || '';
-      let matchCount = 0;
+      cards.forEach((card) => {
+        const tipo = card.getAttribute("data-tipo") || "";
+        const anio = card.getAttribute("data-anio") || "";
+        const titulo = card.getAttribute("data-titulo") || "";
+        const autores = card.getAttribute("data-autores") || "";
+        const haystack = normalize(titulo + " " + autores);
 
-      items.forEach((item) => {
-        const itemAnio = item.getAttribute('data-anio') || '';
-        const itemTipo = item.getAttribute('data-tipo') || '';
-        const matches = (!anio || itemAnio === anio) && (!selectedTipo || itemTipo === selectedTipo);
+        const matchesTipo = !selectedTipo || tipo === selectedTipo;
+        const matchesAnio = !selectedAnio || anio === selectedAnio;
+        const matchesQuery =
+          !q ||
+          q
+            .split(/\s+/)
+            .filter(Boolean)
+            .every((token) => haystack.includes(token));
 
-        if (!matches) {
-          if (item.style.display !== 'none') hideItem(item);
-          return;
-        }
+        const visible = matchesTipo && matchesAnio && matchesQuery;
+        card.classList.toggle("is-hidden", !visible);
 
-        matchCount += 1;
-
-        if (!expanded && matchCount > COLLAPSE_LIMIT) {
-          if (item.style.display !== 'none') hideItem(item);
-        } else {
-          if (item.style.display === 'none') showItem(item);
+        if (visible) {
+          visibleTotal += 1;
+          perYear[anio] = (perYear[anio] || 0) + 1;
         }
       });
 
-      if (matchCount > COLLAPSE_LIMIT) {
-        toggleBtnEl.classList.remove('hidden');
-        toggleBtnEl.textContent = expanded ? 'Mostrar menos' : `Mostrar más (${matchCount - COLLAPSE_LIMIT})`;
-        toggleBtnEl.setAttribute('aria-expanded', String(expanded));
-      } else {
-        toggleBtnEl.classList.add('hidden');
-        toggleBtnEl.setAttribute('aria-expanded', 'false');
+      // Ocultar grupos de año vacíos + actualizar contadores
+      yearGroups.forEach((group) => {
+        const anio = group.getAttribute("data-year-group") || "";
+        const count = perYear[anio] || 0;
+        group.classList.toggle("hidden", count === 0);
+      });
+
+      yearCounts.forEach((el) => {
+        const anio = el.getAttribute("data-year-count") || "";
+        const count = perYear[anio] || 0;
+        el.textContent = `${count} ${count === 1 ? "publicación" : "publicaciones"}`;
+      });
+
+      // Total + label
+      if (resultCount) resultCount.textContent = String(visibleTotal);
+      if (resultLabel) {
+        resultLabel.textContent =
+          visibleTotal === 1 ? "publicación" : "publicaciones";
       }
+
+      // Empty state
+      if (emptyState && pubList) {
+        const isEmpty = visibleTotal === 0;
+        emptyState.classList.toggle("hidden", !isEmpty);
+        pubList.classList.toggle("hidden", isEmpty);
+      }
+
+      syncClearVisibility();
     }
 
-    // Tipo chips behavior
+    // Búsqueda con debounce
+    let searchTimer: number | undefined;
+    search.addEventListener("input", (e) => {
+      query = (e.target as HTMLInputElement).value;
+      window.clearTimeout(searchTimer);
+      searchTimer = window.setTimeout(apply, 150);
+    });
+
+    searchClear?.addEventListener("click", () => {
+      search.value = "";
+      query = "";
+      apply();
+      search.focus();
+    });
+
+    // Filtro de año
+    filtroAnio.addEventListener("change", (e) => {
+      selectedAnio = (e.target as HTMLSelectElement).value;
+      apply();
+    });
+
+    // Chips de tipo (single-select con toggle)
     tipoChips.forEach((chip) => {
-      chip.addEventListener('click', function () {
-        const tipo = this.getAttribute('data-tipo') || '';
-        if (selectedTipo === tipo) {
-          // toggle off
-          selectedTipo = '';
-          this.classList.remove('bg-verde/90', 'text-white');
+      chip.addEventListener("click", () => {
+        const tipo = chip.getAttribute("data-tipo") || "";
+        // Si vuelven a "Todos" o re-clickean el activo, vuelve a "Todos"
+        if (selectedTipo === tipo && tipo !== "") {
+          selectedTipo = "";
         } else {
-          // clear previous
-          tipoChips.forEach((c) => c.classList.remove('bg-verde/90', 'text-white'));
           selectedTipo = tipo;
-          this.classList.add('bg-verde/90', 'text-white');
         }
-        expanded = false;
-        applyFiltersAndCollapse();
+        tipoChips.forEach((c) => {
+          const cTipo = c.getAttribute("data-tipo") || "";
+          c.classList.toggle("is-active", cTipo === selectedTipo);
+        });
+        apply();
       });
     });
 
-    // Clear button
-    tipoClearEl.addEventListener('click', () => {
-      selectedTipo = '';
-      tipoChips.forEach((c) => c.classList.remove('bg-verde/90', 'text-white'));
-      expanded = false;
-      applyFiltersAndCollapse();
-    });
+    function reset() {
+      query = "";
+      selectedTipo = "";
+      selectedAnio = "";
+      search.value = "";
+      filtroAnio.value = "";
+      tipoChips.forEach((c) => {
+        c.classList.toggle("is-active", (c.getAttribute("data-tipo") || "") === "");
+      });
+      apply();
+      search.focus();
+    }
 
-    // Year select
-    filtroAnioEl.addEventListener('change', () => {
-      expanded = false;
-      applyFiltersAndCollapse();
-    });
+    clearAll?.addEventListener("click", reset);
+    emptyClear?.addEventListener("click", reset);
 
-    toggleBtnEl.addEventListener('click', function () {
-      expanded = !expanded;
-      applyFiltersAndCollapse();
-      if (!expanded) {
-        const top = listaEl.getBoundingClientRect().top + window.scrollY - 16;
-        window.scrollTo({ top: top, behavior: 'smooth' });
+    // Atajo de teclado: "/" enfoca el buscador
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "/" &&
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA"
+      ) {
+        e.preventDefault();
+        search.focus();
       }
     });
-
-    // Initial apply
-    // ensure items start visible
-    items.forEach((i) => { i.style.display = ''; });
-    applyFiltersAndCollapse();
   });
 </script>

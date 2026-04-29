@@ -1,0 +1,100 @@
+---
+// PublicationCard: tarjeta de publicación académica.
+// Toda la lógica de filtrado vive en publicaciones.astro; aquí sólo render.
+import { BookOpen, FileText, GraduationCap, ExternalLink } from "lucide-astro";
+
+interface Props {
+  tipo: string;
+  anio: string | number;
+  titulo: string;
+  autores: string;
+  enlace: string;
+}
+
+const { tipo, anio, titulo, autores, enlace } = Astro.props;
+
+// Mapeo tipo → icono + color de acento. Se mantiene en el cliente vía data-tipo.
+const tipoMap: Record<string, { icon: any; color: string }> = {
+  ARTÍCULO: { icon: FileText, color: "verde" },
+  LIBROS: { icon: BookOpen, color: "guinda" },
+  "CAPITULO DE LIBRO": { icon: BookOpen, color: "guinda" },
+  CONGRESOS: { icon: FileText, color: "verde" },
+  TESIS: { icon: GraduationCap, color: "guinda" },
+  INFORMES: { icon: FileText, color: "verde" },
+};
+
+const meta = tipoMap[tipo] || { icon: FileText, color: "verde" };
+const Icon = meta.icon;
+const accent = meta.color === "guinda" ? "guinda" : "verde";
+
+const borderClass = accent === "guinda" ? "hover:border-guinda" : "hover:border-verde";
+const iconBgClass = accent === "guinda" ? "bg-guinda/10 text-guinda" : "bg-verde/10 text-verde";
+const linkClass = accent === "guinda" ? "text-guinda hover:text-guinda/80" : "text-verde hover:text-green-700";
+
+const hasLink = enlace && enlace.trim() !== "";
+---
+
+<article
+  class:list={[
+    "pub-card group relative bg-white rounded-xl border border-gray-200 p-5 sm:p-6 transition-all duration-200",
+    "hover:shadow-md hover:-translate-y-0.5",
+    borderClass,
+  ]}
+  data-tipo={tipo}
+  data-anio={String(anio)}
+  data-titulo={titulo.toLowerCase()}
+  data-autores={autores.toLowerCase()}
+>
+  <div class="flex items-start gap-4">
+    <!-- Icono del tipo -->
+    <div class={`hidden sm:flex flex-shrink-0 w-10 h-10 rounded-lg items-center justify-center ${iconBgClass}`}>
+      <Icon class="w-5 h-5" />
+    </div>
+
+    <div class="min-w-0 flex-1">
+      <!-- Meta superior: tipo y año -->
+      <div class="flex flex-wrap items-center gap-2 mb-2 text-xs">
+        <span class={`inline-flex items-center gap-1 font-semibold uppercase tracking-wide ${accent === "guinda" ? "text-guinda" : "text-verde"}`}>
+          <Icon class="sm:hidden w-3.5 h-3.5" />
+          {tipo}
+        </span>
+        <span class="text-gray-300" aria-hidden="true">·</span>
+        <span class="text-gray-500 font-medium">{anio}</span>
+      </div>
+
+      <!-- Título -->
+      <h3 class="text-base sm:text-lg font-semibold text-gray-900 leading-snug mb-2 hyphens-auto">
+        {hasLink ? (
+          <a
+            href={enlace}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:underline decoration-2 underline-offset-2"
+          >
+            {titulo}
+          </a>
+        ) : (
+          titulo
+        )}
+      </h3>
+
+      <!-- Autores -->
+      <p class="text-sm text-gray-600 leading-relaxed mb-3">
+        {autores}
+      </p>
+
+      <!-- Enlace -->
+      {hasLink && (
+        <a
+          href={enlace}
+          target="_blank"
+          rel="noopener noreferrer"
+          class={`inline-flex items-center gap-1.5 text-sm font-medium ${linkClass} transition-colors`}
+        >
+          Ver publicación
+          <ExternalLink class="w-3.5 h-3.5" />
+        </a>
+      )}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,73 @@
+---
+// PageHero: encabezado de página con icono circular + título + subtítulo.
+// Usado por /sobre-nosotros, /nuestro-trabajo, /contacto.
+import IconBadge from "./IconBadge.astro";
+
+interface Props {
+  title: string;
+  /** Subtítulo/descripción opcional. Acepta HTML mínimo via slot también. */
+  subtitle?: string;
+  /** Variante visual. "plain" = sobre fondo claro; "gradient" = degradado verde. */
+  variant?: "plain" | "gradient";
+  /** Color del icono (solo aplica en variant="plain"). */
+  iconColor?: "guinda" | "verde";
+  /** Clases adicionales para el wrapper <section>. */
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  variant = "plain",
+  iconColor = "guinda",
+  class: classProp = "",
+} = Astro.props;
+
+const isGradient = variant === "gradient";
+
+const sectionClass = [
+  isGradient
+    ? "bg-gradient-to-br from-verde to-green-600 text-white py-20"
+    : "max-w-4xl mx-auto my-20 px-4",
+  "text-center font-sans",
+  classProp,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const wrapperClass = isGradient
+  ? "max-w-4xl mx-auto px-4"
+  : "";
+
+const titleClass = [
+  "text-3xl sm:text-4xl md:text-5xl font-serif mb-6",
+  isGradient ? "text-white" : "text-guinda",
+]
+  .filter(Boolean)
+  .join(" ");
+
+const subtitleClass = isGradient
+  ? "text-xl text-green-100 max-w-2xl mx-auto leading-relaxed"
+  : "text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed";
+
+const badgeColor = isGradient ? "white" : iconColor;
+---
+
+<section class={sectionClass}>
+  <div class={wrapperClass}>
+    <div class="flex justify-center mb-6">
+      <IconBadge color={badgeColor} pulse>
+        <slot name="icon" />
+      </IconBadge>
+    </div>
+    <h1 class={titleClass}>{title}</h1>
+    {
+      subtitle && (
+        <p class={subtitleClass}>
+          <slot>{subtitle}</slot>
+        </p>
+      )
+    }
+    {!subtitle && <slot />}
+  </div>
+</section>

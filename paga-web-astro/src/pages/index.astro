@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import SmartImage from "../components/SmartImage.astro";
 ---
 
 <Layout>
@@ -11,14 +13,15 @@ import Layout from "../layouts/BaseLayout.astro";
 
   <!-- Slider Section -->
   <section class="w-full relative">
-    <div class="swiper mySwiper h-[500px]">
+    <div class="swiper mySwiper h-[60vh] min-h-[320px] sm:h-[500px]">
       <div class="swiper-wrapper">
         <div class="swiper-slide relative">
-          <img
+          <SmartImage
             src="/slider/image1i.jpg"
+            alt="Investigación Sostenible"
             class="w-full h-full object-scale-down"
             style="background-image: linear-gradient(to bottom, #0B4536, #60A917); object-position: center;"
-            alt="Investigación Sostenible"
+            priority
           />
           <div
             class="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-end pr-16"
@@ -34,10 +37,10 @@ import Layout from "../layouts/BaseLayout.astro";
           </div>
         </div>
         <div class="swiper-slide relative">
-          <img
+          <SmartImage
             src="/slider/image2i.jpg"
-            class="w-full h-full object-cover"
             alt="Tecnología Verde"
+            class="w-full h-full object-cover"
           />
           <div
             class="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-end pr-16"
@@ -53,10 +56,10 @@ import Layout from "../layouts/BaseLayout.astro";
           </div>
         </div>
         <div class="swiper-slide relative">
-          <img
+          <SmartImage
             src="/slider/image3i.jpeg"
-            class="w-full h-full object-cover"
             alt="Impacto Social"
+            class="w-full h-full object-cover"
           />
           <div
             class="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-end pr-16"
@@ -73,8 +76,9 @@ import Layout from "../layouts/BaseLayout.astro";
         </div>
         <!-- Slide Servicio Social -->
         <div class="swiper-slide relative">
-          <img
+          <SmartImage
             src="/banner/ss1.png"
+            alt="Libera tu servicio social con nosotros"
             class="w-full h-full object-cover"
           />
           <div
@@ -94,11 +98,11 @@ import Layout from "../layouts/BaseLayout.astro";
         </div>
         <!-- Slide Podcast Dra. Cristina -->
         <div class="swiper-slide relative">
-          <img
+          <SmartImage
             src="/banner/PodcastT4E5.jpg"
+            alt="Podcast Dra. Cristina Ayala Azcárraga"
             class="w-full h-full object-contain"
             style="background-color: rgb(239, 225, 176);"
-            alt="Podcast Dra. Cristina Ayala Azcárraga"
           />
           <div
             class="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-end pr-16"
@@ -117,6 +121,23 @@ import Layout from "../layouts/BaseLayout.astro";
         </div>
       </div>
       <div class="swiper-pagination"></div>
+
+      <!-- Botón pausa/play del slider (solo móvil) -->
+      <button
+        type="button"
+        id="slider-toggle"
+        aria-label="Pausar slider"
+        aria-pressed="false"
+        class="lg:hidden absolute bottom-3 right-3 z-20 w-10 h-10 rounded-full bg-black/55 text-white flex items-center justify-center shadow-md backdrop-blur-sm hover:bg-black/75 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      >
+        <svg id="slider-toggle-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+          <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+          <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+        </svg>
+        <svg id="slider-toggle-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 hidden">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+      </button>
     </div>
   </section>
 
@@ -141,65 +162,36 @@ import Layout from "../layouts/BaseLayout.astro";
   <section class="py-16 px-4 bg-white">
     <div class="max-w-6xl mx-auto">
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Card 1: Nuestro Trabajo -->
-        <div
-          class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 motion-reduce:transform-none"
+        <FeatureCard
+          title="Nuestro Trabajo"
+          color="verde"
+          ctaHref="/nuestro-trabajo"
         >
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-verde mb-4">Nuestro Trabajo</h3>
-            <p class="text-black font-sans mb-6 leading-relaxed">
-              Desarrollamos proyectos de investigación enfocados en
-              sostenibilidad, innovación tecnológica y soluciones ambientales
-              que generen un impacto positivo en la sociedad.
-            </p>
-            <a
-              href="/nuestro-trabajo"
-              class="inline-block bg-verde text-white px-6 py-3 rounded-md hover:bg-green-700 transition-colors duration-200 font-medium"
-            >
-              Conocer más
-            </a>
-          </div>
-        </div>
+          Desarrollamos proyectos de investigación enfocados en sostenibilidad,
+          innovación tecnológica y soluciones ambientales que generen un impacto
+          positivo en la sociedad.
+        </FeatureCard>
 
-        <!-- Card 2: ¿Quiénes Somos? -->
-        <div
-          class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 motion-reduce:transform-none"
+        <FeatureCard
+          title="¿Quiénes Somos?"
+          color="guinda"
+          ctaHref="/sobre-nosotros"
         >
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-guinda mb-4">¿Quiénes Somos?</h3>
-            <p class="text-black font-sans mb-6 leading-relaxed">
-              Somos un equipo multidisciplinario de investigadores y
-              profesionales comprometidos con la generación de conocimiento y el
-              desarrollo de tecnologías sustentables.
-            </p>
-            <a
-              href="/sobre-nosotros"
-              class="inline-block bg-guinda text-white px-6 py-3 rounded-md hover:bg-red-800 transition-colors duration-200 font-medium"
-            >
-              Conocer más
-            </a>
-          </div>
-        </div>
+          Somos un equipo multidisciplinario de investigadores y profesionales
+          comprometidos con la generación de conocimiento y el desarrollo de
+          tecnologías sustentables.
+        </FeatureCard>
 
-        <!-- Card 3: Publicaciones -->
-        <div
-          class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 motion-reduce:transform-none"
+        <FeatureCard
+          title="Publicaciones"
+          color="gray"
+          ctaHref="/publicaciones"
+          ctaLabel="Ver publicaciones"
         >
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-gray-700 mb-4">Publicaciones</h3>
-            <p class="text-black font-sans mb-6 leading-relaxed">
-              Explora nuestras investigaciones, artículos científicos y
-              publicaciones que contribuyen al avance del conocimiento en el
-              área de desarrollo sustentable.
-            </p>
-            <a
-              href="/publicaciones"
-              class="inline-block bg-gray-700 text-white px-6 py-3 rounded-md hover:bg-gray-800 transition-colors duration-200 font-medium"
-            >
-              Ver publicaciones
-            </a>
-          </div>
-        </div>
+          Explora nuestras investigaciones, artículos científicos y publicaciones
+          que contribuyen al avance del conocimiento en el área de desarrollo
+          sustentable.
+        </FeatureCard>
       </div>
     </div>
   </section>
@@ -216,35 +208,24 @@ import Layout from "../layouts/BaseLayout.astro";
 
       <div class="mx-auto w-56 h-56 relative">
         <!-- Layered images for crossfade effect -->
-        <img
+        <SmartImage
           id="mascota-img-0"
           src="/mascota/frame1.png"
           alt="Mascota fotograma 1"
-          class="absolute inset-0 w-full h-full object-contain transition-opacity duration-150 opacity-100 rounded-xl shadow-md bg-white"
+          class="absolute inset-0 w-full h-full object-contain transition-opacity duration-150 opacity-100"
         />
-        <img
+        <SmartImage
           id="mascota-img-1"
           src="/mascota/frame2.png"
           alt="Mascota fotograma 2"
-          class="absolute inset-0 w-full h-full object-contain transition-opacity duration-150 opacity-0 rounded-xl shadow-md bg-white"
+          class="absolute inset-0 w-full h-full object-contain transition-opacity duration-150 opacity-0"
         />
-        <img
+        <SmartImage
           id="mascota-img-2"
           src="/mascota/frame3.png"
           alt="Mascota fotograma 3"
-          class="absolute inset-0 w-full h-full object-contain transition-opacity duration-150 opacity-0 rounded-xl shadow-md bg-white"
+          class="absolute inset-0 w-full h-full object-contain transition-opacity duration-150 opacity-0"
         />
-      </div>
-
-      <div class="mt-4 flex items-center justify-center gap-3">
-        <button
-          id="mascota-pause"
-          class="px-3 py-1 bg-guinda text-white rounded">Pausar</button
-        >
-        <button
-          id="mascota-resume"
-          class="px-3 py-1 bg-verde text-white rounded hidden">Reanudar</button
-        >
       </div>
     </div>
   </section>
@@ -276,7 +257,7 @@ import Layout from "../layouts/BaseLayout.astro";
       ).then((module) => {
         const Swiper = module.default;
 
-        new Swiper(".mySwiper", {
+        const swiper = new Swiper(".mySwiper", {
           loop: true,
           autoplay: {
             delay: 4000,
@@ -291,6 +272,30 @@ import Layout from "../layouts/BaseLayout.astro";
           speed: 1000,
           grabCursor: true,
         });
+
+        // Toggle pausa/play del slider (visible en móvil)
+        const toggle = document.getElementById("slider-toggle");
+        const iconPause = document.getElementById("slider-toggle-pause");
+        const iconPlay = document.getElementById("slider-toggle-play");
+        if (toggle && iconPause && iconPlay) {
+          let paused = false;
+          toggle.addEventListener("click", () => {
+            paused = !paused;
+            if (paused) {
+              swiper.autoplay?.stop();
+              iconPause.classList.add("hidden");
+              iconPlay.classList.remove("hidden");
+              toggle.setAttribute("aria-label", "Reanudar slider");
+              toggle.setAttribute("aria-pressed", "true");
+            } else {
+              swiper.autoplay?.start();
+              iconPlay.classList.add("hidden");
+              iconPause.classList.remove("hidden");
+              toggle.setAttribute("aria-label", "Pausar slider");
+              toggle.setAttribute("aria-pressed", "false");
+            }
+          });
+        }
       });
     });
   </script>
@@ -298,23 +303,14 @@ import Layout from "../layouts/BaseLayout.astro";
   <!-- Mascota script -->
   <script is:inline>
     document.addEventListener("DOMContentLoaded", function () {
-      // Replace these paths with your mascot frames if you add custom images to /public/mascota/
-      const FRAMES = [
-        "/slider/image1i.jpg",
-        "/slider/image2i.jpg",
-        "/slider/image3i.jpeg",
-      ];
       const imgs = [
         document.getElementById("mascota-img-0"),
         document.getElementById("mascota-img-1"),
         document.getElementById("mascota-img-2"),
       ];
-      const pauseBtn = document.getElementById("mascota-pause");
-      const resumeBtn = document.getElementById("mascota-resume");
-      if (!imgs.every(Boolean) || !pauseBtn || !resumeBtn) return;
+      if (!imgs.every(Boolean)) return;
 
       let current = 0;
-      let playing = true;
       const reduceMotion =
         window.matchMedia &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -336,13 +332,12 @@ import Layout from "../layouts/BaseLayout.astro";
       }
 
       function step() {
-        const next = (current + 1) % FRAMES.length;
-        showIndex(next);
+        showIndex((current + 1) % imgs.length);
       }
 
       function start() {
         if (timer) clearInterval(timer);
-        if (playing) timer = setInterval(step, INTERVAL);
+        timer = setInterval(step, INTERVAL);
       }
 
       function stop() {
@@ -352,36 +347,14 @@ import Layout from "../layouts/BaseLayout.astro";
         }
       }
 
-      // hover to pause
-      imgs.forEach((el) => {
-        el.addEventListener("mouseenter", () => {
-          playing = false;
-          stop();
-          pauseBtn.classList.add("hidden");
-          resumeBtn.classList.remove("hidden");
+      // En escritorio (con puntero fino) hover pausa la animación.
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        imgs.forEach((el) => {
+          el.addEventListener("mouseenter", stop);
+          el.addEventListener("mouseleave", start);
         });
-        el.addEventListener("mouseleave", () => {
-          playing = true;
-          start();
-          pauseBtn.classList.remove("hidden");
-          resumeBtn.classList.add("hidden");
-        });
-      });
+      }
 
-      pauseBtn.addEventListener("click", () => {
-        playing = false;
-        stop();
-        pauseBtn.classList.add("hidden");
-        resumeBtn.classList.remove("hidden");
-      });
-      resumeBtn.addEventListener("click", () => {
-        playing = true;
-        start();
-        resumeBtn.classList.add("hidden");
-        pauseBtn.classList.remove("hidden");
-      });
-
-      // initialize
       showIndex(0);
       if (!reduceMotion) start();
     });
