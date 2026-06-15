@@ -75,10 +75,11 @@ Live in `src/components/`. Prefer composing these over inlining the pattern:
 
 Public-folder images are served as-is by Astro (the `astro:assets` pipeline doesn't touch `public/`). The optimizer at `scripts/optimize-images.mjs` is the substitute:
 
-- It walks `public/` recursively, re-encodes PNG/JPG with Sharp (mozjpeg + palette PNGs), resizes anything wider than `--max-width=1920`, and writes a `.webp` sibling next to each original.
-- Originals are copied to `public-original/` on first run with `--apply`.
+- It walks `public/` recursively, re-encodes PNG/JPG with Sharp (mozjpeg JPGs at quality 85, palette PNGs at effort 8), resizes anything wider than `--max-width=1920` using **Lanczos3 + sharpen sigma 0.6** to counteract downsample blur, and writes a `.webp` sibling (quality 85) next to each original.
+- Originals are copied to `public-original/` on first run with `--apply`. Re-encoded JPG/PNG is only written if the new file is smaller than the input; the `.webp` is written unconditionally. To re-encode at a different quality, restore the relevant subfolder from `public-original/` before re-running, otherwise the script reads already-degraded files as input.
 - `SmartImage` references are what makes the WebP siblings useful at runtime.
-- The dry-run on the current asset set reports **61 MB → 14.5 MB re-encoded / 8.3 MB WebP** (76–86% reduction). `banner/ss1.png` was 21 MB; if it's still huge after running the script, re-export it manually.
+- The dry-run on the original asset set reports roughly **61 MB → ~15 MB re-encoded / ~10 MB WebP** (~75–84% reduction) at the current quality settings (was 8.3 MB at the previous 80/78 quality — bumped to 85/85 for the team grid, costing ~1.7 MB site-wide for visibly sharper portraits). `banner/ss1.png` was 21 MB; if it's still huge after running the script, re-export it manually.
+- **Source resolution is the floor.** Re-encoding/sharpen cannot fix images whose source is smaller than the display target. The team cards scale to ~360 px CSS / ~720 px on Retina; sources under ~600 px will look blurry regardless of quality settings. Replace the source file in `public/equipo/` (or wherever) and re-run the optimizer rather than tuning encoder knobs. Currently flagged: `equipo/mcmr.jpg` (200×200), `equipo/Edgar_Brian_Martinez_Merino.png` (282×327), `equipo/diego_dominguez.png` (300×296).
 - If `optimize:images:apply` has not been run, `<source srcset=".webp">` will silently 404 in Network and the browser falls through to the original `<img>` — no visible breakage, but no savings either.
 
 ## Layout & global behavior — `BaseLayout.astro`

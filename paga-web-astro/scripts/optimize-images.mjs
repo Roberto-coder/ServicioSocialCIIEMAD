@@ -26,8 +26,8 @@ const APPLY = args.includes("--apply");
 const MAX_WIDTH = Number(
   (args.find((a) => a.startsWith("--max-width=")) || "").split("=")[1] || 1920
 );
-const QUALITY_JPG = 80;
-const QUALITY_WEBP = 78;
+const QUALITY_JPG = 85;
+const QUALITY_WEBP = 85;
 const QUALITY_PNG_EFFORT = 8;
 
 const RAW_EXT = new Set([".jpg", ".jpeg", ".png"]);
@@ -67,7 +67,9 @@ async function processFile(file, totals) {
   const metadata = await sharp(file).metadata();
 
   if (metadata.width && metadata.width > MAX_WIDTH) {
-    pipeline = pipeline.resize({ width: MAX_WIDTH, withoutEnlargement: true });
+    pipeline = pipeline
+      .resize({ width: MAX_WIDTH, withoutEnlargement: true, kernel: "lanczos3" })
+      .sharpen({ sigma: 0.6 });
   }
 
   // Re-codifica el formato original

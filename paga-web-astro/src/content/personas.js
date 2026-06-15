@@ -209,47 +209,30 @@ export const personas = [
   {
     id: "jose-angel-cortes-fuentes",
     nombre: "José Ángel Cortés Fuentes",
-    titulo:
-      "Ingeniero Biotecnólogo con Maestría en Ciencias en Estudios Ambientales y de la Sustentabilidad",
+    titulo: "Ingeniero Biotecnólogo",
     foto: "/equipo/Jose_Angel_Cortes_Fuentes.png",
-    email: "jose.angel@ciiemad.ipn.mx",
+    email: "jcortesf1900@alumno.ipn.mx",
     especialidades: [
-      "Plantas acuáticas para consumo humano",
-      "Alimentación sustentable",
-      "Soberanía alimentaria",
+      "Ecología humana",
+      "Recuperación ambiental",
+      "Metales pesados",
+      "Sistemas acuáticos",
     ],
     semblanza:
-      "José Ángel Cortés Fuentes es Ingeniero Biotecnólogo - Unidad Profesional Interdisciplinaria de Biotecnología (UPIBI) del Instituto Politécnico Nacional (IPN)., Estudiante de la Maestría en Ciencias en Estudios Ambientales y de la Sustentabilidad – Centro Interdisciplinario de Investigaciones y Estudios sobre Medio Ambiente y Desarrollo (CIIEMAD) del IPN. Su formación y trabajo académico se centran en el análisis interdisciplinario de los problemas ambientales, así como en la búsqueda de estrategias orientadas a la sustentabilidad y al desarrollo sostenible. Actualmente, se encuentra cursando la Maestría en Ciencias en Estudios Ambientales y de la Sustentabilidad en el mismo centro, donde participa en proyectos de investigación enfocados en la gestión ambiental, el cambio climático y la integración de políticas sustentables en distintos contextos sociales y territoriales.",
+      "Durante mi vida he visto cómo ha cambiado el planeta, en todo sentido. El cambio climático, las crisis ambientales y sociales, al igual que las tensiones políticas moldearon el mundo en el que crecí y en el que estoy viviendo actualmente. Mi deseo de contar con herramientas que me permitieran entender y cuidar este mundo inició en mi infancia, pero se materializó con mi formación en Ingeniería Biotecnológica en el Instituto Politécnico Nacional. Aquí adquirí nociones importantes de biología, ingeniería genética, termodinámica, bioseparaciones y demás materias valiosas. Aprendí cómo funciona la vida en su unidad más básica y cómo usar este conocimiento para ayudar a otros, pero esto no me fue suficiente. Actualmente me encuentro cursando la Maestría en Ciencias en Estudios Ambientales y de la Sustentabilidad en el Centro Interdisciplinario de Investigaciones y Estudios sobre Medio Ambiente y Desarrollo (CIIEMAD) del IPN, al cual ingresé con la meta de aprender a vincular mis conocimientos ingenieriles al mundo real, conociendo el contexto en el que las personas viven día a día y desarrollando herramientas que faciliten la relación del ser humano con nuestro entorno. Aspiro a trabajar de la mano con las personas para solucionar los problemas ambientales que nos rodean, con especial interés a un tema tan importante que es el agua y la relación que tenemos con ella, al igual que la ecología del ser humano y cómo resulta necesario cambiar nuestra perspectiva de entes independientes de la naturaleza a seres íntegramente partícipes en ella. De esta manera, considero valioso usar nuestro conocimiento de la mano con las personas para, en conjunto, lograr cambios trascendentes en la realidad que vivimos día a día.",
     enlaces: [
       {
         tipo: "LinkedIn",
-        url: "",
+        url: "https://www.linkedin.com/in/josé-ángel-cortés-fuentes-38068b207",
         color: "blue-600",
       },
       {
-        tipo: "ResearchGate",
-        url: "",
-        color: "green-600",
-      },
-      {
-        tipo: "Google Scholar",
-        url: "",
-        color: "red-600",
-      },
-      {
         tipo: "ORCID",
-        url: "",
+        url: "https://orcid.org/0009-0001-5615-2033",
         color: "purple-600",
       },
     ],
-    proyectos: [
-      // {
-      //   titulo: "Soluciones Basadas en la Naturaleza",
-      //   descripcion:
-      //     "Investigación sobre implementación de techos verdes y espacios naturales en entornos urbanos.",
-      //   color: "verde",
-      // },
-    ],
+    proyectos: [],
     publicaciones: ["Cortés Fuentes, J. Á."],
   },
   {
@@ -297,5 +280,57 @@ export const personas = [
       // },
     ],
     publicaciones: ["Martínez-Merino, E. B."],
+  },
+  {
+    id: "samantha-martinez-caballero",
+    nombre: "Samantha L. Martínez Caballero",
+    titulo:
+      "Maestra en Ciencias en Estudios Ambientales y de la Sustentabilidad",
+    foto: "/equipo/samantha-martinez.jpg",
+    email: "slmar.caballero@gmail.com",
+    especialidades: [
+      "Análisis espacial",
+      "Ecosistemas marinos y costeros",
+      "Desarrollo sustentable",
+    ],
+    semblanza:
+      "Soy bióloga marina por la Universidad del Mar, Maestra en Ciencias en Estudios Ambientales y de la Sustentabilidad por el IPN, actual estudiante del Doctorado en Ciencias en Estudios Ambientales y de la Sustentabilidad. Mi investigación se centra en los arrecifes coralinos como sistemas socioecológicos. Me interesa comprender cómo las comunidades que dependen de estos ecosistemas interactúan con el estado de salud de los arrecifes y cómo las políticas públicas pueden mediar esa relación hacia escenarios más sostenibles.",
+    enlaces: [
+      {
+        tipo: "LinkedIn",
+        url: "https://www.linkedin.com/in/samanthamtzc/",
+        color: "blue-600",
+      },
+      {
+        tipo: "ResearchGate",
+        url: "https://www.researchgate.net/profile/Samantha-Martinez-Caballero",
+        color: "green-600",
+      },
+      {
+        tipo: "Google Scholar",
+        url: "https://scholar.google.com/citations?user=KWRge_cAAAAJ&hl=en",
+        color: "red-600",
+      },
+      {
+        tipo: "ORCID",
+        url: "https://orcid.org/0000-0001-6286-0637",
+        color: "purple-600",
+      },
+    ],
+    proyectos: [
+      {
+        titulo: "Arrecifes coralinos como sistemas socioecológicos",
+        descripcion:
+          "Investigación doctoral sobre la interacción entre comunidades costeras y el estado de salud de los arrecifes coralinos.",
+        color: "verde",
+      },
+      {
+        titulo: "Políticas públicas y ecosistemas marinos",
+        descripcion:
+          "Análisis del rol de las políticas públicas como mediadoras hacia escenarios más sostenibles en zonas costeras.",
+        color: "guinda",
+      },
+    ],
+    publicaciones: ["Martínez-Caballero"],
   },
 ];
